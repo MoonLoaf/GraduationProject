@@ -1,55 +1,58 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class EnemyPool : Object
+namespace Enemy
 {
-    private ObjectPool<EnemyBase> _enemyPool;
-    public ObjectPool<EnemyBase> Pool => _enemyPool;
-
-    public void Initialize()
+    public class EnemyPool : Object
     {
-        _enemyPool = new ObjectPool<EnemyBase>(
-            OnEnemyCreate, OnEnemyGet, OnEnemyRelease, OnEnemyDestroy, false, 40, 500);
-    }
+        private ObjectPool<EnemyBase> _enemyPool;
+        public ObjectPool<EnemyBase> Pool => _enemyPool;
 
-    public EnemyBase SpawnEnemy(EnemyType type, Vector3 spawnPos)
-    {
-        EnemyBase enemy = _enemyPool.Get();
-    
-        if (enemy == null)
+        public void Initialize()
         {
-            enemy = OnEnemyCreate();
+            _enemyPool = new ObjectPool<EnemyBase>(
+                OnEnemyCreate, OnEnemyGet, OnEnemyRelease, OnEnemyDestroy, false, 40, 500);
         }
+
+        public EnemyBase SpawnEnemy(EnemyType type, Vector3 spawnPos)
+        {
+            EnemyBase enemy = _enemyPool.Get();
     
-        enemy.SetEnemyType(type);
-        enemy.Reset();
-        enemy.transform.position = spawnPos;
-        enemy.gameObject.SetActive(true);
-        return enemy;
-    }
-
-    private EnemyBase OnEnemyCreate()
-    {
-        GameObject enemyObject = new GameObject("Enemy");
-        EnemyBase enemy = enemyObject.AddComponent<EnemyBase>();
+            if (enemy == null)
+            {
+                enemy = OnEnemyCreate();
+            }
     
-        return enemy;
-    }
+            enemy.SetEnemyType(type);
+            enemy.Reset();
+            enemy.transform.position = spawnPos;
+            enemy.gameObject.SetActive(true);
+            return enemy;
+        }
 
-    private void OnEnemyGet(EnemyBase enemy)
-    {
-        enemy.gameObject.SetActive(true);
-    }
+        private EnemyBase OnEnemyCreate()
+        {
+            GameObject enemyObject = new GameObject("Enemy");
+            EnemyBase enemy = enemyObject.AddComponent<EnemyBase>();
+    
+            return enemy;
+        }
 
-    private void OnEnemyRelease(EnemyBase enemy)
-    {
-        enemy.SetEnemyType(null);
-        enemy.gameObject.SetActive(false);
-    }
+        private void OnEnemyGet(EnemyBase enemy)
+        {
+            enemy.gameObject.SetActive(true);
+        }
 
-    private void OnEnemyDestroy(EnemyBase enemy)
-    {
-        Destroy(enemy.gameObject);
+        private void OnEnemyRelease(EnemyBase enemy)
+        {
+            enemy.SetEnemyType(null);
+            enemy.gameObject.SetActive(false);
+        }
+
+        private void OnEnemyDestroy(EnemyBase enemy)
+        {
+            Destroy(enemy.gameObject);
+        }
     }
 }
 

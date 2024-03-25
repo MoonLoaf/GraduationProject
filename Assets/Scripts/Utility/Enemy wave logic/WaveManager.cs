@@ -1,47 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
+using Enemy;
 using UnityEngine;
 
-public class WaveManager : GenericSingleton<WaveManager>
+namespace Utility.EnemyWaveLogic
 {
-    private EnemyPool _enemyPool;
-    [SerializeField] private List<Wave> _waves = new();
-    private int _currentWave = 0;
-    private Vector3 _spawnPoint;
-
-    protected override void Awake()
+    public class WaveManager : GenericSingleton<WaveManager>
     {
-        _enemyPool = new EnemyPool();
-        _enemyPool.Initialize();
-    }
+        private EnemyPool _enemyPool;
+        [SerializeField] private List<Wave> _waves = new();
+        private int _currentWave = 0;
+        private Vector3 _spawnPoint;
 
-    private void Start()
-    {
-        _spawnPoint = LevelSpline.Instance.GetLevelSpline()[0].Position;
-        StartWave();
-    }
-
-    public void StartWave()
-    {
-        int eventIndex = 0;
-        var waveEvents = _waves[_currentWave].SpawnEvents;
-        int enemyCount = waveEvents[eventIndex].Count;
-        
-        //TODO: If there is a spawnEvent at this time
-        foreach (var spawnEvent in waveEvents)
+        protected override void Awake()
         {
-            for (int i = 0; i < enemyCount; i++)
+            _enemyPool = new EnemyPool();
+            _enemyPool.Initialize();
+        }
+
+        private void Start()
+        {
+            _spawnPoint = LevelSpline.Instance.GetLevelSpline()[0].Position;
+            StartCoroutine(StartWave());
+        }
+
+        private IEnumerator StartWave()
+        {
+            var wave = _waves[_currentWave];
+
+            for (int eventIndex = 0; eventIndex < wave.SpawnEvents.Count; eventIndex++)
+            {
+                var spawnEvent = wave.SpawnEvents[eventIndex];
+
+                yield return StartCoroutine(TriggerSpawnEvent(spawnEvent));
+
+                if (eventIndex < wave.SpawnEvents.Count - 1)
+                {
+                    yield return new WaitForSeconds(wave.SpawnEvents[eventIndex + 1].Delay);
+                }
+            }
+
+            _currentWave++;;
+        }
+
+        private IEnumerator TriggerSpawnEvent(Wave.SpawnEvent spawnEvent)
+        {
+            for (int i = 0; i < spawnEvent.Count; i++)
             {
                 var type = spawnEvent.Type;
-                float time = spawnEvent.SpawnTickRate;
-                StartCoroutine(TriggerSpawnEvent(type, time));
+                float time = spawnEvent.SpawnTickRate * i;
+
+                yield return new WaitForSeconds(time);
+
+                _enemyPool.SpawnEnemy(type, _spawnPoint);
             }
         }
-    }
-
-    private IEnumerator TriggerSpawnEvent(EnemyType type, float time)
-    {
-        EnemyBase newEnemy = _enemyPool.SpawnEnemy(type, _spawnPoint);
-        yield return new WaitForSeconds(time);
     }
 }

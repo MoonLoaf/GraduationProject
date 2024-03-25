@@ -1,17 +1,20 @@
 using UnityEngine;
 using UnityEngine.Splines;
 
-public class LevelSpline : GenericSingleton<LevelSpline>
+namespace Utility
 {
-    [SerializeField]private SplineContainer levelSplineContainer;
+    public class LevelSpline : GenericSingleton<LevelSpline>
+    {
+        [SerializeField]private SplineContainer levelSplineContainer;
     
-    public Spline GetLevelSpline()
-    {
-        return levelSplineContainer.Spline;
-    }
+        public Spline GetLevelSpline()
+        {
+            return levelSplineContainer.Spline;
+        }
 
-    public SplineContainer GetLevelSplineContainer()
-    {
-        return levelSplineContainer;
+        public SplineContainer GetLevelSplineContainer()
+        {
+            return levelSplineContainer;
+        }
     }
 }

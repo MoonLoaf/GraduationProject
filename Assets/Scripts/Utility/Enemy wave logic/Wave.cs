@@ -1,30 +1,35 @@
 using System;
 using System.Collections.Generic;
+using Enemy;
+using UnityEngine.Serialization;
 
-[Serializable]
-public struct Wave
+namespace Utility.EnemyWaveLogic
 {
     [Serializable]
-    public struct SpawnEvent
+    public struct Wave
     {
-        public EnemyType Type;
-        public int Count;
-        public float StartSpawnTime; 
-        public float SpawnTickRate;
-
-        public SpawnEvent(EnemyType type, int count, float time, float spawnTickRate)
+        [Serializable]
+        public struct SpawnEvent
         {
-            Type = type;
-            Count = count;
-            StartSpawnTime = time;
-            SpawnTickRate = spawnTickRate;
+            public EnemyType Type;
+            public int Count;
+            public float Delay; 
+            public float SpawnTickRate;
+
+            public SpawnEvent(EnemyType type, int count, float delay, float spawnTickRate)
+            {
+                Type = type;
+                Count = count;
+                Delay = delay;
+                SpawnTickRate = spawnTickRate;
+            }
         }
-    }
 
-    public List<SpawnEvent> SpawnEvents;
+        public List<SpawnEvent> SpawnEvents;
 
-    public Wave(List<SpawnEvent> events)
-    {
-        SpawnEvents = events;
+        public Wave(List<SpawnEvent> events)
+        {
+            SpawnEvents = events;
+        }
     }
 }

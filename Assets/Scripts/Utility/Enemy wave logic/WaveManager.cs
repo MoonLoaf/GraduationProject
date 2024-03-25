@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,12 +11,14 @@ public class WaveManager : GenericSingleton<WaveManager>
 
     protected override void Awake()
     {
-        _spawnPoint = LevelSpline.Instance.GetLevelSpline()[0].Position;
+        _enemyPool = new EnemyPool();
+        _enemyPool.Initialize();
     }
 
     private void Start()
     {
-        
+        _spawnPoint = LevelSpline.Instance.GetLevelSpline()[0].Position;
+        StartWave();
     }
 
     public void StartWave()
@@ -31,8 +32,8 @@ public class WaveManager : GenericSingleton<WaveManager>
         {
             for (int i = 0; i < enemyCount; i++)
             {
-                var type = waveEvents[eventIndex].Type;
-                float time = waveEvents[eventIndex].SpawnTickRate;
+                var type = spawnEvent.Type;
+                float time = spawnEvent.SpawnTickRate;
                 StartCoroutine(TriggerSpawnEvent(type, time));
             }
         }
@@ -40,7 +41,7 @@ public class WaveManager : GenericSingleton<WaveManager>
 
     private IEnumerator TriggerSpawnEvent(EnemyType type, float time)
     {
-        _enemyPool.SpawnEnemy(type, _spawnPoint);
+        EnemyBase newEnemy = _enemyPool.SpawnEnemy(type, _spawnPoint);
         yield return new WaitForSeconds(time);
     }
 }

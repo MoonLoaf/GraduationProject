@@ -1,15 +1,10 @@
+using UnityEngine;
 using UnityEngine.Splines;
 
 public class LevelSpline : GenericSingleton<LevelSpline>
 {
-    private SplineContainer levelSplineContainer;
-
-    protected override void Awake()
-    {
-        base.Awake();
-        levelSplineContainer = FindObjectOfType<SplineContainer>();
-    }
-
+    [SerializeField]private SplineContainer levelSplineContainer;
+    
     public Spline GetLevelSpline()
     {
         return levelSplineContainer.Spline;

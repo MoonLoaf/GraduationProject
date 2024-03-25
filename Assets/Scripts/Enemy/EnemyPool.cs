@@ -1,16 +1,12 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class EnemyPool : MonoBehaviour
+public class EnemyPool : Object
 {
     private ObjectPool<EnemyBase> _enemyPool;
+    public ObjectPool<EnemyBase> Pool => _enemyPool;
 
-    public ObjectPool<EnemyBase> GetEnemyPool()
-    {
-        return _enemyPool;
-    }
-
-    private void Awake()
+    public void Initialize()
     {
         _enemyPool = new ObjectPool<EnemyBase>(
             OnEnemyCreate, OnEnemyGet, OnEnemyRelease, OnEnemyDestroy, false, 40, 500);
@@ -26,6 +22,7 @@ public class EnemyPool : MonoBehaviour
         }
     
         enemy.SetEnemyType(type);
+        enemy.Reset();
         enemy.transform.position = spawnPos;
         enemy.gameObject.SetActive(true);
         return enemy;
@@ -46,6 +43,7 @@ public class EnemyPool : MonoBehaviour
 
     private void OnEnemyRelease(EnemyBase enemy)
     {
+        enemy.SetEnemyType(null);
         enemy.gameObject.SetActive(false);
     }
 

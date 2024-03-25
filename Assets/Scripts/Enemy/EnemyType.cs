@@ -3,6 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EnemyType", menuName = "EnemyType")]
 public class EnemyType : ScriptableObject
 {
+    [Header("Visual")] 
+    [SerializeField] private Sprite _sprite;
+    
     [Header("Enemy Stats")]
     [SerializeField] private int _maxHP;
     [SerializeField] private int _damage;
@@ -15,5 +18,7 @@ public class EnemyType : ScriptableObject
     public int MaxHP => _maxHP;
     public float MovementSpeed => _movementSpeed;
     public int Damage => _damage;
+    public Sprite TypeSprite => _sprite;
+    
     public bool IsMetal => isMetal;
 }

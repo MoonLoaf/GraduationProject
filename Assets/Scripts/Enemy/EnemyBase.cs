@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Splines;
+using Utility;
 
 namespace Enemy
 {
@@ -10,6 +12,14 @@ namespace Enemy
         private int _currentHealth;
         private float _moveSpeed;
         private SpriteRenderer _renderer;
+        
+        //Testing
+        private SplineContainer _spline;
+        private float _splineLength;
+        private float _moveTime = 0f;
+        private float distancePercent = 0;
+        
+        
 
         private void Awake()
         {
@@ -19,6 +29,8 @@ namespace Enemy
         void Start()
         {
             Reset();
+            _spline = LevelSpline.Instance.GetLevelSplineContainer();
+            _splineLength = _spline.CalculateLength();
         }
 
         public void Reset()
@@ -30,7 +42,18 @@ namespace Enemy
 
         void Update()
         {
-        
+            if (_spline != null)
+            {
+                distancePercent += _moveSpeed * Time.deltaTime / _splineLength;
+
+                Vector3 currentPos = _spline.EvaluatePosition(distancePercent);
+                transform.position = currentPos;
+
+                if (distancePercent > 1f)
+                {
+                    Destroy(gameObject);
+                }
+            }
         }
 
         public void SetEnemyType(EnemyType newType)

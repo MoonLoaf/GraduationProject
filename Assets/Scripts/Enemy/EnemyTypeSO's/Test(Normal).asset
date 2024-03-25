@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51da85ca38e118e4886babf68f177d77, type: 3}
   m_Name: Test(Normal)
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  _sprite: {fileID: 21300000, guid: 706771529e3089e459e34fd492166585, type: 3}
   _maxHP: 3
   _damage: 1
-  _movementSpeed: 0
+  _movementSpeed: 1
   isMetal: 0

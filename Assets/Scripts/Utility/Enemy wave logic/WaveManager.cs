@@ -25,7 +25,7 @@ namespace Utility.EnemyWaveLogic
 
         private void Start()
         {
-            _spawnPoint = LevelSpline.Instance.GetLevelSpline()[0].Position;
+            _spawnPoint = LevelSpline.Instance.GetStartPositionWorldSpace();
             StartCoroutine(StartWave());
         }
 
@@ -67,6 +67,7 @@ namespace Utility.EnemyWaveLogic
                 }
 
                 _enemyPool.SpawnEnemy(type, _spawnPoint);
+                Debug.Log(_spawnPoint);
             }
         }
     }

@@ -41,6 +41,7 @@ namespace Enemy
 
         private void OnEnemyGet(EnemyBase enemy)
         {
+            //Nothing needed here at the moment
         }
 
         private void OnEnemyRelease(EnemyBase enemy)

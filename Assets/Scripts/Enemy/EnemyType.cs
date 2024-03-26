@@ -15,6 +15,7 @@ namespace Enemy
     
         [Header("Enemy Flags and Modifiers")]
         [SerializeField] private bool isMetal;
+        [SerializeField] private bool isCamo;
         // TODO: Add more modifiers
     
         public int MaxHP => _maxHP;
@@ -23,5 +24,6 @@ namespace Enemy
         public Sprite TypeSprite => _sprite;
     
         public bool IsMetal => isMetal;
+        public bool IsCamo => isCamo;
     }
 }

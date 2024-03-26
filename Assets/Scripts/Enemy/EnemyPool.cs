@@ -6,7 +6,6 @@ namespace Enemy
     public class EnemyPool : Object
     {
         private ObjectPool<EnemyBase> _enemyPool;
-        public ObjectPool<EnemyBase> Pool => _enemyPool;
 
         public void Initialize()
         {
@@ -17,30 +16,31 @@ namespace Enemy
         public EnemyBase SpawnEnemy(EnemyType type, Vector3 spawnPos)
         {
             EnemyBase enemy = _enemyPool.Get();
-    
-            if (enemy == null)
-            {
-                enemy = OnEnemyCreate();
-            }
-    
-            enemy.SetEnemyType(type);
-            enemy.Reset();
+            
             enemy.transform.position = spawnPos;
+            enemy.SetEnemyType(type);
+            enemy.Initialize();
             enemy.gameObject.SetActive(true);
+
             return enemy;
+        }
+
+        public void DespawnEnemy(EnemyBase enemy)
+        {
+            _enemyPool.Release(enemy);
         }
 
         private EnemyBase OnEnemyCreate()
         {
             GameObject enemyObject = new GameObject("Enemy");
             EnemyBase enemy = enemyObject.AddComponent<EnemyBase>();
+            enemyObject.SetActive(false);
     
             return enemy;
         }
 
         private void OnEnemyGet(EnemyBase enemy)
         {
-            enemy.gameObject.SetActive(true);
         }
 
         private void OnEnemyRelease(EnemyBase enemy)

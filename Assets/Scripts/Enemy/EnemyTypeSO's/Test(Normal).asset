@@ -15,5 +15,5 @@ MonoBehaviour:
   _sprite: {fileID: 21300000, guid: 706771529e3089e459e34fd492166585, type: 3}
   _maxHP: 3
   _damage: 1
-  _movementSpeed: 1
+  _movementSpeed: 3
   isMetal: 0

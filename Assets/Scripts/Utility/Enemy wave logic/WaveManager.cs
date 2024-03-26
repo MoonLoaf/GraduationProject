@@ -8,9 +8,14 @@ namespace Utility.EnemyWaveLogic
     public class WaveManager : GenericSingleton<WaveManager>
     {
         private EnemyPool _enemyPool;
+        [HideInInspector]public EnemyPool Pool => _enemyPool;
         [SerializeField] private List<Wave> _waves = new();
+        
         private int _currentWave = 0;
         private Vector3 _spawnPoint;
+
+        private bool _isWaveActive;
+        public bool IsWaveActive => _isWaveActive;
 
         protected override void Awake()
         {
@@ -27,6 +32,7 @@ namespace Utility.EnemyWaveLogic
         private IEnumerator StartWave()
         {
             var wave = _waves[_currentWave];
+            _isWaveActive = true;
 
             for (int eventIndex = 0; eventIndex < wave.SpawnEvents.Count; eventIndex++)
             {
@@ -40,17 +46,25 @@ namespace Utility.EnemyWaveLogic
                 }
             }
 
-            _currentWave++;;
+            _currentWave++;
+            _isWaveActive = false;
         }
 
         private IEnumerator TriggerSpawnEvent(Wave.SpawnEvent spawnEvent)
         {
+            float startTime = Time.time;
+
             for (int i = 0; i < spawnEvent.Count; i++)
             {
                 var type = spawnEvent.Type;
-                float time = spawnEvent.SpawnTickRate * i;
+                float elapsedTime = Time.time - startTime;
 
-                yield return new WaitForSeconds(time);
+                float timeToWait = spawnEvent.SpawnTickRate * (i + 1) - elapsedTime;
+
+                if (timeToWait > 0f)
+                {
+                    yield return new WaitForSeconds(timeToWait);
+                }
 
                 _enemyPool.SpawnEnemy(type, _spawnPoint);
             }

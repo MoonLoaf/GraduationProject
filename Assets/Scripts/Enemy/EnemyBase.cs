@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Splines;
 using Utility;
+using Utility.EnemyWaveLogic;
 
 namespace Enemy
 {
@@ -11,47 +12,50 @@ namespace Enemy
     
         private int _currentHealth;
         private float _moveSpeed;
+
+        private BoxCollider2D _collider;
         private SpriteRenderer _renderer;
         
         //Testing
         private SplineContainer _spline;
         private float _splineLength;
-        private float _moveTime = 0f;
-        private float distancePercent = 0;
-        
-        
+        private float _distancePercent = 0;
+        private bool _shouldMove = false;
 
         private void Awake()
         {
+            _collider = gameObject.AddComponent<BoxCollider2D>();
             _renderer = gameObject.AddComponent<SpriteRenderer>();
         }
 
         void Start()
         {
-            Reset();
             _spline = LevelSpline.Instance.GetLevelSplineContainer();
             _splineLength = _spline.CalculateLength();
         }
 
-        public void Reset()
+        public void Initialize()
         {
             _renderer.sprite = _type.TypeSprite;
             _currentHealth = _type.MaxHP;
             _moveSpeed = _type.MovementSpeed;
+            _shouldMove = true;
         }
 
         void Update()
         {
-            if (_spline != null)
+            if (_spline != null && _shouldMove)
             {
-                distancePercent += _moveSpeed * Time.deltaTime / _splineLength;
+                _distancePercent += _moveSpeed * Time.deltaTime / _splineLength;
 
-                Vector3 currentPos = _spline.EvaluatePosition(distancePercent);
+                Vector3 currentPos = _spline.EvaluatePosition(_distancePercent);
                 transform.position = currentPos;
 
-                if (distancePercent > 1f)
+                if (_distancePercent >= 1f)
                 {
-                    Destroy(gameObject);
+                    _distancePercent = 0;
+                    _shouldMove = false;
+                    WaveManager.Instance.Pool.DespawnEnemy(this);
                 }
             }
         }

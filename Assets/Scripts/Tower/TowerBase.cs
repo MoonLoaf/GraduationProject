@@ -1,4 +1,7 @@
+using System;
+using Enemy;
 using UnityEngine;
+using Utility.EnemyWaveLogic;
 
 namespace Tower
 {
@@ -11,6 +14,8 @@ namespace Tower
         private float _attackSpeed;
         private float _damage;
         private float _range;
+
+        private EnemyBase _target;
         
         private BoxCollider2D _collider;
         private SpriteRenderer _renderer;
@@ -35,6 +40,49 @@ namespace Tower
         {
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(transform.position, _range);
+        }
+
+        private void UpdateRotation()
+        {
+            if(_target == null){return;}
+
+            Vector3 enemyPos = _target.transform.position;
+
+            Vector3 direction = (enemyPos - transform.position).normalized;
+            Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.back);
+
+            Vector3 currentEulerAngles = transform.rotation.eulerAngles;
+
+            Quaternion targetZRotation = Quaternion.Euler(currentEulerAngles.x, currentEulerAngles.y, targetRotation.eulerAngles.z);
+
+            float lerpSpeed = 0.1f;
+            Quaternion lerpedRotation = Quaternion.Lerp(transform.rotation, targetZRotation, lerpSpeed);
+
+            transform.rotation = lerpedRotation;
+        }
+
+        private void GetNewTarget()
+        {
+            foreach (var enemy in WaveManager.Instance.ActiveEnemies)
+            {
+                if(Vector2.Distance(enemy.transform.position, transform.position) >= _range) {continue;}
+
+                _target = enemy;
+                break;
+            }
+        }
+
+        private void FixedUpdate()
+        {
+            if (_target != null && Vector2.Distance(_target.transform.position, transform.position) >= _range)
+            {
+                _target = null;
+            }
+            if (_target == null)
+            {
+                GetNewTarget();
+            }
+            UpdateRotation();
         }
     }
 }

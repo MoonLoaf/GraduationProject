@@ -8,9 +8,9 @@ namespace Utility.EnemyWaveLogic
     public class WaveManager : GenericSingleton<WaveManager>
     {
         private EnemyPool _enemyPool;
-        [HideInInspector]public EnemyPool Pool => _enemyPool;
         [SerializeField] private List<Wave> _waves = new();
-        
+        public List<EnemyBase> ActiveEnemies { get; private set; }
+
         private int _currentWave = 0;
         private Vector3 _spawnPoint;
 
@@ -20,6 +20,7 @@ namespace Utility.EnemyWaveLogic
         protected override void Awake()
         {
             _enemyPool = new EnemyPool();
+            ActiveEnemies = new List<EnemyBase>();
             _enemyPool.Initialize();
         }
 
@@ -66,9 +67,20 @@ namespace Utility.EnemyWaveLogic
                     yield return new WaitForSeconds(timeToWait);
                 }
 
-                _enemyPool.SpawnEnemy(type, _spawnPoint);
-                Debug.Log(_spawnPoint);
+                var enemy = _enemyPool.SpawnEnemy(type, _spawnPoint);
+                AddActiveEnemy(enemy);
             }
+        }
+
+        public void AddActiveEnemy(EnemyBase enemy)
+        {
+            ActiveEnemies.Add(enemy);
+        }
+
+        public void RemoveEnemy(EnemyBase enemy)
+        {
+            ActiveEnemies.Remove(enemy);
+            _enemyPool.DespawnEnemy(enemy);
         }
     }
 }

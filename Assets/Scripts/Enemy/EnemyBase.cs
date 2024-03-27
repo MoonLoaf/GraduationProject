@@ -48,14 +48,13 @@ namespace Enemy
             {
                 _distancePercent += _moveSpeed * Time.deltaTime / _splineLength;
 
-                Vector3 currentPos = _spline.EvaluatePosition(_distancePercent);
-                transform.position = currentPos;
+                transform.position = _spline.EvaluatePosition(_distancePercent);
 
                 if (_distancePercent >= 1f)
                 {
                     _distancePercent = 0;
                     _shouldMove = false;
-                    WaveManager.Instance.Pool.DespawnEnemy(this);
+                    WaveManager.Instance.RemoveEnemy(this);
                 }
             }
         }
@@ -64,6 +63,22 @@ namespace Enemy
         {
             if(_type != null){return;}
             _type = newType;
+        }
+
+        public void TakeDamage(int amount)
+        {
+            _currentHealth -= amount;
+
+            if (_currentHealth <= 0)
+            {
+                TriggerDeath();    
+            }
+        }
+
+        private void TriggerDeath()
+        {
+            //TODO: Effects?
+            WaveManager.Instance.RemoveEnemy(this);
         }
     }
 }

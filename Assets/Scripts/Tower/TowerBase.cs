@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Tower
@@ -11,6 +10,7 @@ namespace Tower
 
         private float _attackSpeed;
         private float _damage;
+        private float _range;
         
         private BoxCollider2D _collider;
         private SpriteRenderer _renderer;
@@ -27,6 +27,14 @@ namespace Tower
             _renderer.sprite = _type.TypeSprite;
             _attackSpeed = _type.AttackSpeed;
             _damage = _type.Damage;
+            _range = _type.Range;
+        }
+
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, _range);
         }
     }
 }

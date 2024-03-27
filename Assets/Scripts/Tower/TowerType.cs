@@ -12,6 +12,7 @@ namespace Tower
         [Header("Tower Stats")]
         [SerializeField] private int _damage;
         [SerializeField] private float _attackSpeed;
+        [SerializeField] private float _range;
     
         [FormerlySerializedAs("isExplosive")]
         [Header("Enemy Flags and Modifiers")]
@@ -22,6 +23,7 @@ namespace Tower
     
         public int Damage => _damage;
         public float AttackSpeed => _attackSpeed;
+        public float Range => _range;
         public Sprite TypeSprite => _sprite;
     
         public bool IsExplosive => _isExplosive;

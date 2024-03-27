@@ -9,6 +9,8 @@ namespace Utility
     { 
         [SerializeField] private SplineContainer _levelSplineContainer;
         [SerializeField] private float _trackWidth;
+        [SerializeField] private float _mapHorizontalBorder;
+        
         private float3 _nearestPoint;
         public float TrackWidth => _trackWidth;
     
@@ -43,7 +45,7 @@ namespace Utility
 
             float distanceToPosition = Vector2.Distance(position, new Vector2(_nearestPoint.x, _nearestPoint.y));
 
-            return distanceToPosition > _trackWidth;
+            return distanceToPosition > _trackWidth && position.x < _mapHorizontalBorder;
         }
 
 

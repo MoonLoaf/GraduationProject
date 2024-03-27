@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa5c2b77d02a4434fa86a83eb80ff110, type: 3}
   m_Name: Normal(Testing)
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: 1f84240ab7b8af04cae7c31a2d45d45e, type: 3}
   _damage: 0
   _attackSpeed: 0
   _isExplosive: 0

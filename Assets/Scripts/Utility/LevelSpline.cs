@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Splines;
@@ -6,7 +7,10 @@ namespace Utility
 {
     public class LevelSpline : GenericSingleton<LevelSpline>
     { 
-        [SerializeField]private SplineContainer _levelSplineContainer;
+        [SerializeField] private SplineContainer _levelSplineContainer;
+        [SerializeField] private float _trackWidth;
+        private float3 _nearestPoint;
+        public float TrackWidth => _trackWidth;
     
         public Spline GetLevelSpline()
         {
@@ -27,6 +31,44 @@ namespace Utility
             }
             Debug.LogWarning("Level spline container or spline is not set.");
             return Vector3.zero;
+        }
+
+        public bool CanPlace(Vector2 position)
+        {
+            Spline spline = _levelSplineContainer.Spline;
+
+            Vector3 pos3 = new Vector3(position.x, position.y, spline[0].Position.z);
+
+            SplineUtility.GetNearestPoint(spline, pos3, out _nearestPoint, out _);
+
+            float distanceToPosition = Vector2.Distance(position, new Vector2(_nearestPoint.x, _nearestPoint.y));
+
+            return distanceToPosition > _trackWidth;
+        }
+
+
+        private void OnDrawGizmos()
+        {
+            if (_levelSplineContainer == null || _levelSplineContainer.Spline == null)
+                return;
+
+            Spline spline = _levelSplineContainer.Spline;
+            Gizmos.color = Color.red;
+
+            // Draw lines representing the track width around each spline point
+            for (int i = 0; i < spline.Count; i++)
+            {
+                Vector3 localSplinePoint = spline[i].Position;
+                Vector3 worldSplinePoint = _levelSplineContainer.transform.TransformPoint(localSplinePoint);
+
+                // Draw a circle at each spline point to represent the track width
+                Gizmos.DrawWireSphere(worldSplinePoint, _trackWidth);
+            }
+            
+            // Convert the nearest point to world space
+            // Draw a blue sphere at the nearest point
+            Gizmos.color = Color.blue;
+            Gizmos.DrawSphere(_nearestPoint, 0.1f);
         }
     }
 }

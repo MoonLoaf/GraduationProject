@@ -1,7 +1,5 @@
 using Tower;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace UI.Buttons
 {

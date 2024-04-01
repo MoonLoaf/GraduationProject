@@ -1081,13 +1081,13 @@ MonoBehaviour:
       Delay: 0
       SpawnTickRate: 1
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
-      Count: 10
+      Count: 25
       Delay: 5
       SpawnTickRate: 0.5
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
-      Count: 10
+      Count: 40
       Delay: 2
-      SpawnTickRate: 0.1
+      SpawnTickRate: 0.2
 --- !u!4 &1269616215
 Transform:
   m_ObjectHideFlags: 0

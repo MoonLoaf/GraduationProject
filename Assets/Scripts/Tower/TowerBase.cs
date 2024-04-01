@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Enemy;
 using UnityEngine;
 using Utility.EnemyWaveLogic;
@@ -12,7 +13,7 @@ namespace Tower
         public TowerType Type => _type;
 
         private float _attackSpeed;
-        private float _damage;
+        private int _damage;
         private float _range;
 
         private EnemyBase _target;
@@ -83,6 +84,14 @@ namespace Tower
                 GetNewTarget();
             }
             UpdateRotation();
+            Attack();
+        }
+
+        private IEnumerator Attack()
+        {
+            yield return new WaitForSeconds(_attackSpeed);
+            
+            _target.TakeDamage(_damage);
         }
     }
 }

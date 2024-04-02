@@ -1,5 +1,5 @@
+using Tower.Projectile;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Tower
 {
@@ -8,26 +8,16 @@ namespace Tower
     {
         [Header("Visual")] 
         [SerializeField] private Sprite _sprite;
+
+        [SerializeField] private ProjectileType _projectileType;
     
         [Header("Tower Stats")]
-        [SerializeField] private int _damage;
         [SerializeField] private float _attackSpeed;
         [SerializeField] private float _range;
     
-        [FormerlySerializedAs("isExplosive")]
-        [Header("Enemy Flags and Modifiers")]
-        [SerializeField] private bool _isExplosive;
-        [SerializeField] private bool _isCorrosive;
-        [SerializeField] private bool _isPuncture;
-        // TODO: Add more modifiers
-    
-        public int Damage => _damage;
         public float AttackSpeed => _attackSpeed;
         public float Range => _range;
         public Sprite TypeSprite => _sprite;
-    
-        public bool IsExplosive => _isExplosive;
-        public bool IsCorrosive => _isCorrosive;
-        public bool IsPuncture => _isPuncture;
+        public ProjectileType TypeProjectileType => _projectileType;
     }
 }

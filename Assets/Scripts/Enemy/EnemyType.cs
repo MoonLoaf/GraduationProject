@@ -16,7 +16,6 @@ namespace Enemy
         [Header("Enemy Flags and Modifiers")]
         [SerializeField] private bool isMetal;
         [SerializeField] private bool isCamo;
-        // TODO: Add more modifiers
     
         public int MaxHP => _maxHP;
         public float MovementSpeed => _movementSpeed;

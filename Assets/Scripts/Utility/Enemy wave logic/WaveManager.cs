@@ -14,8 +14,7 @@ namespace Utility.EnemyWaveLogic
         private int _currentWave = 0;
         private Vector3 _spawnPoint;
 
-        private bool _isWaveActive;
-        public bool IsWaveActive => _isWaveActive;
+        public bool IsWaveActive { get; private set; }
 
         protected override void Awake()
         {
@@ -33,7 +32,7 @@ namespace Utility.EnemyWaveLogic
         private IEnumerator StartWave()
         {
             var wave = _waves[_currentWave];
-            _isWaveActive = true;
+            IsWaveActive = true;
 
             for (int eventIndex = 0; eventIndex < wave.SpawnEvents.Count; eventIndex++)
             {
@@ -48,23 +47,24 @@ namespace Utility.EnemyWaveLogic
             }
 
             _currentWave++;
-            _isWaveActive = false;
+            IsWaveActive = false;
         }
 
         private IEnumerator TriggerSpawnEvent(Wave.SpawnEvent spawnEvent)
         {
-            float startTime = Time.time;
+            float timePassed = 0f;
+
+            WaitForSeconds wait = new WaitForSeconds(spawnEvent.SpawnTickRate);
 
             for (int i = 0; i < spawnEvent.Count; i++)
             {
                 var type = spawnEvent.Type;
-                float elapsedTime = Time.time - startTime;
-
-                float timeToWait = spawnEvent.SpawnTickRate * (i + 1) - elapsedTime;
+                float timeToWait = (i + 1) * spawnEvent.SpawnTickRate - timePassed;
 
                 if (timeToWait > 0f)
                 {
-                    yield return new WaitForSeconds(timeToWait);
+                    yield return wait;
+                    timePassed += spawnEvent.SpawnTickRate;
                 }
 
                 var enemy = _enemyPool.SpawnEnemy(type, _spawnPoint);

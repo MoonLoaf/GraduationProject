@@ -1,6 +1,5 @@
-using System;
-using System.Collections;
 using Enemy;
+using Tower.Projectile;
 using UnityEngine;
 using Utility.EnemyWaveLogic;
 
@@ -9,12 +8,12 @@ namespace Tower
     public class TowerBase : MonoBehaviour
     {
         [SerializeField] private TowerType _type;
-
         public TowerType Type => _type;
 
         private float _attackSpeed;
         private int _damage;
         private float _range;
+        private float _lastAttackTime;
 
         private EnemyBase _target;
         
@@ -32,10 +31,8 @@ namespace Tower
             _type = type;
             _renderer.sprite = _type.TypeSprite;
             _attackSpeed = _type.AttackSpeed;
-            _damage = _type.Damage;
             _range = _type.Range;
         }
-
 
         private void OnDrawGizmos()
         {
@@ -45,21 +42,22 @@ namespace Tower
 
         private void UpdateRotation()
         {
-            if(_target == null){return;}
+            if(_target == null) { return; }
 
             Vector3 enemyPos = _target.transform.position;
 
             Vector3 direction = (enemyPos - transform.position).normalized;
             Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.back);
 
-            Vector3 currentEulerAngles = transform.rotation.eulerAngles;
+            var rotation = transform.rotation;
+            Vector3 currentEulerAngles = rotation.eulerAngles;
 
             Quaternion targetZRotation = Quaternion.Euler(currentEulerAngles.x, currentEulerAngles.y, targetRotation.eulerAngles.z);
 
-            float lerpSpeed = 0.1f;
-            Quaternion lerpedRotation = Quaternion.Lerp(transform.rotation, targetZRotation, lerpSpeed);
+            Quaternion lerpedRotation = Quaternion.Lerp(rotation, targetZRotation, 0.1f);
 
-            transform.rotation = lerpedRotation;
+            rotation = lerpedRotation;
+            transform.rotation = rotation;
         }
 
         private void GetNewTarget()
@@ -84,14 +82,26 @@ namespace Tower
                 GetNewTarget();
             }
             UpdateRotation();
-            Attack();
+            if (_target != null && Time.time - _lastAttackTime >= _attackSpeed)
+            {
+                Attack();
+                _lastAttackTime = Time.time;
+            }
         }
 
-        private IEnumerator Attack()
+        private void Attack()
         {
-            yield return new WaitForSeconds(_attackSpeed);
-            
-            _target.TakeDamage(_damage);
+            if (_target != null)
+            {
+                Vector3 directionToTarget = (_target.transform.position - transform.position).normalized;
+                
+                GameObject projectileGO = new GameObject("Projectile")
+                {
+                    transform = { position = transform.position }
+                };
+                ProjectileBase projectileComp = projectileGO.AddComponent<ProjectileBase>();
+                projectileComp.Initialize(_type.TypeProjectileType, directionToTarget);
+            }
         }
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Utility;
 
@@ -15,9 +14,8 @@ namespace Tower
         private bool _previewActive = true;
         private bool _moved = false;
         private Camera _camera;
-        Vector3 _touchPosition;
-
-
+        private Vector3 _touchPosition;
+        
         private void Awake()
         {
             _renderer = gameObject.AddComponent<SpriteRenderer>();
@@ -64,8 +62,10 @@ namespace Tower
         private void SpawnTower(Vector3 spawnPos)
         {
             _previewActive = false;
-            GameObject towerObject = new GameObject("Tower");
-            towerObject.transform.position = spawnPos;
+            GameObject towerObject = new GameObject("Tower")
+            {
+                transform = { position = spawnPos }
+            };
             TowerBase tower = towerObject.AddComponent<TowerBase>();
             
             tower.Initialize(_type);

@@ -27,6 +27,12 @@ namespace Tower.Projectile
             _shouldMove = true;
         }
 
+        public void SetType(ProjectileType type)
+        {
+            if(_type != null){return;}
+            _type = type;
+        }
+
         private void Update()
         {
             if(!_shouldMove){return;}

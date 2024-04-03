@@ -38,14 +38,14 @@ namespace Enemy
 
         private void Awake()
         {
-            _collider = gameObject.AddComponent<BoxCollider2D>();
             _renderer = gameObject.AddComponent<SpriteRenderer>();
+            _spline = LevelSpline.Instance.GetLevelSplineContainer();
+            _splineLength = _spline.CalculateLength();
         }
 
         void Start()
         {
-            _spline = LevelSpline.Instance.GetLevelSplineContainer();
-            _splineLength = _spline.CalculateLength();
+            tag = "Enemy";
         }
 
         public void Initialize()
@@ -57,26 +57,31 @@ namespace Enemy
             _shouldMove = true;
         }
 
+        private void OnDisable()
+        {
+            _shouldMove = false;
+            _distancePercent = 0;
+            transform.position = _spline.EvaluatePosition(_distancePercent);
+        }
+
         void Update()
         {
-            if (_spline != null && _shouldMove)
-            {
-                _distancePercent += _moveSpeed * Time.deltaTime / _splineLength;
+            if (!_shouldMove) return;
+            
+            _distancePercent += _moveSpeed * Time.deltaTime / _splineLength;
 
-                transform.position = _spline.EvaluatePosition(_distancePercent);
+            transform.position = _spline.EvaluatePosition(_distancePercent);
 
-                if (_distancePercent >= 1f)
-                {
-                    _distancePercent = 0;
-                    _shouldMove = false;
-                    WaveManager.Instance.RemoveEnemy(this);
-                }
-            }
+            if (_distancePercent <= 1f) return;
+            
+            _distancePercent = 0;
+            _shouldMove = false;
+            WaveManager.Instance.RemoveEnemy(this);
         }
 
         public void SetEnemyType(EnemyType newType)
         {
-            if(_type != null){return;}
+            if(_type){return;}
             _type = newType;
         }
 

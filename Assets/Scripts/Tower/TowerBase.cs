@@ -38,11 +38,6 @@ namespace Tower
             ProjectilePool.Initialize();
         }
 
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(transform.position, _range);
-        }
 
         private void UpdateRotation()
         {
@@ -51,19 +46,32 @@ namespace Tower
             Vector3 enemyPos = _target.transform.position;
 
             Vector3 direction = (enemyPos - transform.position).normalized;
-            Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.back);
 
-            var rotation = transform.rotation;
-            Vector3 currentEulerAngles = rotation.eulerAngles;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            Quaternion targetRotation = Quaternion.AngleAxis(angle - 100f, Vector3.forward);
 
-            Quaternion targetZRotation = Quaternion.Euler(currentEulerAngles.x, currentEulerAngles.y, targetRotation.eulerAngles.z);
-
-            Quaternion lerpedRotation = Quaternion.Lerp(rotation, targetZRotation, 0.1f);
-
-            rotation = lerpedRotation;
-            transform.rotation = rotation;
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
         }
 
+
+        private void FixedUpdate()
+        {
+            if (_target != null && Vector2.Distance(_target.transform.position, transform.position) >= _range)
+            {
+                _target = null;
+            }
+            if (!_target)
+            {
+                GetNewTarget();
+            }
+            UpdateRotation();
+            if (_target != null && Time.time - _lastAttackTime >= _attackSpeed)
+            {
+                Attack();
+                _lastAttackTime = Time.time;
+            }
+        }
+        
         private void GetNewTarget()
         {
             foreach (var enemy in WaveManager.Instance.ActiveEnemies)
@@ -75,31 +83,21 @@ namespace Tower
             }
         }
 
-        private void FixedUpdate()
-        {
-            if (_target != null && Vector2.Distance(_target.transform.position, transform.position) >= _range)
-            {
-                _target = null;
-            }
-            if (_target == null)
-            {
-                GetNewTarget();
-            }
-            UpdateRotation();
-            if (_target != null && Time.time - _lastAttackTime >= _attackSpeed)
-            {
-                Attack();
-                _lastAttackTime = Time.time;
-            }
-        }
-
         private void Attack()
         {
+            ProjectilePool.SpawnProjectile(_type.TypeProjectileType, transform.position, _target, this);
+        }
+        
+        
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, _range);
+            
+            Gizmos.color = Color.red;
             if (_target != null)
             {
-                Vector3 directionToTarget = (_target.transform.position - transform.position).normalized;
-
-                ProjectilePool.SpawnProjectile(_type.TypeProjectileType, transform.position, directionToTarget, this);
+                Gizmos.DrawLine(transform.position, _target.transform.position);
             }
         }
     }

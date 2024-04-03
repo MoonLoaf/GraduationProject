@@ -1,4 +1,5 @@
 using System.Collections;
+using Enemy;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -15,12 +16,12 @@ namespace Tower.Projectile
                 false, 10, 50);
         }
 
-        public ProjectileBase SpawnProjectile(ProjectileType type, Vector3 spawnPos, Vector3 dir, TowerBase tower)
+        public ProjectileBase SpawnProjectile(ProjectileType type, Vector3 spawnPos, EnemyBase target, TowerBase tower)
         {
             ProjectileBase projectile = _projectilePool.Get();
 
             projectile.transform.position = spawnPos;
-            projectile.Initialize(type, dir, tower);
+            projectile.Initialize(type, target, tower);
             projectile.gameObject.SetActive(true);
 
             return projectile;
@@ -29,6 +30,7 @@ namespace Tower.Projectile
         public void DespawnProjectile(ProjectileBase projectile)
         {
             projectile.gameObject.SetActive(false);
+            _projectilePool.Release(projectile);
         }
 
         private ProjectileBase OnProjectileCreate()

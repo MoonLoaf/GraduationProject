@@ -9,7 +9,8 @@ namespace Enemy
         [SerializeField] private Sprite _sprite;
     
         [Header("Enemy Stats")]
-        [SerializeField] private int _maxHP;
+        [SerializeField] private int _layers;
+        [SerializeField] private int _hpPerLayer;
         [SerializeField] private int _damage;
         [SerializeField] private float _movementSpeed;
     
@@ -17,7 +18,8 @@ namespace Enemy
         [SerializeField] private bool isMetal;
         [SerializeField] private bool isCamo;
     
-        public int MaxHP => _maxHP;
+        public int Layers => _layers;
+        public int HpPerLayer => _hpPerLayer;
         public float MovementSpeed => _movementSpeed;
         public int Damage => _damage;
         public Sprite TypeSprite => _sprite;

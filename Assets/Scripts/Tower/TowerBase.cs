@@ -10,7 +10,7 @@ namespace Tower
         [SerializeField] private TowerType _type;
         public TowerType Type => _type;
 
-        private ProjectilePool _projectilePool;
+        public ProjectilePool ProjectilePool { get; private set; }
 
         private float _attackSpeed;
         private int _damage;
@@ -26,7 +26,7 @@ namespace Tower
         {
             _collider = gameObject.AddComponent<BoxCollider2D>();
             _renderer = gameObject.AddComponent<SpriteRenderer>();
-            _projectilePool = new ProjectilePool();
+            ProjectilePool = new ProjectilePool();
         }
 
         public void Initialize(TowerType type)
@@ -35,7 +35,7 @@ namespace Tower
             _renderer.sprite = _type.TypeSprite;
             _attackSpeed = _type.AttackSpeed;
             _range = _type.Range;
-            _projectilePool.Initialize();
+            ProjectilePool.Initialize();
         }
 
         private void OnDrawGizmos()
@@ -99,9 +99,7 @@ namespace Tower
             {
                 Vector3 directionToTarget = (_target.transform.position - transform.position).normalized;
 
-                var projectile = _projectilePool.SpawnProjectile(_type.TypeProjectileType, transform.position, directionToTarget);
-                //Timer based despawn
-                StartCoroutine(_projectilePool.DespawnProjectile(projectile));
+                ProjectilePool.SpawnProjectile(_type.TypeProjectileType, transform.position, directionToTarget, this);
             }
         }
     }

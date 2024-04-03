@@ -1,15 +1,11 @@
 using UnityEditor;
-using UnityEngine;
 
 namespace Tower.Projectile
 {
     [CustomEditor(typeof(ProjectileType))]
     public class ProjectileTypeEditor : Editor
     {
-        private SerializedProperty _isExplosiveProp;
-        private SerializedProperty _isCorrosiveProp;
-        private SerializedProperty _isPunctureProp;
-
+        private SerializedProperty _damageTypeProp;
         private SerializedProperty _explosionRadiusProp;
         private SerializedProperty _dotDamageProp;
         private SerializedProperty _dotTickRateProp;
@@ -17,10 +13,7 @@ namespace Tower.Projectile
 
         private void OnEnable()
         {
-            _isExplosiveProp = serializedObject.FindProperty("_isExplosive");
-            _isCorrosiveProp = serializedObject.FindProperty("_isCorrosive");
-            _isPunctureProp = serializedObject.FindProperty("_isPuncture");
-
+            _damageTypeProp = serializedObject.FindProperty("_damageType");
             _explosionRadiusProp = serializedObject.FindProperty("_explosionRadius");
             _dotDamageProp = serializedObject.FindProperty("_dotDamage");
             _dotTickRateProp = serializedObject.FindProperty("_dotTickRate");
@@ -32,26 +25,29 @@ namespace Tower.Projectile
             serializedObject.Update();
             
             EditorGUILayout.Space();
-            EditorGUILayout.LabelField("Tower", EditorStyles.boldLabel);
+            EditorGUILayout.LabelField("Projectile", EditorStyles.boldLabel);
             EditorGUILayout.PropertyField(serializedObject.FindProperty("_sprite"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("_damage"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("_moveSpeed"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("_lifetime"));
 
-            EditorGUILayout.PropertyField(_isExplosiveProp);
-            if (_isExplosiveProp.boolValue)
+            EditorGUILayout.PropertyField(_damageTypeProp);
+            DamageType damageType = (DamageType)_damageTypeProp.intValue;
+
+            _explosionRadiusProp.isExpanded = false;
+            _dotDamageProp.isExpanded = false;
+            _layersToPunctureProp.isExpanded = false;
+
+            if ((damageType & DamageType.Explosive) != 0)
             {
                 EditorGUILayout.PropertyField(_explosionRadiusProp);
             }
-
-            EditorGUILayout.PropertyField(_isCorrosiveProp);
-            if (_isCorrosiveProp.boolValue)
+            if ((damageType & DamageType.Corrosive) != 0)
             {
                 EditorGUILayout.PropertyField(_dotDamageProp);
                 EditorGUILayout.PropertyField(_dotTickRateProp);
             }
-
-            EditorGUILayout.PropertyField(_isPunctureProp);
-            if (_isPunctureProp.boolValue)
+            if ((damageType & DamageType.Puncture) != 0)
             {
                 EditorGUILayout.PropertyField(_layersToPunctureProp);
             }
@@ -60,3 +56,4 @@ namespace Tower.Projectile
         }
     }
 }
+

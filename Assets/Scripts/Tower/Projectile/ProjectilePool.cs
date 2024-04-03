@@ -15,23 +15,22 @@ namespace Tower.Projectile
                 false, 10, 50);
         }
 
-        public ProjectileBase SpawnProjectile(ProjectileType type, Vector3 spawnPos, Vector3 dir)
+        public ProjectileBase SpawnProjectile(ProjectileType type, Vector3 spawnPos, Vector3 dir, TowerBase tower)
         {
             ProjectileBase projectile = _projectilePool.Get();
 
             projectile.transform.position = spawnPos;
-            projectile.Initialize(type, dir);
+            projectile.Initialize(type, dir, tower);
             projectile.gameObject.SetActive(true);
 
             return projectile;
         }
 
-        public IEnumerator DespawnProjectile(ProjectileBase projectile)
+        public void DespawnProjectile(ProjectileBase projectile)
         {
-            yield return new WaitForSeconds(5f);
-            _projectilePool.Release(projectile);
+            projectile.gameObject.SetActive(false);
         }
-        
+
         private ProjectileBase OnProjectileCreate()
         {
             GameObject projectileGO = new GameObject("Projectile");

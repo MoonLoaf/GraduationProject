@@ -7,20 +7,20 @@ namespace Tower
 {
     public class TowerBase : MonoBehaviour
     {
-        [SerializeField] private TowerType _type;
+        [SerializeField] protected TowerType _type;
         public TowerType Type => _type;
 
         public ProjectilePool ProjectilePool { get; private set; }
 
-        private float _attackSpeed;
-        private int _damage;
-        private float _range;
-        private float _lastAttackTime;
+        protected float _attackSpeed;
+        protected int _damage;
+        protected float _range;
+        protected float _lastAttackTime;
 
-        private EnemyBase _target;
+        protected EnemyBase _target;
         
-        private BoxCollider2D _collider;
-        private SpriteRenderer _renderer;
+        protected BoxCollider2D _collider;
+        protected SpriteRenderer _renderer;
 
         private void Awake()
         {
@@ -54,9 +54,9 @@ namespace Tower
         }
 
 
-        private void FixedUpdate()
+        protected virtual void FixedUpdate()
         {
-            if (_target != null && Vector2.Distance(_target.transform.position, transform.position) >= _range)
+            if (IsValidTargetInRange())
             {
                 _target = null;
             }
@@ -71,19 +71,21 @@ namespace Tower
                 _lastAttackTime = Time.time;
             }
         }
-        
-        private void GetNewTarget()
+
+        protected bool GetNewTarget()
         {
             foreach (var enemy in WaveManager.Instance.ActiveEnemies)
             {
                 if(Vector2.Distance(enemy.transform.position, transform.position) >= _range) {continue;}
 
                 _target = enemy;
-                break;
+                return true;
             }
+            //No target found
+            return false;
         }
 
-        private void Attack()
+        protected virtual void Attack()
         {
             ProjectilePool.SpawnProjectile(_type.TypeProjectileType, transform.position, _target, this);
         }
@@ -99,6 +101,11 @@ namespace Tower
             {
                 Gizmos.DrawLine(transform.position, _target.transform.position);
             }
+        }
+
+        protected bool IsValidTargetInRange()
+        {
+            return _target != null && Vector2.Distance(_target.transform.position, transform.position) >= _range;
         }
     }
 }

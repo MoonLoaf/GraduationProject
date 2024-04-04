@@ -8,10 +8,10 @@ namespace Tower
     /// </summary>
     public class TowerPreview : MonoBehaviour
     {
-        private TowerType _type;
+        protected TowerType _type;
         private SpriteRenderer _renderer;
         
-        private bool _previewActive = true;
+        protected bool _previewActive = true;
         private bool _moved = false;
         private Camera _camera;
         private Vector3 _touchPosition;
@@ -59,7 +59,7 @@ namespace Tower
             }
         }
 
-        private void SpawnTower(Vector3 spawnPos)
+        protected virtual void SpawnTower(Vector3 spawnPos)
         {
             _previewActive = false;
             GameObject towerObject = new GameObject("Tower")

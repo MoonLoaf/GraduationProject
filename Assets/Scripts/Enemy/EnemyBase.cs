@@ -28,6 +28,7 @@ namespace Enemy
         private float _splineLength;
         private float _distancePercent = 0;
         private bool _shouldMove = false;
+        public bool IsActive { get; set; }
 
         public EnemyBase()
         {
@@ -54,14 +55,15 @@ namespace Enemy
             _currentLayerHealth = _type.HpPerLayer;
             _layersRemaining = _type.Layers;
             _moveSpeed = _type.MovementSpeed;
+            IsActive = true;
             _shouldMove = true;
         }
 
         private void OnDisable()
         {
-            _shouldMove = false;
             _distancePercent = 0;
             transform.position = _spline.EvaluatePosition(_distancePercent);
+            _shouldMove = false;
         }
 
         void Update()
@@ -87,6 +89,8 @@ namespace Enemy
 
         public void TakeDamage(ProjectileType projectileType)
         {
+            if(!IsActive){return;}
+            
             if (_damageHandlers.TryGetValue(projectileType.DamageType, out Action<ProjectileType> damageHandler))
             {
                 damageHandler?.Invoke(projectileType);
@@ -128,6 +132,7 @@ namespace Enemy
         private void TriggerDeath()
         {
             //TODO: Effects?
+            IsActive = false;
             WaveManager.Instance.RemoveEnemy(this);
         }
     }

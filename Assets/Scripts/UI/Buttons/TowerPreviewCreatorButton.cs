@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace UI.Buttons
 {
-    public class PreviewCreatorButton : ClickableButton
+    public class TowerPreviewCreatorButton : ClickableButton
     {
         [SerializeField] private TowerType _typeToSpawn;
 

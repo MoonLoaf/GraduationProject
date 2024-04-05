@@ -45,6 +45,7 @@ namespace Tower.Projectile
         private void OnDisable()
         {
             _shouldMove = false;
+            _hitTarget = false;
         }
 
         public void SetType(ProjectileType type)

@@ -9,6 +9,7 @@ namespace Tower.Projectile
         private SerializedProperty _explosionRadiusProp;
         private SerializedProperty _dotDamageProp;
         private SerializedProperty _dotTickRateProp;
+        private SerializedProperty _dotTickAmountProp;
         private SerializedProperty _layersToPunctureProp;
 
         private void OnEnable()
@@ -17,6 +18,7 @@ namespace Tower.Projectile
             _explosionRadiusProp = serializedObject.FindProperty("_explosionRadius");
             _dotDamageProp = serializedObject.FindProperty("_dotDamage");
             _dotTickRateProp = serializedObject.FindProperty("_dotTickRate");
+            _dotTickAmountProp = serializedObject.FindProperty("_dotTickAmount");
             _layersToPunctureProp = serializedObject.FindProperty("_layersToPuncture");
         }
 
@@ -46,6 +48,7 @@ namespace Tower.Projectile
             {
                 EditorGUILayout.PropertyField(_dotDamageProp);
                 EditorGUILayout.PropertyField(_dotTickRateProp);
+                EditorGUILayout.PropertyField(_dotTickAmountProp);
             }
             if ((damageType & DamageType.Puncture) != 0)
             {

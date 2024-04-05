@@ -15,8 +15,9 @@ namespace Tower.Projectile
         
         // Additional fields for explosion radius, DOT damage, DOT tick rate, and layers to puncture
         [SerializeField] private float _explosionRadius;
-        [SerializeField] private float _dotDamage;
+        [SerializeField] private int _dotDamage;
         [SerializeField] private float _dotTickRate;
+        [SerializeField] private int _dotTickAmount;
         [SerializeField] private int _layersToPuncture;
     
         public int Damage => _damage;
@@ -25,8 +26,9 @@ namespace Tower.Projectile
         public float Lifetime => _lifetime;
         public DamageType DamageType => _damageType;        
         public float ExplosionRadius => _explosionRadius;
-        public float DotDamage => _dotDamage;
+        public int DotDamage => _dotDamage;
         public float DotTickRate => _dotTickRate;
+        public int DotTickAmount => _dotTickAmount;
         public int LayersToPuncture => _layersToPuncture;
     }
 }

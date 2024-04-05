@@ -15,9 +15,10 @@ MonoBehaviour:
   _sprite: {fileID: 21300000, guid: f27234dd7a818634595a3186e144c291, type: 3}
   _damage: 1
   _moveSpeed: 2.5
-  _lifetime: 5
+  _lifetime: 10
   _damageType: 0
   _explosionRadius: 0.66
   _dotDamage: 0
   _dotTickRate: 0
+  _dotTickAmount: 0
   _layersToPuncture: 0

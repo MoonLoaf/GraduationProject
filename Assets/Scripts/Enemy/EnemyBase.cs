@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Tower.Projectile;
 using UnityEngine;
@@ -13,20 +14,22 @@ namespace Enemy
         [SerializeField] private EnemyType _type;
         public EnemyType Type => _type;
 
-        private int _layersRemaining;
+        private bool _metalIntact = false;
+
+        public int LayersRemaining { get; private set; }
         
         private int _currentLayerHealth;
         private float _moveSpeed;
 
         private SpriteRenderer _renderer;
+        private CircleCollider2D _collider;
 
         private readonly Dictionary<DamageType, Action<ProjectileType>> _damageHandlers = new();
         
         //Testing
         private SplineContainer _spline;
         private float _splineLength;
-        private float _distancePercent = 0;
-        private bool _shouldMove = false;
+        public float DistanceAlongSpline { get; private set; }
         public bool IsActive { get; set; }
 
         public EnemyBase()
@@ -39,44 +42,42 @@ namespace Enemy
         private void Awake()
         {
             _renderer = gameObject.GetComponent<SpriteRenderer>();
+            _collider = gameObject.GetComponent<CircleCollider2D>();
             _spline = LevelSpline.Instance.GetLevelSplineContainer();
             _splineLength = _spline.CalculateLength();
-        }
-
-        void Start()
-        {
-            //tag = "Enemy";
         }
 
         public void Initialize()
         {
             _renderer.sprite = _type.TypeSprite;
             _currentLayerHealth = _type.HpPerLayer;
-            _layersRemaining = _type.Layers;
+            LayersRemaining = _type.Layers;
             _moveSpeed = _type.MovementSpeed;
+            if (_type.IsMetal)
+            {
+                _metalIntact = true;
+            }
             IsActive = true;
-            _shouldMove = true;
         }
 
         private void OnDisable()
         {
-            _distancePercent = 0;
-            transform.position = _spline.EvaluatePosition(_distancePercent);
-            _shouldMove = false;
+            DistanceAlongSpline = 0;
+            transform.position = _spline.EvaluatePosition(DistanceAlongSpline);
         }
 
         void Update()
         {
-            if (!_shouldMove) return;
+            if (!IsActive) return;
             
-            _distancePercent += _moveSpeed * Time.deltaTime / _splineLength;
+            DistanceAlongSpline += _moveSpeed * Time.deltaTime / _splineLength;
 
-            transform.position = _spline.EvaluatePosition(_distancePercent);
+            transform.position = _spline.EvaluatePosition(DistanceAlongSpline);
 
-            if (_distancePercent <= 1f) return;
+            if (DistanceAlongSpline <= 1f) return;
             
-            _distancePercent = 0;
-            _shouldMove = false;
+            DistanceAlongSpline = 0;
+            IsActive = false;
             WaveManager.Instance.RemoveEnemy(this);
         }
 
@@ -96,14 +97,59 @@ namespace Enemy
             }
             else
             {
-                _currentLayerHealth -= projectileType.Damage;
+                DecreaseHP(projectileType.Damage);
             }
+        }
+
+        private void HandlePunctureDamage(ProjectileType projectileType)
+        {
+            if (_metalIntact) { return;}
+            
+            LayersRemaining -= projectileType.LayersToPuncture;
+            _currentLayerHealth -= projectileType.Damage;
+        }
+
+        private void HandleCorrosiveDamage(ProjectileType projectileType)
+        {
+            if (_metalIntact) { return;}
+            
+            StartCoroutine(DoCorrosiveDamageOverTime(projectileType));
+        }
+
+        private void HandleExplosiveDamage(ProjectileType projectileType)
+        {
+            //do nothing if damagetype is not explosive
+            if((projectileType.DamageType & DamageType.Explosive) == 0) { return; }
+
+            _metalIntact = false;
+            
+            DecreaseHP(projectileType.Damage);
+        }
+        
+        private IEnumerator DoCorrosiveDamageOverTime(ProjectileType projectileType)
+        {
+            int ticksRemaining = projectileType.DotTickAmount;
+
+            var wait = new WaitForSeconds(projectileType.DotTickRate);
+            while (ticksRemaining > 0)
+            {
+                yield return wait;
+        
+                DecreaseHP(projectileType.DotDamage);
+
+                ticksRemaining--;
+            }
+        }
+
+        private void DecreaseHP(int amount)
+        {
+            _currentLayerHealth -= amount;
 
             if (_currentLayerHealth > 0) return;
             
-            if (_layersRemaining > 0)
+            if (LayersRemaining > 0)
             {
-                _layersRemaining--;
+                LayersRemaining--;
                 _currentLayerHealth = _type.HpPerLayer;
             }
             else
@@ -111,28 +157,17 @@ namespace Enemy
                 TriggerDeath();
             }
         }
-
-        private void HandlePunctureDamage(ProjectileType projectileType)
-        {
-            _layersRemaining -= projectileType.LayersToPuncture;
-            _currentLayerHealth -= projectileType.Damage;
-        }
-
-        private void HandleCorrosiveDamage(ProjectileType projectileType)
-        {
-            //TODO: Implementation
-        }
-
-        private void HandleExplosiveDamage(ProjectileType projectileType)
-        {
-            //TODO: Implementation
-        }
         
         private void TriggerDeath()
         {
             //TODO: Effects?
             IsActive = false;
             WaveManager.Instance.RemoveEnemy(this);
+        }
+
+        public int GetTotalHealth()
+        {
+            return _currentLayerHealth + LayersRemaining * _type.HpPerLayer;
         }
     }
 }

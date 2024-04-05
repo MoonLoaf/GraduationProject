@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Enemy;
 using Tower.Projectile;
 using UnityEngine;
@@ -11,17 +12,15 @@ namespace Tower
         [SerializeField] private GameObject _projectilePrefab;
         
         public TowerType Type => _type;
-
         public ProjectilePool ProjectilePool { get; private set; }
+        protected SpriteRenderer _renderer;
 
         protected float _attackSpeed;
-        protected int _damage;
         protected float _range;
         protected float _lastAttackTime;
 
         protected EnemyBase _target;
         
-        protected SpriteRenderer _renderer;
 
         private void Awake()
         {
@@ -56,7 +55,7 @@ namespace Tower
 
         protected virtual void FixedUpdate()
         {
-            if (IsValidTargetInRange())
+            if (IsTargetOutsideRange())
             {
                 _target = null;
             }
@@ -65,11 +64,11 @@ namespace Tower
                 GetNewTarget();
             }
             UpdateRotation();
-            if (_target != null && Time.time - _lastAttackTime >= _attackSpeed)
-            {
-                Attack();
-                _lastAttackTime = Time.time;
-            }
+            
+            if (!ShouldAttack()) return;
+            
+            Attack();
+            _lastAttackTime = Time.time;
         }
 
         protected bool GetNewTarget()
@@ -103,9 +102,27 @@ namespace Tower
             }
         }
 
-        protected bool IsValidTargetInRange()
+        protected bool IsTargetOutsideRange()
         {
             return _target != null && Vector2.Distance(_target.transform.position, transform.position) >= _range;
+        }
+
+        protected bool ShouldAttack()
+        {
+            if (_target == null || Time.time - _lastAttackTime < _attackSpeed)
+            {
+                return false;
+            }
+
+            int damage = _type.TypeProjectileType.Damage;
+
+            // Calculate the estimated damage from active projectiles
+            int estimatedDamage = damage + damage * ProjectilePool.ActiveObjects.Count;
+
+            // Check if the target's remaining health is greater than the estimated damage
+            // Also, check if the target has more than 1 HP or if it has any layers remaining
+            // If the target has only 1 HP and no layers remaining, wait until the current projectile kills it
+            return _target.GetTotalHealth() >= 1 || _target.LayersRemaining > 0 || _target.GetTotalHealth() >= estimatedDamage;
         }
     }
 }

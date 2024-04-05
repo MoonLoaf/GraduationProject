@@ -1,6 +1,8 @@
+using System;
 using Enemy;
 using UnityEngine;
-using Utility.Math;
+using UnityEngine.Splines;
+using Utility;
 
 namespace Tower.Projectile
 {
@@ -12,14 +14,19 @@ namespace Tower.Projectile
 
         private EnemyBase _target;
         private Vector3 _targetPos;
+        private Vector3 _direction;
         private bool _shouldMove = false;
         private float _currentLifetime = 0;
 
         private SpriteRenderer _renderer;
+        private CircleCollider2D _collider;
+            
+        float futureT;
         
         private void Awake()
         {
             _renderer = gameObject.GetComponent<SpriteRenderer>();
+            _collider = gameObject.GetComponent<CircleCollider2D>();
         }
 
         public void Initialize(ProjectileType type, EnemyBase target, TowerBase tower)
@@ -27,7 +34,6 @@ namespace Tower.Projectile
             _type = type;
             _renderer.sprite = _type.TypeSprite;
             _target = target;
-            _targetPos = target.transform.position;
             _tower = tower;
             _shouldMove = true;
         }
@@ -47,13 +53,11 @@ namespace Tower.Projectile
         {
             if(!_shouldMove){return;}
 
-            transform.position = EasingFunctions.LerpWithEase(transform.position, _targetPos, _type.MoveSpeed * Time.deltaTime, Ease.EaseOut);
+            Vector3 direction = (_target.transform.position - transform.position).normalized;
 
-            if (Vector3.Distance(transform.position, _targetPos) < 0.1f)
-            {
-                OnCollision(transform.position);
-            }
-            
+            // Move the projectile in that direction
+            transform.Translate(direction * (_type.MoveSpeed * Time.deltaTime), Space.World);
+
             _currentLifetime += Time.deltaTime;
 
             if (_currentLifetime < _type.Lifetime) return;
@@ -62,18 +66,22 @@ namespace Tower.Projectile
             _tower.ProjectilePool.DespawnObject(this);
         }
 
-        private void OnCollision(Vector3 collisionPoint)
+
+        private void OnCollisionEnter(Collision other)
         {
+            if(!other.gameObject.CompareTag("Enemy")){return;}
+            Debug.Log("Collided");
+            
             if ((_type.DamageType & DamageType.Explosive) != 0)
             {
-                Collider2D[] colliders = Physics2D.OverlapCircleAll(collisionPoint, _type.ExplosionRadius);
-        
+                Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _type.ExplosionRadius);
+    
                 foreach (Collider2D collider in colliders)
                 {
                     EnemyBase enemy = collider.GetComponent<EnemyBase>();
-                    
+                
                     if (enemy == null) continue;
-                    
+                
                     enemy.TakeDamage(_type);
                     _tower.ProjectilePool.DespawnObject(this);
                 }
@@ -81,10 +89,16 @@ namespace Tower.Projectile
             else
             {
                 if (_target == null) return;
-                
+            
                 _target.TakeDamage(_type);
                 _tower.ProjectilePool.DespawnObject(this);
             }
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(LevelSpline.Instance.GetLevelSpline().EvaluatePosition(futureT), 0.1f);
         }
     }
 }

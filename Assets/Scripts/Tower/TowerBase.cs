@@ -8,6 +8,8 @@ namespace Tower
     public class TowerBase : MonoBehaviour
     {
         [SerializeField] protected TowerType _type;
+        [SerializeField] private GameObject _projectilePrefab;
+        
         public TowerType Type => _type;
 
         public ProjectilePool ProjectilePool { get; private set; }
@@ -19,13 +21,11 @@ namespace Tower
 
         protected EnemyBase _target;
         
-        protected BoxCollider2D _collider;
         protected SpriteRenderer _renderer;
 
         private void Awake()
         {
-            _collider = gameObject.AddComponent<BoxCollider2D>();
-            _renderer = gameObject.AddComponent<SpriteRenderer>();
+            _renderer = gameObject.GetComponent<SpriteRenderer>();
             ProjectilePool = new ProjectilePool();
         }
 
@@ -35,7 +35,7 @@ namespace Tower
             _renderer.sprite = _type.TypeSprite;
             _attackSpeed = _type.AttackSpeed;
             _range = _type.Range;
-            ProjectilePool.Initialize();
+            ProjectilePool.Initialize(_projectilePrefab, 10, 25);
         }
 
 
@@ -87,7 +87,7 @@ namespace Tower
 
         protected virtual void Attack()
         {
-            ProjectilePool.SpawnProjectile(_type.TypeProjectileType, transform.position, _target, this);
+            ProjectilePool.SpawnObject(_type.TypeProjectileType, transform.position, _target, this);
         }
         
         

@@ -19,7 +19,7 @@ namespace Tower.Projectile
         
         private void Awake()
         {
-            _renderer = gameObject.AddComponent<SpriteRenderer>();
+            _renderer = gameObject.GetComponent<SpriteRenderer>();
         }
 
         public void Initialize(ProjectileType type, EnemyBase target, TowerBase tower)
@@ -59,7 +59,7 @@ namespace Tower.Projectile
             if (_currentLifetime < _type.Lifetime) return;
             
             _currentLifetime = 0;
-            _tower.ProjectilePool.DespawnProjectile(this);
+            _tower.ProjectilePool.DespawnObject(this);
         }
 
         private void OnCollision(Vector3 collisionPoint)
@@ -75,7 +75,7 @@ namespace Tower.Projectile
                     if (enemy == null) continue;
                     
                     enemy.TakeDamage(_type);
-                    _tower.ProjectilePool.DespawnProjectile(this);
+                    _tower.ProjectilePool.DespawnObject(this);
                 }
             }
             else
@@ -83,7 +83,7 @@ namespace Tower.Projectile
                 if (_target == null) return;
                 
                 _target.TakeDamage(_type);
-                _tower.ProjectilePool.DespawnProjectile(this);
+                _tower.ProjectilePool.DespawnObject(this);
             }
         }
     }

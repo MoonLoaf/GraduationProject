@@ -1,20 +1,20 @@
-using Tower;
-using Tower.Hero;
+using UI;
+using Unity.Mathematics;
 using UnityEngine;
 
-public class HeroPreview : TowerPreview
+namespace Tower.Hero
 {
-    protected override void SpawnTower(Vector3 spawnPos)
+    public class HeroPreview : TowerPreview
     {
-        _previewActive = false;
-        GameObject heroObject = new GameObject("Hero")
+        protected override void SpawnTower(Vector3 spawnPos)
         {
-            transform = { position = spawnPos }
-        };
-        Hero hero = heroObject.AddComponent<Hero>();
+            GameObject heroObject = Instantiate(_towerPrefab, spawnPos, quaternion.identity);
+            Hero hero = heroObject.GetComponent<Hero>();
             
-        hero.Initialize(_type);
+            hero.Initialize(_type);
             
-        Destroy(gameObject);
+            UIEventManager.Instance.NotifyTowerPlaced();
+            Destroy(gameObject);
+        }
     }
 }

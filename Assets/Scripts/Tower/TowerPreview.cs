@@ -1,3 +1,5 @@
+using UI;
+using Unity.Mathematics;
 using UnityEngine;
 using Utility;
 
@@ -8,21 +10,22 @@ namespace Tower
     /// </summary>
     public class TowerPreview : MonoBehaviour
     {
+        [SerializeField] protected GameObject _towerPrefab;
         protected TowerType _type;
+
         private SpriteRenderer _renderer;
         
-        protected bool _previewActive = true;
         private bool _moved = false;
         private Camera _camera;
         private Vector3 _touchPosition;
         
         private void Awake()
         {
-            _renderer = gameObject.AddComponent<SpriteRenderer>();
+            _renderer = gameObject.GetComponent<SpriteRenderer>();
             _camera = Camera.main;
         }
 
-        private void Start()
+        protected void Start()
         {
             _renderer.color = Color.gray;
             _touchPosition = new Vector3();
@@ -31,12 +34,17 @@ namespace Tower
         public void SetType(TowerType type)
         {
             _type = type;
+            UpdateSprite();
+        }
+
+        private void UpdateSprite()
+        {
             _renderer.sprite = _type.TypeSprite;
         }
 
         private void FixedUpdate()
         {
-            if (Input.touchCount > 0 && _previewActive)
+            if (Input.touchCount > 0)
             {
                 _moved = true;
                 Touch touch = Input.GetTouch(0);
@@ -45,31 +53,35 @@ namespace Tower
 
                 if (touch.phase == TouchPhase.Moved)
                 {
-                    _touchPosition = _camera.ScreenToWorldPoint(touch.position);
-                    _touchPosition.z = 0;
-                    transform.position = _touchPosition;
-                    CheckValidPlacement();
+                    MoveTowerPreview();
                 }
             }
-
-            if (Input.touchCount == 0 && _moved)
+            else if (Input.touchCount == 0 && _moved)
             {
-                if(!CheckValidPlacement()){return;}
-                SpawnTower(_touchPosition);
+                TryPlaceTower();
             }
+        }
+
+        private void TryPlaceTower()
+        {
+            if (!CheckValidPlacement()) return;
+            SpawnTower(_touchPosition);
+        }
+
+        private void MoveTowerPreview()
+        {
+            transform.position = _touchPosition;
+            CheckValidPlacement();
         }
 
         protected virtual void SpawnTower(Vector3 spawnPos)
         {
-            _previewActive = false;
-            GameObject towerObject = new GameObject("Tower")
-            {
-                transform = { position = spawnPos }
-            };
-            TowerBase tower = towerObject.AddComponent<TowerBase>();
+            GameObject towerObject = Instantiate(_towerPrefab, spawnPos, quaternion.identity);
+            TowerBase tower = towerObject.GetComponent<TowerBase>();
             
             tower.Initialize(_type);
             
+            UIEventManager.Instance.NotifyTowerPlaced();
             Destroy(gameObject);
         }
 

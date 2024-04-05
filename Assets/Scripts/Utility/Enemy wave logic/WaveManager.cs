@@ -8,6 +8,8 @@ namespace Utility.EnemyWaveLogic
     public class WaveManager : GenericSingleton<WaveManager>
     {
         private EnemyPool _enemyPool;
+        [SerializeField] private GameObject _enemyPrefab;
+        
         [SerializeField] private List<Wave> _waves = new();
         public List<EnemyBase> ActiveEnemies { get; private set; }
 
@@ -20,7 +22,7 @@ namespace Utility.EnemyWaveLogic
         {
             _enemyPool = new EnemyPool();
             ActiveEnemies = new List<EnemyBase>();
-            _enemyPool.Initialize();
+            _enemyPool.Initialize(_enemyPrefab, 50, 200);
         }
 
         private void Start()
@@ -67,7 +69,7 @@ namespace Utility.EnemyWaveLogic
                     timePassed += spawnEvent.SpawnTickRate;
                 }
 
-                var enemy = _enemyPool.SpawnEnemy(type, _spawnPoint);
+                var enemy = _enemyPool.SpawnObject(type, _spawnPoint);
                 AddActiveEnemy(enemy);
             }
         }
@@ -80,7 +82,7 @@ namespace Utility.EnemyWaveLogic
         public void RemoveEnemy(EnemyBase enemy)
         {
             ActiveEnemies.Remove(enemy);
-            _enemyPool.DespawnEnemy(enemy);
+            _enemyPool.DespawnObject(enemy);
         }
     }
 }

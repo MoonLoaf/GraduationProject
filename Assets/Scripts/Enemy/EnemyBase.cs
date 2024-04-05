@@ -18,10 +18,9 @@ namespace Enemy
         private int _currentLayerHealth;
         private float _moveSpeed;
 
-        private BoxCollider2D _collider;
         private SpriteRenderer _renderer;
 
-        private Dictionary<DamageType, Action<ProjectileType>> _damageHandlers = new();
+        private readonly Dictionary<DamageType, Action<ProjectileType>> _damageHandlers = new();
         
         //Testing
         private SplineContainer _spline;
@@ -39,14 +38,14 @@ namespace Enemy
 
         private void Awake()
         {
-            _renderer = gameObject.AddComponent<SpriteRenderer>();
+            _renderer = gameObject.GetComponent<SpriteRenderer>();
             _spline = LevelSpline.Instance.GetLevelSplineContainer();
             _splineLength = _spline.CalculateLength();
         }
 
         void Start()
         {
-            tag = "Enemy";
+            //tag = "Enemy";
         }
 
         public void Initialize()

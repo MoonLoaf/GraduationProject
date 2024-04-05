@@ -1,17 +1,19 @@
-using Tower;
+using Tower.Hero;
 using UnityEngine;
 
 namespace UI.Buttons
 {
-    public class HeroPreviewCreatorButton : ClickableButton
+    public class HeroPreviewCreatorButton : TowerPreviewCreatorButton
     {
-        [SerializeField] private TowerType _typeToSpawn;
-
         public override void OnClickInteraction()
         {
-            GameObject towerPreviewObject = new GameObject("HeroPreview");
-            HeroPreview towerPreviewComp = towerPreviewObject.AddComponent<HeroPreview>();
-            towerPreviewComp.SetType(_typeToSpawn);
+            if (UIEventManager.Instance.IsPreviewActive) {return;}
+
+            GameObject heroPreviewObject = Instantiate(_towerPreviewPrefab, Vector3.zero, Quaternion.identity);
+            HeroPreview heroPreviewComp = heroPreviewObject.GetComponent<HeroPreview>();
+            heroPreviewComp.SetType(_typeToSpawn);
+            
+            UIEventManager.Instance.StartTowerPreview();
         }
     }
 }

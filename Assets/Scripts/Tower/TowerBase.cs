@@ -109,20 +109,7 @@ namespace Tower
 
         protected bool ShouldAttack()
         {
-            if (_target == null || Time.time - _lastAttackTime < _attackSpeed)
-            {
-                return false;
-            }
-
-            int damage = _type.TypeProjectileType.Damage;
-
-            // Calculate the estimated damage from active projectiles
-            int estimatedDamage = damage + damage * ProjectilePool.ActiveObjects.Count;
-
-            // Check if the target's remaining health is greater than the estimated damage
-            // Also, check if the target has more than 1 HP or if it has any layers remaining
-            // If the target has only 1 HP and no layers remaining, wait until the current projectile kills it
-            return _target.GetTotalHealth() >= 1 || _target.LayersRemaining > 0 || _target.GetTotalHealth() >= estimatedDamage;
+            return _target != null && (Time.time - _lastAttackTime > _attackSpeed);
         }
     }
 }

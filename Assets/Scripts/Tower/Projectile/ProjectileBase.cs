@@ -21,7 +21,6 @@ namespace Tower.Projectile
         private SpriteRenderer _renderer;
         private CircleCollider2D _collider;
             
-        float futureT;
         
         private void Awake()
         {
@@ -35,6 +34,7 @@ namespace Tower.Projectile
             _renderer.sprite = _type.TypeSprite;
             _target = target;
             _tower = tower;
+            _direction = (_target.transform.position - transform.position).normalized;
             _shouldMove = true;
         }
 
@@ -53,10 +53,7 @@ namespace Tower.Projectile
         {
             if(!_shouldMove){return;}
 
-            Vector3 direction = (_target.transform.position - transform.position).normalized;
-
-            // Move the projectile in that direction
-            transform.Translate(direction * (_type.MoveSpeed * Time.deltaTime), Space.World);
+            transform.Translate(_direction * (_type.MoveSpeed * Time.deltaTime), Space.World);
 
             _currentLifetime += Time.deltaTime;
 
@@ -66,11 +63,10 @@ namespace Tower.Projectile
             _tower.ProjectilePool.DespawnObject(this);
         }
 
-
-        private void OnCollisionEnter(Collision other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            if(!other.gameObject.CompareTag("Enemy")){return;}
             Debug.Log("Collided");
+            if(!other.gameObject.CompareTag("Enemy")){return;}
             
             if ((_type.DamageType & DamageType.Explosive) != 0)
             {
@@ -93,12 +89,6 @@ namespace Tower.Projectile
                 _target.TakeDamage(_type);
                 _tower.ProjectilePool.DespawnObject(this);
             }
-        }
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawWireSphere(LevelSpline.Instance.GetLevelSpline().EvaluatePosition(futureT), 0.1f);
         }
     }
 }

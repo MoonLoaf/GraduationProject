@@ -16,6 +16,6 @@ MonoBehaviour:
   _layers: 0
   _hpPerLayer: 1
   _damage: 1
-  _movementSpeed: 0.5
+  _movementSpeed: 2
   isMetal: 0
   isCamo: 0

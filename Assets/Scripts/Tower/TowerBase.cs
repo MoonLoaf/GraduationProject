@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Enemy;
 using Tower.Projectile;
 using UnityEngine;
@@ -6,7 +5,7 @@ using Utility.EnemyWaveLogic;
 
 namespace Tower
 {
-    public class TowerBase : MonoBehaviour
+    public class TowerBase : ClickableObject
     {
         [SerializeField] protected TowerType _type;
         [SerializeField] private GameObject _projectilePrefab;

@@ -7,10 +7,11 @@ namespace Tower
     public class ClickableObject : MonoBehaviour
     {
         protected TouchInputManager _inputManager;
-
+        protected RangeShaderController _shaderController;
         private void Awake()
         {
             _inputManager = TouchInputManager.Instance;
+            _shaderController = GetComponent<RangeShaderController>();
         }
 
         public virtual void OnTouchStart(InputAction.CallbackContext context)

@@ -43,6 +43,7 @@ namespace Tower
         private void OnEnable()
         {
             TouchInputManager.OnTouchStartPosition += OnTouchStart;
+            _shaderController.SetRange(_type.Range);
         }
 
         private void OnDisable()

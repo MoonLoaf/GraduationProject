@@ -8,7 +8,7 @@ namespace Tower
     {
         protected TouchInputManager _inputManager;
         protected RangeShaderController _shaderController;
-        private void Awake()
+        protected virtual void Awake()
         {
             _inputManager = TouchInputManager.Instance;
             _shaderController = GetComponent<RangeShaderController>();
@@ -18,6 +18,7 @@ namespace Tower
         {
             string name = gameObject.name;
             Debug.Log(name + " was touched");
+            //_shaderController.SetDisplayRange(true);
         }
     }
 }

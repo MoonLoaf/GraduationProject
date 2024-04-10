@@ -1,5 +1,6 @@
 using Enemy;
 using Tower.Projectile;
+using Unity.Mathematics;
 using UnityEngine;
 using Utility.EnemyWaveLogic;
 
@@ -21,8 +22,9 @@ namespace Tower
         protected EnemyBase _target;
         
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             _renderer = gameObject.GetComponent<SpriteRenderer>();
             ProjectilePool = new ProjectilePool();
         }
@@ -33,22 +35,20 @@ namespace Tower
             _renderer.sprite = _type.TypeSprite;
             _attackSpeed = _type.AttackSpeed;
             _range = _type.Range;
+            _shaderController.SetDisplayRange(false);
+            _shaderController.SetRange(_range);
             ProjectilePool.Initialize(_projectilePrefab, 10, 25);
         }
 
 
-        private void UpdateRotation()
+        private Quaternion UpdateRotation(Vector3 position, Vector3 targetLocation)
         {
-            if(_target == null) { return; }
+            if (_target == null) { return transform.rotation; }
 
-            Vector3 enemyPos = _target.transform.position;
-
-            Vector3 direction = (enemyPos - transform.position).normalized;
-
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            Quaternion targetRotation = Quaternion.AngleAxis(angle - 100f, Vector3.forward);
-
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
+            var towerToTarget = targetLocation - position;
+            var angle = Vector3.SignedAngle(Vector3.up, towerToTarget, Vector3.forward);
+            var rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            return rotation;
         }
 
 
@@ -62,7 +62,6 @@ namespace Tower
             {
                 GetNewTarget();
             }
-            UpdateRotation();
             
             if (!ShouldAttack()) return;
             
@@ -85,7 +84,11 @@ namespace Tower
 
         protected virtual void Attack()
         {
-            ProjectilePool.SpawnObject(_type.TypeProjectileType, transform.position, _target, this);
+            gameObject.transform.rotation = UpdateRotation(transform.position, _target.transform.position);
+
+            Vector3 dir = (_target.transform.position - transform.position).normalized;
+
+            ProjectilePool.SpawnObject(_type.TypeProjectileType, transform.position, dir, this);
         }
         
         

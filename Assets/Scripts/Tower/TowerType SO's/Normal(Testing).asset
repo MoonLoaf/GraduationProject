@@ -15,4 +15,4 @@ MonoBehaviour:
   _sprite: {fileID: 21300000, guid: 1f84240ab7b8af04cae7c31a2d45d45e, type: 3}
   _projectileType: {fileID: 11400000, guid: 0df341006ec7a71418c6f8a786271ede, type: 2}
   _attackSpeed: 0.4
-  _range: 2
+  _range: 1

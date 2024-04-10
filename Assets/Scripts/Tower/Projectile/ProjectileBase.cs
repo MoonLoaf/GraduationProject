@@ -1,8 +1,5 @@
-using System;
 using Enemy;
 using UnityEngine;
-using UnityEngine.Splines;
-using Utility;
 
 namespace Tower.Projectile
 {
@@ -12,14 +9,12 @@ namespace Tower.Projectile
         private TowerBase _tower;
         public ProjectileType Type => _type;
 
-        private EnemyBase _target;
         private Vector3 _targetPos;
         private Vector3 _direction;
         private Vector3 _spawnPos;
         private bool _shouldMove = false;
         private float _currentLifetime = 0;
 
-        private bool _hitTarget;
 
         private SpriteRenderer _renderer;
         private CircleCollider2D _collider;
@@ -31,21 +26,19 @@ namespace Tower.Projectile
             _collider = gameObject.GetComponent<CircleCollider2D>();
         }
 
-        public void Initialize(ProjectileType type, EnemyBase target, TowerBase tower)
+        public void Initialize(ProjectileType type, Vector3 direction, TowerBase tower)
         {
             _type = type;
             _renderer.sprite = _type.TypeSprite;
-            _target = target;
+            _direction = direction;
             _tower = tower;
             _spawnPos = transform.position;
             _shouldMove = true;
-            _direction = (_target.transform.position - transform.position).normalized;
         }
 
         private void OnDisable()
         {
             _shouldMove = false;
-            _hitTarget = false;
         }
 
         public void SetType(ProjectileType type)
@@ -58,17 +51,7 @@ namespace Tower.Projectile
         {
             if(!_shouldMove){return;}
 
-            if (!_hitTarget)
-            {
-                // Calculate direction towards the target if not already hit
-                Vector3 direction = (_target.transform.position - transform.position).normalized;
-                transform.Translate(direction * (_type.MoveSpeed * Time.deltaTime), Space.World);
-            }
-            else
-            {
-                // Continue moving in the original direction after hitting the target
-                transform.Translate(_direction * (_type.MoveSpeed * Time.deltaTime), Space.World);
-            }
+            transform.position += _direction * (_type.MoveSpeed * Time.deltaTime);
 
             _currentLifetime += Time.deltaTime;
 
@@ -83,12 +66,6 @@ namespace Tower.Projectile
             Debug.Log("Collided");
             if(!other.gameObject.CompareTag("Enemy")){return;}
 
-            if (!_hitTarget)
-            {
-                _direction = (transform.position - _spawnPos).normalized;
-                _hitTarget = true;
-            }
-            
             if ((_type.DamageType & DamageType.Explosive) != 0)
             {
                 Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _type.ExplosionRadius);
@@ -105,9 +82,8 @@ namespace Tower.Projectile
             }
             else
             {
-                if (_target == null) return;
-            
-                _target.TakeDamage(_type);
+                EnemyBase enemy = other.gameObject.GetComponent<EnemyBase>();
+                enemy.TakeDamage(_type);
             }
         }
     }

@@ -4,14 +4,18 @@ namespace Tower
 {
     public class RangeShaderController : MonoBehaviour
     {
-        public Material towerMaterial;
+        [SerializeField] private Renderer _renderer;
+        [SerializeField] private GameObject _rangeQuad;
+        
 
         public void SetRange(float range)
         {
-            if (towerMaterial != null)
-            {
-                towerMaterial.SetFloat("_Range", range);
-            }
+            float adjustedRange = range * 2.5f;
+            _rangeQuad.transform.localScale = new Vector3(adjustedRange, adjustedRange, 1);
+            _renderer.material.SetFloat("_Border_Thickness", 0.01f/adjustedRange);
+            Debug.Log("Range set");
         }
+
+        public void SetDisplayRange(bool active) => _renderer.enabled = active;
     }
 }

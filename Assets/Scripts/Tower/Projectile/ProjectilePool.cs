@@ -1,6 +1,8 @@
+using System.Numerics;
 using Enemy;
 using UnityEngine;
 using Utility;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Tower.Projectile
 {
@@ -11,12 +13,12 @@ namespace Tower.Projectile
             InitializePool(prefab, initialCapacity, maxCapacity);
         }
 
-        public ProjectileBase SpawnObject(ProjectileType type, Vector3 spawnPos, EnemyBase target, TowerBase tower)
+        public ProjectileBase SpawnObject(ProjectileType type, Vector3 spawnPos, Vector3 direction, TowerBase tower)
         {
             ProjectileBase projectile = _pool.Get();
 
             projectile.transform.position = spawnPos;
-            projectile.Initialize(type, target, tower);
+            projectile.Initialize(type, direction, tower);
             projectile.gameObject.SetActive(true);
 
             return projectile;

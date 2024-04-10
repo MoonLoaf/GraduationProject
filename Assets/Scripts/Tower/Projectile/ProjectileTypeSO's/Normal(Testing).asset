@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sprite: {fileID: 21300000, guid: f27234dd7a818634595a3186e144c291, type: 3}
   _damage: 1
-  _moveSpeed: 4
-  _lifetime: 10
+  _moveSpeed: 8
+  _lifetime: 3
   _damageType: 0
   _explosionRadius: 0.66
   _dotDamage: 0

@@ -1,4 +1,3 @@
-using System;
 using UI;
 using Unity.Mathematics;
 using UnityEngine;
@@ -22,8 +21,9 @@ namespace Tower
         private Camera _camera;
         private Vector3 _touchPosition;
         
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             _renderer = gameObject.GetComponent<SpriteRenderer>();
             _camera = Camera.main;
         }
@@ -32,6 +32,9 @@ namespace Tower
         {
             _renderer.color = Color.gray;
             _touchPosition = new Vector3();
+            
+            _shaderController.SetRange(_type.Range);
+            _shaderController.SetDisplayRange(true);
         }
 
         public void SetType(TowerType type)
@@ -43,7 +46,6 @@ namespace Tower
         private void OnEnable()
         {
             TouchInputManager.OnTouchStartPosition += OnTouchStart;
-            _shaderController.SetRange(_type.Range);
         }
 
         private void OnDisable()

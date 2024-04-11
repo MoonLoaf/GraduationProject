@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4149592625750795411}
   - component: {fileID: 8791746967075703529}
   - component: {fileID: 2644463751871344060}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RangeQuad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,9 +117,10 @@ GameObject:
   - component: {fileID: 9147269176584725317}
   - component: {fileID: 8625278929675331458}
   - component: {fileID: 8608753771666350057}
+  - component: {fileID: 5826240901318856782}
   - component: {fileID: 1184794517792966998}
   - component: {fileID: 100465355488890655}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,6 +158,8 @@ MonoBehaviour:
   _type: {fileID: 0}
   _projectilePrefab: {fileID: 4638921490021706727, guid: 838272ec9373fb24f8ec8ecf6451e526,
     type: 3}
+  _targetPriority: 0
+  _enemyDetector: {fileID: 5826240901318856782}
 --- !u!114 &8608753771666350057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +174,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderer: {fileID: 8791746967075703529}
   _rangeQuad: {fileID: 882594842416147500}
+--- !u!114 &5826240901318856782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2948189681690672838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bce8c12fede943468a57000094321f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rangeCollider: {fileID: 100465355488890655}
 --- !u!212 &1184794517792966998
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -252,7 +268,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

@@ -11,20 +11,20 @@ namespace Tower.Hero
             State = HeroState.Hybrid;
         }
 
-        protected override void FixedUpdate()
+        protected override void Update()
         {
             switch (State)
             {
                 case HeroState.Attacking:
-                    base.FixedUpdate();
+                    base.Update();
                     break;
                 case HeroState.Fishing:
                     GoFish();
                     break;
                 case HeroState.Hybrid:
-                    if (GetNewTarget())
+                    if (_enemiesInRange.Count > 0)
                     {
-                        base.FixedUpdate();
+                        base.Update();
                         break;
                     }
                     GoFish();
@@ -37,9 +37,9 @@ namespace Tower.Hero
             //TODO: implement economy
         }
 
-        protected override void Attack()
+        protected override void Attack(Vector3 targetPos)
         {
-            base.Attack();
+            base.Attack(targetPos);
             Debug.Log("Hero Attack");
             //TODO: Hero attack cool stuff
         }

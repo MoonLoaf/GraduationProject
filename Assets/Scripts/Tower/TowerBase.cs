@@ -1,32 +1,35 @@
+using System.Collections.Generic;
 using Enemy;
+using Helpers;
 using Tower.Projectile;
-using Unity.Mathematics;
 using UnityEngine;
-using Utility.EnemyWaveLogic;
 
 namespace Tower
 {
     public class TowerBase : ClickableObject
     {
         [SerializeField] protected TowerType _type;
-        [SerializeField] private GameObject _projectilePrefab;
-        
         public TowerType Type => _type;
+       
+        [SerializeField] private GameObject _projectilePrefab;
+        [SerializeField] private TowerTargetPriority _targetPriority;
+        [SerializeField] private EnemyDetector _enemyDetector;
+        
         public ProjectilePool ProjectilePool { get; private set; }
+        protected List<EnemyBase> _enemiesInRange;
+        
         protected SpriteRenderer _renderer;
 
         protected float _attackSpeed;
         protected float _range;
         protected float _lastAttackTime;
 
-        protected EnemyBase _target;
-        
-
         protected override void Awake()
         {
             base.Awake();
             _renderer = gameObject.GetComponent<SpriteRenderer>();
             ProjectilePool = new ProjectilePool();
+            _enemiesInRange = new List<EnemyBase>();
         }
 
         public void Initialize(TowerType type)
@@ -37,56 +40,62 @@ namespace Tower
             _range = _type.Range;
             _shaderController.SetDisplayRange(false);
             _shaderController.SetRange(_range);
+            _enemyDetector.SetRange(_range);
+            _enemiesInRange.Clear();
+            _enemyDetector.OnNewEnemyInRange += OnEnemyEnterRange;
+            _enemyDetector.OnEnemyOutOfRange += OnEnemyLeaveRange;
             ProjectilePool.Initialize(_projectilePrefab, 10, 25);
         }
 
-
         private Quaternion UpdateRotation(Vector3 position, Vector3 targetLocation)
         {
-            if (_target == null) { return transform.rotation; }
-
-            var towerToTarget = targetLocation - position;
-            var angle = Vector3.SignedAngle(Vector3.up, towerToTarget, Vector3.forward);
-            var rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            Vector3 towerToTarget = targetLocation - position;
+            float angle = Vector3.SignedAngle(Vector3.up, towerToTarget, Vector3.forward);
+            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             return rotation;
         }
 
 
-        protected virtual void FixedUpdate()
+        protected virtual void Update()
         {
-            if (IsTargetOutsideRange())
-            {
-                _target = null;
-            }
-            if (!_target)
-            {
-                GetNewTarget();
-            }
-            
             if (!ShouldAttack()) return;
             
-            Attack();
+            Attack(GetNewTarget());
             _lastAttackTime = Time.time;
         }
 
-        protected bool GetNewTarget()
+        private Vector3 GetNewTarget()
         {
-            foreach (var enemy in WaveManager.Instance.ActiveEnemies)
+            switch (_targetPriority)
             {
-                if(Vector2.Distance(enemy.transform.position, transform.position) >= _range) {continue;}
-
-                _target = enemy;
-                return true;
+                case TowerTargetPriority.First:
+                    return GetPriorityEnemy.First(_enemiesInRange);
+                case TowerTargetPriority.Last:
+                    return GetPriorityEnemy.Last(_enemiesInRange);
+                case TowerTargetPriority.Strongest:
+                    return GetPriorityEnemy.Strongest(_enemiesInRange);
+                case TowerTargetPriority.Weakest:
+                    return GetPriorityEnemy.Weakest(_enemiesInRange);
+                case TowerTargetPriority.Closest:
+                    return GetPriorityEnemy.Closest(_enemiesInRange, transform.position);
+                default:
+                    return Vector3.zero;
             }
-            //No target found
-            return false;
         }
 
-        protected virtual void Attack()
+        protected virtual void Attack(Vector3 targetPos)
         {
-            gameObject.transform.rotation = UpdateRotation(transform.position, _target.transform.position);
+            if (targetPos == Vector3.zero)
+            {
+                Debug.Log(targetPos);
 
-            Vector3 dir = (_target.transform.position - transform.position).normalized;
+                return;
+            }
+            Debug.Log("Attempted attack");
+            
+            gameObject.transform.rotation = UpdateRotation(transform.position, targetPos);
+
+            Vector3 dir = (targetPos - transform.position).normalized;
 
             ProjectilePool.SpawnObject(_type.TypeProjectileType, transform.position, dir, this);
         }
@@ -96,22 +105,21 @@ namespace Tower
         {
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(transform.position, _range);
-            
-            Gizmos.color = Color.red;
-            if (_target != null)
-            {
-                Gizmos.DrawLine(transform.position, _target.transform.position);
-            }
-        }
-
-        protected bool IsTargetOutsideRange()
-        {
-            return _target != null && Vector2.Distance(_target.transform.position, transform.position) >= _range;
         }
 
         protected bool ShouldAttack()
         {
-            return _target != null && (Time.time - _lastAttackTime > _attackSpeed);
+            return _enemiesInRange.Count > 0 && Time.time - _lastAttackTime > _attackSpeed;
+        }
+
+        private void OnEnemyEnterRange(EnemyBase enemy)
+        {
+            _enemiesInRange.Add(enemy);
+        }
+
+        private void OnEnemyLeaveRange(EnemyBase enemy)
+        {
+            _enemiesInRange.Remove(enemy);
         }
     }
 }

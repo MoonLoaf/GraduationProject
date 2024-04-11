@@ -1,5 +1,3 @@
-using System.Numerics;
-using Enemy;
 using UnityEngine;
 using Utility;
 using Vector3 = UnityEngine.Vector3;

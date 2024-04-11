@@ -1,9 +1,7 @@
 using UI;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Utility;
-using TouchInput;
 
 namespace Tower
 {
@@ -42,26 +40,15 @@ namespace Tower
             _type = type;
             UpdateSprite();
         }
-        
-        private void OnEnable()
-        {
-            TouchInputManager.OnTouchStartPosition += OnTouchStart;
-        }
-
-        private void OnDisable()
-        {
-            TouchInputManager.OnTouchStartPosition -= OnTouchStart;
-        }
 
         private void UpdateSprite()
         {
             _renderer.sprite = _type.TypeSprite;
         }
 
-        public override void OnTouchStart(InputAction.CallbackContext context)
+        protected override void OnMouseDown()
         {
-            base.OnTouchStart(context);
-            Vector2 touchPosition = context.ReadValue<Vector2>();
+            Vector2 touchPosition = Input.touches[0].position;
             _touchPosition = _camera.ScreenToWorldPoint(touchPosition);
             _touchPosition.z = 0;
 
@@ -69,14 +56,29 @@ namespace Tower
             MoveTowerPreview();
         }
 
-        private void FixedUpdate()
+        protected override void OnMouseDrag()
         {
-            if (_moved && Input.touchCount == 0)
-            {
-                // Touch ended, perform necessary actions
-                TryPlaceTower();
-            }
+            Vector2 touchPosition = Input.touches[0].position;
+            _touchPosition = _camera.ScreenToWorldPoint(touchPosition);
+            _touchPosition.z = 0;
+
+            _moved = true;
+            MoveTowerPreview();
         }
+
+        protected override void OnMouseUp()
+        {
+            if(!_moved){return;}
+            TryPlaceTower();
+        }
+
+        // private void FixedUpdate()
+        // {
+        //     if (_moved && Input.touchCount == 0)
+        //     {
+        //         TryPlaceTower();
+        //     }
+        // }
 
         private void TryPlaceTower()
         {

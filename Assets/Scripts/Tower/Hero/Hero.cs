@@ -24,6 +24,7 @@ namespace Tower.Hero
                 case HeroState.Hybrid:
                     if (_enemiesInRange.Count > 0)
                     {
+                        //Make stats worse
                         base.Update();
                         break;
                     }

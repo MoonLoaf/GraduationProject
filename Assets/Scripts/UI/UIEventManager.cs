@@ -6,20 +6,17 @@ namespace UI
     {
         public delegate void UIEventHandler();
         public event UIEventHandler TowerPlacedEvent;
-        
-        private bool _previewActive = false;
-
-        public bool IsPreviewActive => _previewActive;
+        public bool IsPreviewActive { get; private set; } = false;
 
         public void NotifyTowerPlaced()
         {
-            _previewActive = false;
+            IsPreviewActive = false;
             TowerPlacedEvent?.Invoke();
         }
         
         public void StartTowerPreview()
         {
-            _previewActive = true;
+            IsPreviewActive = true;
         }
     }
 }

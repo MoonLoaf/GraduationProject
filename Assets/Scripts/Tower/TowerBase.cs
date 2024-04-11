@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Enemy;
 using Helpers;
@@ -54,8 +55,7 @@ namespace Tower
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             return rotation;
         }
-
-
+        
         protected virtual void Update()
         {
             if (!ShouldAttack()) return;
@@ -85,13 +85,7 @@ namespace Tower
 
         protected virtual void Attack(Vector3 targetPos)
         {
-            if (targetPos == Vector3.zero)
-            {
-                Debug.Log(targetPos);
-
-                return;
-            }
-            Debug.Log("Attempted attack");
+            if (targetPos == Vector3.zero) { return; }
             
             gameObject.transform.rotation = UpdateRotation(transform.position, targetPos);
 

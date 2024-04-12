@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Enemy;
 using Helpers;
@@ -34,6 +35,14 @@ namespace Tower
             _towersInRange = new List<TowerBase>();
         }
 
+        private void Start()
+        {
+            entityDetector.OnNewEnemyInRange += OnEnemyEnterRange;
+            entityDetector.OnEnemyOutOfRange += OnEnemyLeaveRange;
+            entityDetector.OnNewTowerInRange += OnTowerEnterRange;
+            entityDetector.OnTowerOutOfRange += OnTowerLeaveRange;
+        }
+
         public void Initialize(TowerType type)
         {
             _type = type;
@@ -44,12 +53,6 @@ namespace Tower
             _shaderController.SetRange(_range);
             entityDetector.SetRange(_range);
             ProjectilePool.Initialize(_projectilePrefab, 10, 25);
-            _enemiesInRange.Clear();
-            _towersInRange.Clear();
-            entityDetector.OnNewEnemyInRange += OnEnemyEnterRange;
-            entityDetector.OnEnemyOutOfRange += OnEnemyLeaveRange;
-            entityDetector.OnNewTowerInRange += OnTowerEnterRange;
-            entityDetector.OnTowerOutOfRange += OnTowerLeaveRange;
         }
 
         private Quaternion UpdateRotation(Vector3 position, Vector3 targetLocation)

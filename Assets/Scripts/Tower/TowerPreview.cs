@@ -15,9 +15,9 @@ namespace Tower
 
         private SpriteRenderer _renderer;
 
-        protected bool _moved = false;
-        protected Camera _camera;
-        protected Vector3 _touchPosition;
+        private bool _moved = false;
+        private Camera _camera;
+        private Vector3 _touchPosition;
         private CircleCollider2D _collider;
         
         protected override void Awake()
@@ -74,13 +74,13 @@ namespace Tower
             TryPlaceTower();
         }
 
-        protected void TryPlaceTower()
+        private void TryPlaceTower()
         {
             if (!CheckValidPlacement()) return;
             SpawnTower(_touchPosition);
         }
 
-        protected void MoveTowerPreview()
+        private void MoveTowerPreview()
         {
             transform.position = _touchPosition;
             CheckValidPlacement();

@@ -150,14 +150,16 @@ namespace Enemy
         private void DecreaseHP(int amount)
         {
             _currentLayerHealth -= amount;
+            Debug.Log(_currentLayerHealth);
 
             if (_currentLayerHealth > 0) return;
             
-            if (LayersRemaining > 0)
+            if (LayersRemaining > 1)
             {
                 LayersRemaining--;
                 UpdateLayerColor();
                 _currentLayerHealth = _type.HpPerLayer;
+                Debug.Log(LayersRemaining);
             }
             else
             {
@@ -179,7 +181,7 @@ namespace Enemy
 
         private void UpdateLayerColor()
         {
-            int i = Mathf.Clamp(LayersRemaining, 0, _type.Layers);
+            int i = Mathf.Clamp(LayersRemaining - 1, 0, _type.Layers);
             _renderer.color = _type.LayerColors[i];
         }
     }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Enemy;
 using Helpers;
@@ -14,10 +13,11 @@ namespace Tower
        
         [SerializeField] private GameObject _projectilePrefab;
         [SerializeField] private TowerTargetPriority _targetPriority;
-        [SerializeField] private EnemyDetector _enemyDetector;
+        [SerializeField] private EntityDetector entityDetector;
         
         public ProjectilePool ProjectilePool { get; private set; }
         protected List<EnemyBase> _enemiesInRange;
+        protected List<TowerBase> _towersInRange;
         
         protected SpriteRenderer _renderer;
 
@@ -31,6 +31,7 @@ namespace Tower
             _renderer = gameObject.GetComponent<SpriteRenderer>();
             ProjectilePool = new ProjectilePool();
             _enemiesInRange = new List<EnemyBase>();
+            _towersInRange = new List<TowerBase>();
         }
 
         public void Initialize(TowerType type)
@@ -41,11 +42,14 @@ namespace Tower
             _range = _type.Range;
             _shaderController.SetDisplayRange(false);
             _shaderController.SetRange(_range);
-            _enemyDetector.SetRange(_range);
-            _enemiesInRange.Clear();
-            _enemyDetector.OnNewEnemyInRange += OnEnemyEnterRange;
-            _enemyDetector.OnEnemyOutOfRange += OnEnemyLeaveRange;
+            entityDetector.SetRange(_range);
             ProjectilePool.Initialize(_projectilePrefab, 10, 25);
+            _enemiesInRange.Clear();
+            _towersInRange.Clear();
+            entityDetector.OnNewEnemyInRange += OnEnemyEnterRange;
+            entityDetector.OnEnemyOutOfRange += OnEnemyLeaveRange;
+            entityDetector.OnNewTowerInRange += OnTowerEnterRange;
+            entityDetector.OnTowerOutOfRange += OnTowerLeaveRange;
         }
 
         private Quaternion UpdateRotation(Vector3 position, Vector3 targetLocation)
@@ -114,6 +118,16 @@ namespace Tower
         private void OnEnemyLeaveRange(EnemyBase enemy)
         {
             _enemiesInRange.Remove(enemy);
+        }
+        
+        private void OnTowerEnterRange(TowerBase tower)
+        {
+            _towersInRange.Add(tower);
+        }
+
+        private void OnTowerLeaveRange(TowerBase tower)
+        {
+            _towersInRange.Remove(tower);
         }
     }
 }

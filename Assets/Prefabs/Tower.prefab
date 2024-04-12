@@ -159,7 +159,7 @@ MonoBehaviour:
   _projectilePrefab: {fileID: 4638921490021706727, guid: 838272ec9373fb24f8ec8ecf6451e526,
     type: 3}
   _targetPriority: 0
-  _enemyDetector: {fileID: 5826240901318856782}
+  entityDetector: {fileID: 5826240901318856782}
 --- !u!114 &8608753771666350057
 MonoBehaviour:
   m_ObjectHideFlags: 0

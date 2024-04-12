@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9147269176584725317}
-  - component: {fileID: 3005012099525382936}
+  - component: {fileID: -859876069256163444}
   - component: {fileID: 4119790297116431187}
   - component: {fileID: 5368363332685896063}
   - component: {fileID: 3741526389827797411}
@@ -37,7 +37,7 @@ Transform:
   - {fileID: 5503564768321196973}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3005012099525382936
+--- !u!114 &-859876069256163444
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,14 +46,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2948189681690672838}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9bede717d97e5740a895c31200631f5, type: 3}
+  m_Script: {fileID: 11500000, guid: c87d6ba8959adc34489b9c642680470b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _type: {fileID: 0}
   _projectilePrefab: {fileID: 4638921490021706727, guid: 838272ec9373fb24f8ec8ecf6451e526,
     type: 3}
   _targetPriority: 0
-  _enemyDetector: {fileID: 5368363332685896063}
+  entityDetector: {fileID: 5368363332685896063}
+  _abilityDuration: 0
+  _abilityCooldown: 0
 --- !u!114 &4119790297116431187
 MonoBehaviour:
   m_ObjectHideFlags: 0

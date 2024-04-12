@@ -1,19 +1,31 @@
+using System;
+using UI.Buttons;
 using UnityEngine;
 
 namespace Tower.Hero
 {
     public class Hero : TowerBase
     {
-        private HeroState State { get; set; }
+        private HeroState _state;
 
         private void Start()
         {
-            State = HeroState.Hybrid;
+            _state = HeroState.Hybrid;
+        }
+
+        private void OnEnable()
+        {
+            AbilityActivationButton.OnAbilityActivated += ActivateAbility;
+        }
+
+        private void OnDisable()
+        {
+            AbilityActivationButton.OnAbilityActivated -= ActivateAbility;
         }
 
         protected override void Update()
         {
-            switch (State)
+            switch (_state)
             {
                 case HeroState.Attacking:
                     base.Update();
@@ -30,6 +42,8 @@ namespace Tower.Hero
                     }
                     GoFish();
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 
@@ -47,7 +61,13 @@ namespace Tower.Hero
 
         public void SetState(HeroState newState)
         {
-            State = newState;
+            _state = newState;
         }
+
+        protected virtual void ActivateAbility()
+        {
+            throw new NotImplementedException();
+        }
+        
     }
 }

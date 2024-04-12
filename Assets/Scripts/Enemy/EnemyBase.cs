@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Tower.Projectile;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Splines;
 using Utility;
@@ -174,7 +175,8 @@ namespace Enemy
 
         private void UpdateLayerColor()
         {
-            _renderer.color = _type.LayerColors[LayersRemaining - 1];
+            int i = Mathf.Clamp(LayersRemaining, 0, _type.Layers);
+            _renderer.color = _type.LayerColors[i];
         }
     }
 }

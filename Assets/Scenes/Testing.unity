@@ -123,82 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &11859654
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 11859656}
-  - component: {fileID: 11859655}
-  - component: {fileID: 11859657}
-  m_Layer: 0
-  m_Name: TouchInputManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &11859655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 11859654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 663b56aa4e883724aad581a42d8d8645, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &11859656
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 11859654}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &11859657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 11859654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 72749c4923a264a41a8a11b7527e4598,
-    type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Touch
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 1414333675}
 --- !u!1 &18920207
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,7 +1163,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2055999609}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1380481154
@@ -2033,89 +1958,89 @@ MonoBehaviour:
       TangentIn:
         x: -0
         y: -0
-        z: -0.46111456
+        z: -0.44589645
       TangentOut:
         x: 0
         y: 0
-        z: 0.33643818
+        z: 0.30220035
       Rotation:
         value:
-          x: 0.6718762
-          y: -0.22041404
-          z: 0.22041413
-          w: -0.67187625
+          x: 0.67494684
+          y: -0.21082391
+          z: 0.21082443
+          w: -0.6749468
     - Position:
-        x: -1.042
-        y: -0.11
+        x: -1.174
+        y: -0.144
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.33012232
+        z: -0.307417
       TangentOut:
         x: 0
         y: 0
-        z: 0.4199193
+        z: 0.4907607
       Rotation:
         value:
-          x: 0.5665895
-          y: -0.42305598
-          z: 0.4230561
-          w: -0.5665895
+          x: -0.56788546
+          y: 0.42131472
+          z: -0.42131463
+          w: 0.5678855
     - Position:
-        x: 0.458
-        y: -0.135
+        x: 0.861
+        y: -0.269
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.40683293
+        z: -0.44053793
       TangentOut:
         x: 0
         y: 0
-        z: 0.3023774
+        z: 0.26865962
       Rotation:
         value:
-          x: 0.41369316
-          y: -0.5734614
-          z: 0.5734615
-          w: -0.41369298
+          x: -0.32819107
+          y: 0.62633115
+          z: -0.62633115
+          w: 0.32819107
     - Position:
-        x: 1.13
-        y: -0.62
+        x: 1.171
+        y: -0.961
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.29281074
+        z: -0.28367952
       TangentOut:
         x: 0
         y: 0
-        z: 0.41695186
+        z: 0.37699342
       Rotation:
         value:
-          x: -0.17480764
-          y: 0.68515855
-          z: -0.6851586
-          w: 0.17480768
+          x: 0.08429009
+          y: -0.702065
+          z: 0.702065
+          w: -0.084289946
     - Position:
-        x: 1.22
+        x: 1.247
         y: -2.298
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.5869418
+        z: -0.49280217
       TangentOut:
         x: 0
         y: 0
-        z: 0.6463828
+        z: 0.6079549
       Rotation:
         value:
-          x: 0.009905818
-          y: -0.70703745
-          z: 0.7070374
-          w: -0.009905719
+          x: -0.008129424
+          y: 0.70706
+          z: -0.70706004
+          w: 0.008129447
     - Position:
         x: 1.225
         y: -4.336
@@ -2123,17 +2048,17 @@ MonoBehaviour:
       TangentIn:
         x: -0
         y: -0
-        z: -0.2038006
+        z: -0.20381187
       TangentOut:
         x: 0
         y: 0
-        z: 0.2038006
+        z: 0.20381187
       Rotation:
         value:
-          x: -0.00086738163
-          y: 0.70710623
-          z: -0.70710623
-          w: 0.00086741865
+          x: -0.003816414
+          y: -0.7070965
+          z: 0.70709646
+          w: 0.0038163823
     m_MetaData:
     - Mode: 0
       Tension: 0.5
@@ -2208,12 +2133,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2055999607}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1338392588}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2082171542
 GameObject:
@@ -2402,7 +2327,5 @@ SceneRoots:
   - {fileID: 618748709}
   - {fileID: 103766296}
   - {fileID: 2082171546}
-  - {fileID: 11859656}
   - {fileID: 1338392588}
   - {fileID: 1269616215}
-  - {fileID: 2055999609}

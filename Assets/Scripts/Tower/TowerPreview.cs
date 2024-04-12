@@ -14,15 +14,17 @@ namespace Tower
         protected TowerType _type;
 
         private SpriteRenderer _renderer;
-        
-        private bool _moved = false;
-        private Camera _camera;
-        private Vector3 _touchPosition;
+
+        protected bool _moved = false;
+        protected Camera _camera;
+        protected Vector3 _touchPosition;
+        private CircleCollider2D _collider;
         
         protected override void Awake()
         {
             base.Awake();
             _renderer = gameObject.GetComponent<SpriteRenderer>();
+            _collider = GetComponent<CircleCollider2D>();
             _camera = Camera.main;
         }
 
@@ -72,21 +74,13 @@ namespace Tower
             TryPlaceTower();
         }
 
-        // private void FixedUpdate()
-        // {
-        //     if (_moved && Input.touchCount == 0)
-        //     {
-        //         TryPlaceTower();
-        //     }
-        // }
-
-        private void TryPlaceTower()
+        protected void TryPlaceTower()
         {
             if (!CheckValidPlacement()) return;
             SpawnTower(_touchPosition);
         }
 
-        private void MoveTowerPreview()
+        protected void MoveTowerPreview()
         {
             transform.position = _touchPosition;
             CheckValidPlacement();
@@ -106,7 +100,7 @@ namespace Tower
         private bool CheckValidPlacement()
         {
             Vector2 pos = new Vector2(transform.position.x, transform.position.y);
-            bool validity = LevelSpline.Instance.CanPlace(pos);
+            bool validity = LevelSpline.Instance.CanPlace(pos, _collider.radius);
             _renderer.color = validity ? Color.green : Color.red;
             return validity;
         }

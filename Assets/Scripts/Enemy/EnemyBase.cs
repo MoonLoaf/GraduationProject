@@ -57,6 +57,7 @@ namespace Enemy
             {
                 _metalIntact = true;
             }
+            UpdateLayerColor();
             IsActive = true;
         }
 
@@ -150,6 +151,7 @@ namespace Enemy
             if (LayersRemaining > 0)
             {
                 LayersRemaining--;
+                UpdateLayerColor();
                 _currentLayerHealth = _type.HpPerLayer;
             }
             else
@@ -168,6 +170,11 @@ namespace Enemy
         public int GetTotalHealth()
         {
             return _currentLayerHealth + LayersRemaining * _type.HpPerLayer;
+        }
+
+        private void UpdateLayerColor()
+        {
+            _renderer.color = _type.LayerColors[LayersRemaining - 1];
         }
     }
 }

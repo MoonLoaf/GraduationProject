@@ -35,7 +35,7 @@ namespace Utility
             return Vector3.zero;
         }
 
-        public bool CanPlace(Vector2 position)
+        public bool CanPlace(Vector2 position, float towerRadius)
         {
             Spline spline = _levelSplineContainer.Spline;
 
@@ -43,7 +43,7 @@ namespace Utility
 
             SplineUtility.GetNearestPoint(spline, pos3, out _nearestPoint, out _);
 
-            float distanceToPosition = Vector2.Distance(position, new Vector2(_nearestPoint.x, _nearestPoint.y));
+            float distanceToPosition = Vector2.Distance(position, new Vector2(_nearestPoint.x, _nearestPoint.y)) - towerRadius;
 
             return distanceToPosition > _trackWidth && position.x < _mapHorizontalBorder;
         }

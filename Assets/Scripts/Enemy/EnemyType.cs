@@ -7,6 +7,8 @@ namespace Enemy
     {
         [Header("Visual")] 
         [SerializeField] private Sprite _sprite;
+        [SerializeField] private Color[] _layerColors;
+        
     
         [Header("Enemy Stats")]
         [SerializeField] private int _layers;
@@ -19,6 +21,7 @@ namespace Enemy
         [SerializeField] private bool isCamo;
     
         public int Layers => _layers;
+        public Color[] LayerColors => _layerColors;
         public int HpPerLayer => _hpPerLayer;
         public float MovementSpeed => _movementSpeed;
         public int Damage => _damage;

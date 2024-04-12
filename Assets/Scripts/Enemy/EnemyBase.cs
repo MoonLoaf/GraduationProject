@@ -14,23 +14,22 @@ namespace Enemy
         [SerializeField] private EnemyType _type;
         public EnemyType Type => _type;
 
-        private bool _metalIntact = false;
-
         public int LayersRemaining { get; private set; }
-        
         private int _currentLayerHealth;
-        private float _moveSpeed;
 
+        public bool IsActive { get; set; }
+        
         private SpriteRenderer _renderer;
         private CircleCollider2D _collider;
 
-        private readonly Dictionary<DamageType, Action<ProjectileType>> _damageHandlers = new();
-        
         //Testing
         private SplineContainer _spline;
         private float _splineLength;
+        private float _moveSpeed;
         public float DistanceAlongSpline { get; private set; }
-        public bool IsActive { get; set; }
+        private bool _metalIntact = false;
+ 
+        private readonly Dictionary<DamageType, Action<ProjectileType>> _damageHandlers = new();
 
         public EnemyBase()
         {
@@ -150,7 +149,6 @@ namespace Enemy
         private void DecreaseHP(int amount)
         {
             _currentLayerHealth -= amount;
-            Debug.Log(_currentLayerHealth);
 
             if (_currentLayerHealth > 0) return;
             
@@ -159,7 +157,6 @@ namespace Enemy
                 LayersRemaining--;
                 UpdateLayerColor();
                 _currentLayerHealth = _type.HpPerLayer;
-                Debug.Log(LayersRemaining);
             }
             else
             {

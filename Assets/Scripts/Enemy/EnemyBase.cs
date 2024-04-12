@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Tower.Projectile;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Splines;
 using Utility;
@@ -72,10 +71,15 @@ namespace Enemy
         {
             if (!IsActive) return;
             
+            MoveAlongSpline();
+        }
+
+        private void MoveAlongSpline()
+        {
             DistanceAlongSpline += _moveSpeed * Time.deltaTime / _splineLength;
 
             transform.position = _spline.EvaluatePosition(DistanceAlongSpline);
-
+            
             if (DistanceAlongSpline <= 1f) return;
             
             DistanceAlongSpline = 0;

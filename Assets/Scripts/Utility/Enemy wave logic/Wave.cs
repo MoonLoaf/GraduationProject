@@ -8,6 +8,15 @@ namespace Utility.EnemyWaveLogic
     [Serializable]
     public struct Wave
     {
+        public int EndOfWaveReward;
+        public List<SpawnEvent> SpawnEvents;
+
+        public Wave(List<SpawnEvent> events, int endOfWaveReward)
+        { 
+            EndOfWaveReward = endOfWaveReward;
+            SpawnEvents = events;
+        }
+        
         [Serializable]
         public struct SpawnEvent
         {
@@ -23,13 +32,6 @@ namespace Utility.EnemyWaveLogic
                 Delay = delay;
                 SpawnTickRate = spawnTickRate;
             }
-        }
-
-        public List<SpawnEvent> SpawnEvents;
-
-        public Wave(List<SpawnEvent> events)
-        {
-            SpawnEvents = events;
         }
     }
 }

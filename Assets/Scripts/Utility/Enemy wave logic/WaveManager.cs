@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using Enemy;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ namespace Utility.EnemyWaveLogic
         [SerializeField] private List<Wave> _waves = new();
         public List<EnemyBase> ActiveEnemies { get; private set; }
 
-        private int _currentWave = 0;
+        private int _waveIndex = 0;
         private Vector3 _spawnPoint;
 
         public bool IsWaveActive { get; private set; }
@@ -28,13 +29,19 @@ namespace Utility.EnemyWaveLogic
         private void Start()
         {
             _spawnPoint = LevelSpline.Instance.GetStartPositionWorldSpace();
+            GameManager.Instance.OnWaveStart += StartWaveFunc;
+        }
+
+        private void StartWaveFunc()
+        {
+            if(IsWaveActive){return;}
             StartCoroutine(StartWave());
         }
 
         private IEnumerator StartWave()
         {
-            var wave = _waves[_currentWave];
             IsWaveActive = true;
+            Wave wave = _waves[_waveIndex];
 
             for (int eventIndex = 0; eventIndex < wave.SpawnEvents.Count; eventIndex++)
             {
@@ -47,9 +54,10 @@ namespace Utility.EnemyWaveLogic
                     yield return new WaitForSeconds(wave.SpawnEvents[eventIndex + 1].Delay);
                 }
             }
-
-            _currentWave++;
+            
+            GameManager.Instance.WaveEnd(wave.EndOfWaveReward);
             IsWaveActive = false;
+            _waveIndex++;
         }
 
         private IEnumerator TriggerSpawnEvent(Wave.SpawnEvent spawnEvent)

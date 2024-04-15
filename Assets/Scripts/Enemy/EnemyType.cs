@@ -13,6 +13,9 @@ namespace Enemy
         [Header("Enemy Stats")]
         [SerializeField] private int _layers;
         [SerializeField] private int _hpPerLayer;
+        [SerializeField] private int _rewardPerLayerPopped;
+        [SerializeField] private int _enemyPoppedReward;
+        [Space]
         [SerializeField] private int _damage;
         [SerializeField] private float _movementSpeed;
     
@@ -23,6 +26,8 @@ namespace Enemy
         public int Layers => _layers;
         public Color[] LayerColors => _layerColors;
         public int HpPerLayer => _hpPerLayer;
+        public int RewardPerLayerPopped => _rewardPerLayerPopped;
+        public int EnemyPoppedReward => _enemyPoppedReward;
         public float MovementSpeed => _movementSpeed;
         public int Damage => _damage;
         public Sprite TypeSprite => _sprite;

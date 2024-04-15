@@ -1,4 +1,5 @@
 using System;
+using Core;
 using Tower;
 using UnityEditor.Animations;
 using UnityEngine;
@@ -25,8 +26,9 @@ namespace UI.Buttons
 
         public override void OnClickInteraction()
         {
-            if (UIEventManager.Instance.IsPreviewActive) {return;}
+            if (UIEventManager.Instance.IsPreviewActive || !GameManager.Instance.CanAfford(_typeToSpawn.Cost)) {return;}
 
+            _button.interactable = false;
             GameObject towerPreviewObject = Instantiate(_towerPreviewPrefab, Vector3.zero, Quaternion.identity);
             TowerPreview towerPreviewComp = towerPreviewObject.GetComponent<TowerPreview>();
             towerPreviewComp.SetType(_typeToSpawn);
@@ -36,7 +38,7 @@ namespace UI.Buttons
         
         private void HandleTowerPlaced()
         {
-            //Not needed now but maybe for sounds and stuff
+            _button.interactable = true;
         }
     }
 }

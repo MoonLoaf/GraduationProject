@@ -1,3 +1,4 @@
+using Core;
 using UI;
 using Unity.Mathematics;
 using UnityEngine;
@@ -77,6 +78,7 @@ namespace Tower
         private void TryPlaceTower()
         {
             if (!CheckValidPlacement()) return;
+            GameManager.Instance.DecrementMoney(_type.Cost);
             SpawnTower(_touchPosition);
         }
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using Tower.Projectile;
 using UnityEngine;
 using UnityEngine.Splines;
@@ -81,6 +82,7 @@ namespace Enemy
             
             if (DistanceAlongSpline <= 1f) return;
             
+            GameManager.Instance.OnEnemyCompleteTrack(_type.Damage);
             DistanceAlongSpline = 0;
             IsActive = false;
             WaveManager.Instance.RemoveEnemy(this);
@@ -155,6 +157,7 @@ namespace Enemy
             if (LayersRemaining > 1)
             {
                 LayersRemaining--;
+                GameManager.Instance.IncrementMoney(_type.RewardPerLayerPopped);
                 UpdateLayerColor();
                 _currentLayerHealth = _type.HpPerLayer;
             }
@@ -168,6 +171,7 @@ namespace Enemy
         {
             //TODO: Effects?
             IsActive = false;
+            GameManager.Instance.IncrementMoney(_type.EnemyPoppedReward);
             WaveManager.Instance.RemoveEnemy(this);
         }
 

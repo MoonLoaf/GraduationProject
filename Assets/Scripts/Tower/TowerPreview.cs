@@ -3,6 +3,7 @@ using UI;
 using Unity.Mathematics;
 using UnityEngine;
 using Utility;
+using Button = UnityEngine.UI.Button;
 
 namespace Tower
 {
@@ -12,6 +13,8 @@ namespace Tower
     public class TowerPreview : ClickableObject
     {
         [SerializeField] protected GameObject _towerPrefab;
+        [SerializeField] private Button _cancelButton;
+        
         protected TowerType _type;
 
         private SpriteRenderer _renderer;
@@ -27,7 +30,9 @@ namespace Tower
             _renderer = gameObject.GetComponent<SpriteRenderer>();
             _collider = GetComponent<CircleCollider2D>();
             _camera = Camera.main;
+            _cancelButton.onClick.AddListener(OnPreviewCanceled);
         }
+
 
         protected void Start()
         {
@@ -105,6 +110,12 @@ namespace Tower
             bool validity = LevelSpline.Instance.CanPlace(pos, _collider.radius);
             _renderer.color = validity ? Color.green : Color.red;
             return validity;
+        }
+        
+        private void OnPreviewCanceled()
+        {
+            UIEventManager.Instance.NotifyTowerPlaced();
+            Destroy(gameObject);
         }
     }
 }

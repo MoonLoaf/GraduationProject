@@ -18,6 +18,8 @@ MonoBehaviour:
   - {r: 0.18929425, g: 0.8396226, b: 0, a: 1}
   _layers: 2
   _hpPerLayer: 1
+  _rewardPerLayerPopped: 5
+  _enemyPoppedReward: 15
   _damage: 1
   _movementSpeed: 2
   isMetal: 0

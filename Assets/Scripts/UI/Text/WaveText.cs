@@ -5,9 +5,10 @@ using UnityEngine;
 namespace UI.Text
 {
     [RequireComponent(typeof(TMP_Text))]
-    public class CurrencyText : MonoBehaviour
+    public class WaveText : MonoBehaviour
     {
         private TMP_Text _text;
+
         private void Awake()
         {
             _text = GetComponent<TMP_Text>();
@@ -15,14 +16,15 @@ namespace UI.Text
 
         private void OnEnable()
         {
-            GameManager.Instance.OnMoneyChanged += UpdateCurrencyText;
+            GameManager.Instance.OnWaveChanged += UpdateWaveText;
         }
 
         private void OnDisable()
         {
-            GameManager.Instance.OnMoneyChanged -= UpdateCurrencyText;
+            GameManager.Instance.OnWaveChanged -= UpdateWaveText;
         }
-        private void UpdateCurrencyText(int newValue)
+
+        private void UpdateWaveText(int newValue)
         {
             _text.text = newValue.ToString();
         }

@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sprite: {fileID: 21300000, guid: 23d9bcba198f8d94890fb00d241637b0, type: 3}
   _projectileType: {fileID: 11400000, guid: 0df341006ec7a71418c6f8a786271ede, type: 2}
+  _cost: 500
   _attackSpeed: 0.2
   _range: 4

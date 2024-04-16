@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 8625278929675331458}
   - component: {fileID: 8608753771666350057}
   - component: {fileID: 5826240901318856782}
+  - component: {fileID: -2089549124295275147}
   - component: {fileID: 1184794517792966998}
   - component: {fileID: 100465355488890655}
   m_Layer: 8
@@ -155,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a35bc1650c187494398c21ea8837c620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: {fileID: 0}
+  _initialType: {fileID: 0}
   _projectilePrefab: {fileID: 4638921490021706727, guid: 838272ec9373fb24f8ec8ecf6451e526,
     type: 3}
   _targetPriority: 0
@@ -187,6 +188,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rangeCollider: {fileID: 100465355488890655}
+--- !u!114 &-2089549124295275147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2948189681690672838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c4c61e0ccbf4dd4cbca4956c3836659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &1184794517792966998
 SpriteRenderer:
   m_ObjectHideFlags: 0

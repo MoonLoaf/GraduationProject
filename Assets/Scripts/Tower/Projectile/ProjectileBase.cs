@@ -1,4 +1,5 @@
 using Enemy;
+using Helpers;
 using UnityEngine;
 
 namespace Tower.Projectile
@@ -63,8 +64,7 @@ namespace Tower.Projectile
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            Debug.Log("Collided");
-            if(!other.gameObject.CompareTag("Enemy")){return;}
+            if(other.IsNotOnLayer(Layers.Enemies)){return;}
 
             if ((_type.DamageType & DamageType.Explosive) != 0)
             {

@@ -2,14 +2,18 @@ using System.Collections.Generic;
 using Enemy;
 using Helpers;
 using Tower.Projectile;
+using Tower.Upgrades;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Tower
 {
     public class TowerBase : ClickableObject
     {
-        [SerializeField] protected TowerType _type;
-        public TowerType Type => _type;
+        [SerializeField] protected TowerType _initialType;
+        protected TowerType _currentType;
+        public TowerType CurrentType => _currentType;
+        private ProjectileType _currentProjectile;
        
         [SerializeField] private GameObject _projectilePrefab;
         [SerializeField] private TowerTargetPriority _targetPriority;
@@ -44,14 +48,17 @@ namespace Tower
 
         public void Initialize(TowerType type)
         {
-            _type = type;
-            _renderer.sprite = _type.TypeSprite;
-            _attackSpeed = _type.AttackSpeed;
-            _range = _type.Range;
+            _initialType = type;
+            _currentType = type;
+            _renderer.sprite = _initialType.TypeSprite;
+            _attackSpeed = _initialType.AttackSpeed;
+            _range = _initialType.Range;
+            _currentProjectile = _initialType.TypeProjectileType;
             _shaderController.SetDisplayRange(false);
             _shaderController.SetRange(_range);
             entityDetector.SetRange(_range);
             ProjectilePool.Initialize(_projectilePrefab, 10, 25);
+            GetComponent<TowerUpgradeManager>().Initialize(_initialType.UpgradePaths, this);
         }
 
         private Quaternion UpdateRotation(Vector3 position, Vector3 targetLocation)
@@ -97,16 +104,14 @@ namespace Tower
 
             Vector3 dir = (targetPos - transform.position).normalized;
 
-            ProjectilePool.SpawnObject(_type.TypeProjectileType, transform.position, dir, this);
-        }
-        
-        
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(transform.position, _range);
+            ProjectilePool.SpawnObject(_currentProjectile, transform.position, dir, this);
         }
 
+        public ProjectileType GetProjectile()
+        {
+            return _currentProjectile;
+        }
+        
         protected bool ShouldAttack()
         {
             return _enemiesInRange.Count > 0 && Time.time - _lastAttackTime > _attackSpeed;
@@ -130,6 +135,11 @@ namespace Tower
         private void OnTowerLeaveRange(TowerBase tower)
         {
             _towersInRange.Remove(tower);
+        }
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, _range);
         }
     }
 }

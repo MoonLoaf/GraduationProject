@@ -17,18 +17,57 @@ namespace Tower.Projectile
         [SerializeField] private float _explosionRadius;
         [SerializeField] private int _dotDamage;
         [SerializeField] private float _dotTickRate;
-        [SerializeField] private int _dotTickAmount;
+        [SerializeField] private int _dotAmountOfTicks;
         [SerializeField] private int _layersToPuncture;
     
-        public int Damage => _damage;
-        public float MoveSpeed => _moveSpeed;
+        public int Damage
+        {
+            get => _damage;
+            set => _damage = value;
+        }
+
+        public float MoveSpeed
+        {
+            get => _moveSpeed;
+            set => _moveSpeed = value;
+        }
+
         public Sprite TypeSprite => _sprite;
         public float Lifetime => _lifetime;
-        public DamageType DamageType => _damageType;        
-        public float ExplosionRadius => _explosionRadius;
-        public int DotDamage => _dotDamage;
-        public float DotTickRate => _dotTickRate;
-        public int DotTickAmount => _dotTickAmount;
-        public int LayersToPuncture => _layersToPuncture;
+        public DamageType DamageType
+        {
+            get => _damageType;
+            set => _damageType = value;
+        }
+
+        public float ExplosionRadius
+        {
+            get => _explosionRadius;
+            set => _explosionRadius = value;
+        }
+
+        public int DotDamage
+        {
+            get => _dotDamage;
+            set => _dotDamage = value;
+        }
+
+        public float DotTickRate
+        {
+            get => _dotTickRate;
+            set => _dotTickRate = value;
+        }
+
+        public int DotAmountOfTicks
+        {
+            get => _dotAmountOfTicks;
+            set => _dotAmountOfTicks = value;
+        }
+
+        public int LayersToPuncture
+        {
+            get => _layersToPuncture;
+            set => _layersToPuncture = value;
+        }
     }
 }

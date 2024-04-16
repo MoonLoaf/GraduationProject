@@ -135,7 +135,7 @@ namespace Enemy
         
         private IEnumerator DoCorrosiveDamageOverTime(ProjectileType projectileType)
         {
-            int ticksRemaining = projectileType.DotTickAmount;
+            int ticksRemaining = projectileType.DotAmountOfTicks;
 
             var wait = new WaitForSeconds(projectileType.DotTickRate);
             while (ticksRemaining > 0)

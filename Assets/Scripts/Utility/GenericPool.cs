@@ -10,7 +10,7 @@ namespace Utility
         public List<T> ActiveObjects { get; protected set; }
         private GameObject _prefab;
         
-        public void InitializePool(GameObject prefab, int initialCapacity, int maxCapacity)
+        public void Initialize(GameObject prefab, int initialCapacity, int maxCapacity)
         {
             _prefab = prefab;
             ActiveObjects = new List<T>();
@@ -18,23 +18,13 @@ namespace Utility
                 OnObjectCreate, OnObjectGet, OnObjectRelease, OnObjectDestroy,
                 false, initialCapacity, maxCapacity);
         }
-        
-        public virtual T SpawnObject(Vector3 spawnPos)
-        {
-            T spawnedObject = _pool.Get();
-            spawnedObject.transform.position = spawnPos;
-            spawnedObject.gameObject.SetActive(true);
-            ActiveObjects.Add(spawnedObject);
-            return spawnedObject;
-        }
 
-        public virtual void DespawnObject(T obj)
+        public void DespawnObject(T obj)
         {
             _pool.Release(obj);
-            ActiveObjects.Remove(obj);
         }
 
-        protected virtual T OnObjectCreate()
+        private T OnObjectCreate()
         {
             GameObject newObj = Instantiate(_prefab);
             T newComponent = newObj.GetComponent<T>();
@@ -42,17 +32,19 @@ namespace Utility
             return newComponent;
         }
 
-        protected virtual void OnObjectGet(T obj)
+        private void OnObjectGet(T obj)
         {
-            // Override if needed
+            ActiveObjects.Add(obj);
+            Debug.Log("Added" + obj.name);
         }
 
-        protected virtual void OnObjectRelease(T obj)
+        private void OnObjectRelease(T obj)
         {
+            ActiveObjects.Remove(obj);
             obj.gameObject.SetActive(false);
         }
 
-        protected virtual void OnObjectDestroy(T obj)
+        private void OnObjectDestroy(T obj)
         {
             Destroy(obj.gameObject);
         }

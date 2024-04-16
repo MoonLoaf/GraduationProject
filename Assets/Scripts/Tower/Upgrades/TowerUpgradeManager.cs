@@ -43,7 +43,8 @@ namespace Tower.Upgrades
 
         private void ApplyRangeUpgrade(TowerUpgrade upgrade)
         {
-            _tower.CurrentType.Range += upgrade.RangeUpgrade;
+            float newRange = _tower.CurrentType.Range + upgrade.RangeUpgrade;
+            _tower.UpdateRange(newRange);
         }
 
         private void ApplyAttackSpeedUpgrade(TowerUpgrade upgrade)

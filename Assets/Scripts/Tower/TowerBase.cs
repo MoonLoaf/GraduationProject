@@ -17,7 +17,7 @@ namespace Tower
        
         [SerializeField] private GameObject _projectilePrefab;
         [SerializeField] private TowerTargetPriority _targetPriority;
-        [SerializeField] private EntityDetector entityDetector;
+        [FormerlySerializedAs("entityDetector")] [SerializeField] private EntityDetector _entityDetector;
         
         public ProjectilePool ProjectilePool { get; private set; }
         protected List<EnemyBase> _enemiesInRange;
@@ -25,8 +25,6 @@ namespace Tower
         
         protected SpriteRenderer _renderer;
 
-        protected float _attackSpeed;
-        protected float _range;
         protected float _lastAttackTime;
 
         protected override void Awake()
@@ -40,10 +38,10 @@ namespace Tower
 
         private void Start()
         {
-            entityDetector.OnNewEnemyInRange += OnEnemyEnterRange;
-            entityDetector.OnEnemyOutOfRange += OnEnemyLeaveRange;
-            entityDetector.OnNewTowerInRange += OnTowerEnterRange;
-            entityDetector.OnTowerOutOfRange += OnTowerLeaveRange;
+            _entityDetector.OnNewEnemyInRange += OnEnemyEnterRange;
+            _entityDetector.OnEnemyOutOfRange += OnEnemyLeaveRange;
+            _entityDetector.OnNewTowerInRange += OnTowerEnterRange;
+            _entityDetector.OnTowerOutOfRange += OnTowerLeaveRange;
         }
 
         public void Initialize(TowerType type)
@@ -51,14 +49,19 @@ namespace Tower
             _initialType = type;
             _currentType = type;
             _renderer.sprite = _initialType.TypeSprite;
-            _attackSpeed = _initialType.AttackSpeed;
-            _range = _initialType.Range;
             _currentProjectile = _initialType.TypeProjectileType;
             _shaderController.SetDisplayRange(false);
-            _shaderController.SetRange(_range);
-            entityDetector.SetRange(_range);
+            _shaderController.SetRange(_initialType.Range);
+            _entityDetector.SetRange(_initialType.Range);
             ProjectilePool.Initialize(_projectilePrefab, 10, 25);
             GetComponent<TowerUpgradeManager>().Initialize(_initialType.UpgradePaths, this);
+        }
+
+        public void UpdateRange(float newRange)
+        {
+            CurrentType.Range = newRange;
+            _shaderController.SetRange(CurrentType.Range);
+            _entityDetector.SetRange(CurrentType.Range);
         }
 
         private Quaternion UpdateRotation(Vector3 position, Vector3 targetLocation)
@@ -114,7 +117,7 @@ namespace Tower
         
         protected bool ShouldAttack()
         {
-            return _enemiesInRange.Count > 0 && Time.time - _lastAttackTime > _attackSpeed;
+            return _enemiesInRange.Count > 0 && Time.time - _lastAttackTime > CurrentType.AttackSpeed;
         }
 
         private void OnEnemyEnterRange(EnemyBase enemy)
@@ -139,7 +142,7 @@ namespace Tower
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(transform.position, _range);
+            Gizmos.DrawWireSphere(transform.position, CurrentType.Range);
         }
     }
 }

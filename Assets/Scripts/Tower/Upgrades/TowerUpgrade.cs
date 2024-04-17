@@ -7,6 +7,10 @@ namespace Tower.Upgrades
     [Serializable]
     public struct TowerUpgrade
     {
+        public string UpgradeName;
+        public string UpgradeDescription;
+        public int UpgradeCost;
+        public Sprite UpgradeSprite;
         public UpgradeType Type;
         public float RangeUpgrade;
         public float AttackSpeedUpgrade;
@@ -19,19 +23,5 @@ namespace Tower.Upgrades
         public float DotTickRate;
         public int DotAmountOfTicks;
         public int LayersToPuncture;
-
-        public TowerUpgrade(UpgradeType type)
-        {
-            Type = type;
-            RangeUpgrade = 0;
-            AttackSpeedUpgrade = 0;
-            ProjectileDamageUpgrade = 0;
-            ProjectileSpeedUpgrade = 0;
-            ExplosionRadiusUpgrade = 0;
-            DotDamageUpgrade = 0;
-            DotTickRate = 0;
-            DotAmountOfTicks = 0;
-            LayersToPuncture = 0;
-        }
     }
 }

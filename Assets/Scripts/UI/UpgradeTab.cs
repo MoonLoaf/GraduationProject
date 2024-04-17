@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 namespace UI
 {
+    public delegate void TowerPressedHandler(TowerBase tower);
     public class UpgradeTab : MonoBehaviour
     {
+        public static TowerPressedHandler OnTowerPressed;
         [SerializeField] private Image _mainImage;
         [SerializeField] private float _targetXValue;
         [SerializeField] private float  _fadeDuration = 1;
@@ -19,18 +21,18 @@ namespace UI
 
         private void Awake()
         {
-            _cards = new List<UpgradeCard>();
             _BackButton.onClick.AddListener(FadeOutFunc);
         }
 
-        private void OnEnable()
+        private void OnEnable() 
         {
-            TowerBase.OnTowerPressed += SetCards;
+            OnTowerPressed += SetCards;
         }
 
         private void SetCards(TowerBase tower)
         {
-            for (int i = 0; i < _cards.Count - 1; i++)
+            Debug.Log(tower.name);
+            for (int i = 0; i < _cards.Count; i++)
             {
                 _cards[i].TowerToUpgrade = tower;
                 int pathIndex = tower.CurrentType.UpgradePaths.Paths[i].ProgressIndex;

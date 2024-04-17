@@ -3,12 +3,13 @@ using Enemy;
 using Helpers;
 using Tower.Projectile;
 using Tower.Upgrades;
+using UI;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace Tower
 {
-    public delegate void TowerPressedHandler(TowerBase tower);
+    
     public class TowerBase : ClickableObject
     {
         [SerializeField] protected TowerType _initialType;
@@ -28,8 +29,6 @@ namespace Tower
 
         protected float _lastAttackTime;
 
-        public static TowerPressedHandler OnTowerPressed;
-
         protected override void Awake()
         {
             base.Awake();
@@ -39,7 +38,7 @@ namespace Tower
             _towersInRange = new List<TowerBase>();
         }
 
-        private void Start()
+        protected virtual void Start()
         {
             _entityDetector.OnNewEnemyInRange += OnEnemyEnterRange;
             _entityDetector.OnEnemyOutOfRange += OnEnemyLeaveRange;
@@ -125,12 +124,13 @@ namespace Tower
 
         protected override void OnMouseDown()
         {
-            OnTowerPressed?.Invoke(this);            
+            UpgradeTab.OnTowerPressed?.Invoke(this);            
         }
 
         private void OnEnemyEnterRange(EnemyBase enemy)
         {
             _enemiesInRange.Add(enemy);
+            Debug.Log("enemy in range");
         }
 
         private void OnEnemyLeaveRange(EnemyBase enemy)

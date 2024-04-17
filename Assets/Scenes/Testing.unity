@@ -1352,6 +1352,22 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1414333675}
+    - target: {fileID: 4262315024246180846, guid: 5436a4daad8ecea4b85a6a8d0980a4ad,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 123.02501
+      objectReference: {fileID: 0}
+    - target: {fileID: 5731250694067854123, guid: 5436a4daad8ecea4b85a6a8d0980a4ad,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5731250694067854123, guid: 5436a4daad8ecea4b85a6a8d0980a4ad,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300056, guid: 1eaee135ce037439d925cee5e41ce026,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

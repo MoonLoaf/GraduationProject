@@ -52,7 +52,7 @@ namespace Tower.Projectile
         {
             if(!_shouldMove){return;}
 
-            transform.position += _direction * (_type.MoveSpeed * Time.deltaTime);
+            transform.position += _direction * ((_type.MoveSpeed + _tower.CurrentType.Range) * Time.deltaTime);
 
             _currentLifetime += Time.deltaTime;
 

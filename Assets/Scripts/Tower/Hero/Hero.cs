@@ -8,8 +8,9 @@ namespace Tower.Hero
     {
         private HeroState _state;
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             _state = HeroState.Hybrid;
         }
 
@@ -68,6 +69,5 @@ namespace Tower.Hero
         {
             throw new NotImplementedException();
         }
-        
     }
 }

@@ -13,17 +13,14 @@ namespace Tower
         
         protected virtual void OnMouseDown()
         {
-            throw new NotImplementedException();
         }
 
         protected virtual void OnMouseDrag()
         {
-            throw new NotImplementedException();
         }
 
         protected virtual void OnMouseUp()
         {
-            throw new NotImplementedException();
         }
     }
 }

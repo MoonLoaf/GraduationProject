@@ -8,6 +8,7 @@ using UnityEngine.Serialization;
 
 namespace Tower
 {
+    public delegate void TowerPressedHandler(TowerBase tower);
     public class TowerBase : ClickableObject
     {
         [SerializeField] protected TowerType _initialType;
@@ -26,6 +27,8 @@ namespace Tower
         protected SpriteRenderer _renderer;
 
         protected float _lastAttackTime;
+
+        public static TowerPressedHandler OnTowerPressed;
 
         protected override void Awake()
         {
@@ -118,6 +121,11 @@ namespace Tower
         protected bool ShouldAttack()
         {
             return _enemiesInRange.Count > 0 && Time.time - _lastAttackTime > CurrentType.AttackSpeed;
+        }
+
+        protected override void OnMouseDown()
+        {
+            OnTowerPressed?.Invoke(this);            
         }
 
         private void OnEnemyEnterRange(EnemyBase enemy)

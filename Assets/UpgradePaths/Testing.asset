@@ -12,6 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea8702baef5f54c8a699036da1a1f1, type: 3}
   m_Name: Testing
   m_EditorClassIdentifier: 
-  Path1: []
+  Path1:
+  - Type: 0
+    RangeUpgrade: 0
+    AttackSpeedUpgrade: 0
+    ProjectileDamageUpgrade: 0
+    ProjectileSpeedUpgrade: 0
+    ExplosionRadiusUpgrade: 0
+    DotDamageUpgrade: 0
+    DotTickRate: 0
+    DotAmountOfTicks: 0
+    LayersToPuncture: 0
   Path2: []
   Path3: []

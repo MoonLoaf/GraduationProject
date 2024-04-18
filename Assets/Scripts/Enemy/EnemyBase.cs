@@ -97,14 +97,19 @@ namespace Enemy
         public void TakeDamage(ProjectileType projectileType)
         {
             if(!IsActive){return;}
-            
-            if (_damageHandlers.TryGetValue(projectileType.DamageType, out Action<ProjectileType> damageHandler))
-            {
-                damageHandler?.Invoke(projectileType);
-            }
-            else
+
+            if (projectileType.DamageType == DamageType.Normal)
             {
                 DecreaseHP(projectileType.Damage);
+                return;
+            }
+            
+            foreach (DamageType damageType in Enum.GetValues(typeof(DamageType)))
+            {
+                if(!projectileType.DamageType.HasFlag(damageType)) continue;
+                if(!_damageHandlers.TryGetValue(projectileType.DamageType, out Action<ProjectileType> damageHandler)) continue;
+
+                damageHandler?.Invoke(projectileType);
             }
         }
 

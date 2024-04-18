@@ -9,34 +9,50 @@ namespace Tower.Upgrades
     {
         private TowerUpgradeCollection Paths;
         private TowerBase _tower;
-        private readonly Dictionary<UpgradeType, Action<TowerUpgrade>> _upgradeHandlers = new ();
+        private Dictionary<UpgradeType, Action<TowerUpgrade>> _upgradeHandlers;
+        private static UpgradeType[] _upgradeTypes;
 
-        public TowerUpgradeManager()
+        private void Awake()
         {
-            _upgradeHandlers[UpgradeType.None] = _ => { };
-            _upgradeHandlers[UpgradeType.Range] = ApplyRangeUpgrade;
-            _upgradeHandlers[UpgradeType.AttackSpeed] = ApplyAttackSpeedUpgrade;
-            _upgradeHandlers[UpgradeType.ProjectileDamage] = ApplyProjectileDamageUpgrade;
-            _upgradeHandlers[UpgradeType.ProjectileSpeed] = ApplyProjectileSpeedUpgrade;
-            _upgradeHandlers[UpgradeType.MakeProjectileExplosive] = ApplyExplosiveUpgrade;
-            _upgradeHandlers[UpgradeType.MakeProjectileCorrosive] = ApplyCorrosiveUpgrade;
-            _upgradeHandlers[UpgradeType.MakeProjectilePuncture] = ApplyPunctureUpgrade;
-            _upgradeHandlers[UpgradeType.ExplosionRadius] = ApplyExplosionRadiusUpgrade;
-            _upgradeHandlers[UpgradeType.DotDamage] = ApplyDotDamageUpgrade;
-            _upgradeHandlers[UpgradeType.DotTickRate] = ApplyDotTickRateUpgrade;
-            _upgradeHandlers[UpgradeType.DotAmountTicks] = ApplyDotAmountTicksUpgrade;
-            _upgradeHandlers[UpgradeType.LayersToPuncture] = ApplyLayersToPunctureUpgrade;
+            _upgradeHandlers = new Dictionary<UpgradeType, Action<TowerUpgrade>>
+            {
+                [UpgradeType.None] = _ => { },
+                [UpgradeType.Range] = ApplyRangeUpgrade,
+                [UpgradeType.AttackSpeed] = ApplyAttackSpeedUpgrade,
+                [UpgradeType.ProjectileDamage] = ApplyProjectileDamageUpgrade,
+                [UpgradeType.ProjectileSpeed] = ApplyProjectileSpeedUpgrade,
+                [UpgradeType.MakeProjectileExplosive] = ApplyExplosiveUpgrade,
+                [UpgradeType.MakeProjectileCorrosive] = ApplyCorrosiveUpgrade,
+                [UpgradeType.MakeProjectilePuncture] = ApplyPunctureUpgrade,
+                [UpgradeType.ExplosionRadius] = ApplyExplosionRadiusUpgrade,
+                [UpgradeType.DotDamage] = ApplyDotDamageUpgrade,
+                [UpgradeType.DotTickRate] = ApplyDotTickRateUpgrade,
+                [UpgradeType.DotAmountTicks] = ApplyDotAmountTicksUpgrade,
+                [UpgradeType.LayersToPuncture] = ApplyLayersToPunctureUpgrade
+            };
+            if (_upgradeTypes == null)
+            {
+                InitializeUpgradeTypesCache();
+            }
         }
         
+        private static void InitializeUpgradeTypesCache()
+        {
+            _upgradeTypes = (UpgradeType[])Enum.GetValues(typeof(UpgradeType));
+        }
+
         public void Initialize(TowerUpgradeCollection paths, TowerBase tower)
         {
             Paths = paths;
+            _tower = tower;
         }
 
         public void UpgradeTower(TowerUpgrade upgrade)
         {
-            if (_upgradeHandlers.TryGetValue(upgrade.Type, out Action<TowerUpgrade> upgradeHandler))
+            foreach (UpgradeType upgradeType in _upgradeTypes)
             {
+                if (!upgrade.Type.HasFlag(upgradeType)) continue;
+                if (!_upgradeHandlers.TryGetValue(upgradeType, out Action<TowerUpgrade> upgradeHandler)) continue;
                 upgradeHandler?.Invoke(upgrade);
             }
         }

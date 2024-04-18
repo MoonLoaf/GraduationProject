@@ -49,14 +49,14 @@ namespace Tower
         public void Initialize(TowerType type)
         {
             _initialType = type;
-            _currentType = type;
+            _currentType = Instantiate(type);
             _renderer.sprite = _initialType.TypeSprite;
             _currentProjectile = _initialType.TypeProjectileType;
             _shaderController.SetDisplayRange(false);
             _shaderController.SetRange(_initialType.Range);
             _entityDetector.SetRange(_initialType.Range);
             ProjectilePool.Initialize(_projectilePrefab, 10, 25);
-            GetComponent<TowerUpgradeManager>().Initialize(_initialType.UpgradePaths, this);
+            GetComponent<TowerUpgradeManager>().Initialize(_currentType.UpgradePaths, this);
         }
 
         public void UpdateRange(float newRange)
@@ -130,7 +130,6 @@ namespace Tower
         private void OnEnemyEnterRange(EnemyBase enemy)
         {
             _enemiesInRange.Add(enemy);
-            Debug.Log("enemy in range");
         }
 
         private void OnEnemyLeaveRange(EnemyBase enemy)

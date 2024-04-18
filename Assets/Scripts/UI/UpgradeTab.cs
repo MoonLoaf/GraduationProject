@@ -21,7 +21,7 @@ namespace UI
 
         private void Awake()
         {
-            _BackButton.onClick.AddListener(FadeOutFunc);
+            _BackButton.onClick.AddListener(ButtonFadeFunc);
         }
 
         private void OnEnable() 
@@ -40,50 +40,36 @@ namespace UI
                 _cards[i].SetCardInfo(upgrade);
             }
 
-            StartCoroutine(FadeIn());
+            if(_moving){return;}
+
+            StartCoroutine(Fade(true));
         }
 
-        private void FadeOutFunc()
+        private void ButtonFadeFunc()
         {
-            StartCoroutine(FadeOut());
+            if(_moving){return;}
+
+            StartCoroutine(Fade(false));
         }
 
-        private IEnumerator FadeOut()
+        private IEnumerator Fade(bool fadeIn)
         {
-            if(_moving) { yield return null;}
             _moving = true;
-            
+
+            float startValue = fadeIn ? _initialXValue : _targetXValue;
+            float endValue = fadeIn ? _targetXValue : _initialXValue;
+
             float elapsedTime = 0f;
 
             while (elapsedTime < _fadeDuration)
             {
                 float t = elapsedTime / _fadeDuration;
-                _mainImage.rectTransform.anchoredPosition = new Vector2(Mathf.Lerp(_targetXValue, _initialXValue, t), _mainImage.rectTransform.anchoredPosition.y);
+                _mainImage.rectTransform.anchoredPosition = new Vector2(Mathf.Lerp(startValue, endValue, t), _mainImage.rectTransform.anchoredPosition.y);
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
 
-            _mainImage.rectTransform.anchoredPosition = new Vector2(_initialXValue, _mainImage.rectTransform.anchoredPosition.y);
-            _moving = false;
-        }
-
-        private IEnumerator FadeIn()
-        {
-            if(_moving) { yield return null;}
-            _moving = true;
-            
-            _initialXValue = _mainImage.rectTransform.anchoredPosition.x;
-            float elapsedTime = 0f;
-
-            while (elapsedTime < _fadeDuration)
-            {
-                float t = elapsedTime / _fadeDuration;
-                _mainImage.rectTransform.anchoredPosition = new Vector2(Mathf.Lerp(_initialXValue, _targetXValue, t), _mainImage.rectTransform.anchoredPosition.y);
-                elapsedTime += Time.deltaTime;
-                yield return null;
-            }
-
-            _mainImage.rectTransform.anchoredPosition = new Vector2(_targetXValue, _mainImage.rectTransform.anchoredPosition.y);
+            _mainImage.rectTransform.anchoredPosition = new Vector2(endValue, _mainImage.rectTransform.anchoredPosition.y);
             _moving = false;
         }
     }

@@ -408,6 +408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _filledStarImage: {fileID: 21300048, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
+  _emptyStarImage: {fileID: 21300050, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
   _stars:
   - {fileID: 4577799285380354598}
   - {fileID: 2654697687162396462}

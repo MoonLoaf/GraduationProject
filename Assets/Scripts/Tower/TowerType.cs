@@ -13,11 +13,12 @@ namespace Tower
         [SerializeField] private ProjectileType _projectileType;
         [SerializeField] private TowerUpgradeCollection _upgrades;
         
-    
         [Header("Tower Stats")]
         [SerializeField] private int _cost;
         [SerializeField] private float _attackSpeed;
         [SerializeField] private float _range;
+        
+        private TowerUpgradeCollection _upgradesInstance;
     
         public float AttackSpeed
         {
@@ -34,7 +35,16 @@ namespace Tower
         public int Cost => _cost;
         public Sprite TypeSprite => _sprite;
         public ProjectileType TypeProjectileType => _projectileType;
-
-        public TowerUpgradeCollection UpgradePaths => _upgrades;
+        public TowerUpgradeCollection UpgradePaths
+        {
+            get
+            {
+                if (_upgradesInstance == null)
+                {
+                    _upgradesInstance = Instantiate(_upgrades);
+                }
+                return _upgradesInstance;
+            }
+        }
     }
 }

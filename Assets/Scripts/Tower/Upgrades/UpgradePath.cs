@@ -1,12 +1,18 @@
 using System;
+using UnityEngine;
 
 namespace Tower.Upgrades
 {
     [Serializable]
-    public struct UpgradePath
+    public class UpgradePath
     {
-        public TowerUpgrade[] Path;
-        public int ProgressIndex;
-        public bool IsLocked;
+        public TowerUpgrade[] Upgrades;
+        public int _progressIndex = 0;
+        public bool IsLocked = false;
+        public int ProgressIndex
+        {
+            get => _progressIndex;
+            set => _progressIndex = Mathf.Clamp(value, 0, 3);
+        }
     }
 }

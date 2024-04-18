@@ -24,22 +24,20 @@ namespace UI
             _BackButton.onClick.AddListener(ButtonFadeFunc);
         }
 
-        private void OnEnable() 
+        private void OnEnable()
         {
+            _initialXValue = _mainImage.rectTransform.anchoredPosition.x;
             OnTowerPressed += SetCards;
         }
 
         private void SetCards(TowerBase tower)
         {
-            Debug.Log(tower.name);
             for (int i = 0; i < _cards.Count; i++)
             {
                 _cards[i].TowerToUpgrade = tower;
-                int pathIndex = tower.CurrentType.UpgradePaths.Paths[i].ProgressIndex;
-                var upgrade = tower.CurrentType.UpgradePaths.Paths[i].Path[pathIndex];
-                _cards[i].SetCardInfo(upgrade);
+                _cards[i].Path = tower.CurrentType.UpgradePaths.Paths[i];
+                _cards[i].SetCardInfo();
             }
-
             if(_moving){return;}
 
             StartCoroutine(Fade(true));

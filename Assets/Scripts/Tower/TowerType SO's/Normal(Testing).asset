@@ -17,4 +17,4 @@ MonoBehaviour:
   _upgrades: {fileID: 11400000, guid: 72aa36dbab2f8b442867ecffe15193c7, type: 2}
   _cost: 200
   _attackSpeed: 0.4
-  _range: 1
+  _range: 2

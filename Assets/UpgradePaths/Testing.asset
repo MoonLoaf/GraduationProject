@@ -56,7 +56,7 @@ MonoBehaviour:
       DotTickRate: 0
       DotAmountOfTicks: 0
       LayersToPuncture: 0
-    ProgressIndex: 0
+    _progressIndex: 0
     IsLocked: 0
   - Upgrades:
     - UpgradeName: Path 2
@@ -101,7 +101,7 @@ MonoBehaviour:
       DotTickRate: 0
       DotAmountOfTicks: 0
       LayersToPuncture: 0
-    ProgressIndex: 0
+    _progressIndex: 0
     IsLocked: 0
   - Upgrades:
     - UpgradeName: Path 3
@@ -146,5 +146,5 @@ MonoBehaviour:
       DotTickRate: 0
       DotAmountOfTicks: 0
       LayersToPuncture: 0
-    ProgressIndex: 0
+    _progressIndex: 0
     IsLocked: 0

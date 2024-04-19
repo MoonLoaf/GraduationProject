@@ -1,6 +1,5 @@
 using Core;
 using TMPro;
-using Tower;
 using Tower.Upgrades;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,7 +18,7 @@ namespace UI
         public UpgradePath Path { private get; set; }
     
         [SerializeField] private Image _upgradeImage;
-        public TowerBase TowerToUpgrade { private get; set; }
+        public TowerUpgradeManager TowerToUpgrade { private get; set; }
         private TowerUpgrade _upgrade;
 
         private void OnEnable()
@@ -31,7 +30,7 @@ namespace UI
         {
             if(!GameManager.Instance.CanAfford(_upgrade.UpgradeCost) || Path.ProgressIndex == 3){return;}
         
-            TowerToUpgrade.GetComponent<TowerUpgradeManager>().UpgradeTower(_upgrade);
+            TowerToUpgrade.UpgradeTower(_upgrade);
             GameManager.Instance.DecrementMoney(_upgrade.UpgradeCost);
             Path.ProgressIndex++;
             SetCardInfo();

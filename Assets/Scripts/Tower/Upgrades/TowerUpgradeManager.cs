@@ -7,7 +7,7 @@ namespace Tower.Upgrades
 {
     public class TowerUpgradeManager : MonoBehaviour
     {
-        private TowerUpgradeCollection Paths;
+        public TowerUpgradeCollection UpgradePaths { get; private set; }
         private TowerBase _tower;
         private Dictionary<UpgradeType, Action<TowerUpgrade>> _upgradeHandlers;
         private static UpgradeType[] _upgradeTypes;
@@ -43,7 +43,7 @@ namespace Tower.Upgrades
 
         public void Initialize(TowerUpgradeCollection paths, TowerBase tower)
         {
-            Paths = paths;
+            UpgradePaths = paths;
             _tower = tower;
         }
 

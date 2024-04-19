@@ -1,3 +1,5 @@
+using System;
+using UI;
 using UnityEngine;
 
 namespace Tower
@@ -6,7 +8,16 @@ namespace Tower
     {
         [SerializeField] private Renderer _renderer;
         [SerializeField] private GameObject _rangeQuad;
-        
+
+        private void OnEnable()
+        {
+            UpgradeTab.OnTowerDeselect += SetDisplayRange;
+        }
+
+        private void OnDisable()
+        {
+            UpgradeTab.OnTowerDeselect -= SetDisplayRange;
+        }
 
         public void SetRange(float range)
         {

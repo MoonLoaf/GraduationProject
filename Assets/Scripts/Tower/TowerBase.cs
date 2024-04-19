@@ -9,7 +9,6 @@ using UnityEngine.Serialization;
 
 namespace Tower
 {
-    
     public class TowerBase : ClickableObject
     {
         [SerializeField] protected TowerType _initialType;
@@ -26,6 +25,7 @@ namespace Tower
         protected List<TowerBase> _towersInRange;
         
         protected SpriteRenderer _renderer;
+        private TowerUpgradeManager _towerUpgradeManager;
 
         protected float _lastAttackTime;
 
@@ -33,6 +33,7 @@ namespace Tower
         {
             base.Awake();
             _renderer = gameObject.GetComponent<SpriteRenderer>();
+            _towerUpgradeManager = GetComponent<TowerUpgradeManager>();
             ProjectilePool = new ProjectilePool();
             _enemiesInRange = new List<EnemyBase>();
             _towersInRange = new List<TowerBase>();
@@ -56,7 +57,7 @@ namespace Tower
             _shaderController.SetRange(_initialType.Range);
             _entityDetector.SetRange(_initialType.Range);
             ProjectilePool.Initialize(_projectilePrefab, 10, 25);
-            GetComponent<TowerUpgradeManager>().Initialize(_currentType.UpgradePaths, this);
+            _towerUpgradeManager.Initialize(_currentType.UpgradePaths, this);
         }
 
         public void UpdateRange(float newRange)
@@ -124,7 +125,9 @@ namespace Tower
 
         protected override void OnMouseDown()
         {
-            UpgradeTab.OnTowerPressed?.Invoke(this);            
+            UpgradeTab.OnTowerDeselect?.Invoke(false);
+            UpgradeTab.OnTowerPressed?.Invoke(_towerUpgradeManager);  
+            _shaderController.SetDisplayRange(true);
         }
 
         private void OnEnemyEnterRange(EnemyBase enemy)

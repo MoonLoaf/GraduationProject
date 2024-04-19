@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using Tower;
+using Tower.Upgrades;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI
 {
-    public delegate void TowerPressedHandler(TowerBase tower);
+    public delegate void TowerPressedHandler(TowerUpgradeManager towerUpgradeManager);
+
+    public delegate void TowerInteractionHandler(bool interaction);
     public class UpgradeTab : MonoBehaviour
     {
         public static TowerPressedHandler OnTowerPressed;
+        public static TowerInteractionHandler OnTowerDeselect;
         [SerializeField] private Image _mainImage;
         [SerializeField] private float _targetXValue;
         [SerializeField] private float  _fadeDuration = 1;
@@ -18,6 +22,7 @@ namespace UI
         
         private float _initialXValue;
         private bool _moving;
+        private bool _visible;
 
         private void Awake()
         {
@@ -30,15 +35,15 @@ namespace UI
             OnTowerPressed += SetCards;
         }
 
-        private void SetCards(TowerBase tower)
+        private void SetCards(TowerUpgradeManager towerUpgradeManager)
         {
             for (int i = 0; i < _cards.Count; i++)
             {
-                _cards[i].TowerToUpgrade = tower;
-                _cards[i].Path = tower.CurrentType.UpgradePaths.Paths[i];
+                _cards[i].TowerToUpgrade = towerUpgradeManager;
+                _cards[i].Path = towerUpgradeManager.UpgradePaths.Paths[i];
                 _cards[i].SetCardInfo();
             }
-            if(_moving){return;}
+            if(_moving || _visible){return;}
 
             StartCoroutine(Fade(true));
         }
@@ -48,6 +53,7 @@ namespace UI
             if(_moving){return;}
 
             StartCoroutine(Fade(false));
+            OnTowerDeselect?.Invoke(false);
         }
 
         private IEnumerator Fade(bool fadeIn)
@@ -67,6 +73,7 @@ namespace UI
                 yield return null;
             }
 
+            _visible = fadeIn;
             _mainImage.rectTransform.anchoredPosition = new Vector2(endValue, _mainImage.rectTransform.anchoredPosition.y);
             _moving = false;
         }

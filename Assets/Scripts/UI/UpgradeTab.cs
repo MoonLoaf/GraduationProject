@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Core;
+using TMPro;
 using Tower;
 using Tower.Upgrades;
 using UnityEngine;
@@ -7,26 +10,45 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public delegate void TowerPressedHandler(TowerUpgradeManager towerUpgradeManager);
+    public delegate void TowerPressedHandler(TowerBase tower, TowerUpgradeManager towerUpgradeManager);
 
     public delegate void TowerInteractionHandler(bool interaction);
+
     public class UpgradeTab : MonoBehaviour
     {
         public static TowerPressedHandler OnTowerPressed;
         public static TowerInteractionHandler OnTowerDeselect;
+        [SerializeField] private TMP_Text _towerNameText;
         [SerializeField] private Image _mainImage;
         [SerializeField] private float _targetXValue;
         [SerializeField] private float  _fadeDuration = 1;
         [SerializeField] private List<UpgradeCard> _cards;
-        [SerializeField] private Button _BackButton;
-        
+        [Space] 
+        [SerializeField] private TMP_Dropdown _targetSelectionDropdown;
+        [SerializeField] private Button _backButton;
+        [SerializeField] private Button _sellButton;
+
+        private TowerBase _activeTower;
         private float _initialXValue;
         private bool _moving;
         private bool _visible;
 
         private void Awake()
         {
-            _BackButton.onClick.AddListener(ButtonFadeFunc);
+            _backButton.onClick.AddListener(ButtonFadeFunc);
+            _sellButton.onClick.AddListener(OnTowerSell);
+            _targetSelectionDropdown.onValueChanged.AddListener(OnTargetPriorityChanged);
+            _targetSelectionDropdown.ClearOptions();
+            
+            TowerTargetPriority[] enumValues = (TowerTargetPriority[])Enum.GetValues(typeof(TowerTargetPriority));
+
+            string[] options = new string[enumValues.Length];
+            for (int i = 0; i < enumValues.Length; i++)
+            {
+                options[i] = enumValues[i].ToString();
+            }
+
+            _targetSelectionDropdown.AddOptions(new List<string>(options));
         }
 
         private void OnEnable()
@@ -35,8 +57,24 @@ namespace UI
             OnTowerPressed += SetCards;
         }
 
-        private void SetCards(TowerUpgradeManager towerUpgradeManager)
+        private void OnTowerSell()
         {
+            int money = Mathf.CeilToInt(_activeTower.CurrentType.Cost * GameManager.Instance.TowerSellMultiplier);
+            GameManager.Instance.IncrementMoney(money);
+            Destroy(_activeTower.gameObject);
+            _activeTower = null;
+            ButtonFadeFunc();
+        }
+
+        private void OnTargetPriorityChanged(int index)
+        {
+            _activeTower.SetTargetPriority((TowerTargetPriority)index);
+        }
+
+        private void SetCards(TowerBase tower, TowerUpgradeManager towerUpgradeManager)
+        {
+            _activeTower = tower;
+            _towerNameText.text = tower.CurrentType.TowerName;
             for (int i = 0; i < _cards.Count; i++)
             {
                 _cards[i].TowerToUpgrade = towerUpgradeManager;

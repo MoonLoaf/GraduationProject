@@ -9,7 +9,9 @@ namespace Core
     {
         [SerializeField] private GameStats _startingGameStatistics;
         [SerializeField] private GameStats _curGameStatistics;
-        
+
+        public float TowerSellMultiplier => _curGameStatistics.SellTowerMultiplier;
+
         public event GameStatChangeHandlerInt OnWaveChanged;
         public event GameStatChangeHandlerInt OnMoneyChanged;
         public event GameStatChangeHandlerInt OnLivesChanged;

@@ -49,6 +49,7 @@ namespace Tower.Upgrades
 
         public void UpgradeTower(TowerUpgrade upgrade)
         {
+            _tower.CurrentType.Cost += upgrade.UpgradeCost;
             foreach (UpgradeType upgradeType in _upgradeTypes)
             {
                 if (!upgrade.Type.HasFlag(upgradeType)) continue;

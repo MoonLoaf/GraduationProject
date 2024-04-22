@@ -10,6 +10,9 @@ namespace Tower
         [Header("Visual")] 
         [SerializeField] private Sprite _sprite;
 
+        [SerializeField] private string _towerName;
+        
+
         [SerializeField] private ProjectileType _projectileType;
         [SerializeField] private TowerUpgradeCollection _upgrades;
         
@@ -32,7 +35,14 @@ namespace Tower
             set => _range = value;
         }
 
-        public int Cost => _cost;
+        public int Cost
+        {
+            get => _cost;
+            set => _cost = value;
+        }
+
+        public string TowerName => _towerName;
+
         public Sprite TypeSprite => _sprite;
         public ProjectileType TypeProjectileType => _projectileType;
         public TowerUpgradeCollection UpgradePaths

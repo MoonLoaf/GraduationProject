@@ -126,8 +126,13 @@ namespace Tower
         protected override void OnMouseDown()
         {
             UpgradeTab.OnTowerDeselect?.Invoke(false);
-            UpgradeTab.OnTowerPressed?.Invoke(_towerUpgradeManager);  
+            UpgradeTab.OnTowerPressed?.Invoke(this, _towerUpgradeManager);  
             _shaderController.SetDisplayRange(true);
+        }
+
+        public void SetTargetPriority(TowerTargetPriority newPriority)
+        {
+            _targetPriority = newPriority;
         }
 
         private void OnEnemyEnterRange(EnemyBase enemy)

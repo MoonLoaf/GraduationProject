@@ -61,6 +61,12 @@ namespace UI
         {
             int money = Mathf.CeilToInt(_activeTower.CurrentType.Cost * GameManager.Instance.TowerSellMultiplier);
             GameManager.Instance.IncrementMoney(money);
+            
+            if (_activeTower.CurrentType.IsHero)
+            {
+                UIEventManager.HeroSoldEvent?.Invoke();
+            }
+            
             Destroy(_activeTower.gameObject);
             _activeTower = null;
             ButtonFadeFunc();

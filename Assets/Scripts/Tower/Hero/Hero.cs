@@ -1,4 +1,5 @@
 using System;
+using Core;
 using UI.Buttons;
 using UnityEngine;
 
@@ -7,11 +8,15 @@ namespace Tower.Hero
     public class Hero : TowerBase
     {
         private HeroState _state;
-
+        [SerializeField] private float _fishingCooldown = 3.0f;
+        [SerializeField] private int _moneyPerFishingtrip;
+        private float _lastFishingTime;
+        
+        private float cooldownTimer = 0.0f; 
         protected override void Start()
         {
             base.Start();
-            _state = HeroState.Hybrid;
+            _state = HeroState.Fishing;
         }
 
         private void OnEnable()
@@ -34,15 +39,6 @@ namespace Tower.Hero
                 case HeroState.Fishing:
                     GoFish();
                     break;
-                case HeroState.Hybrid:
-                    if (_enemiesInRange.Count > 0)
-                    {
-                        //Make stats worse
-                        base.Update();
-                        break;
-                    }
-                    GoFish();
-                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -50,7 +46,10 @@ namespace Tower.Hero
 
         private void GoFish()
         {
-            //TODO: implement economy
+            if (Time.time - _lastFishingTime <= _fishingCooldown) return;
+
+            _lastFishingTime = Time.time;
+            GameManager.Instance.IncrementMoney(_moneyPerFishingtrip);
         }
 
         protected override void Attack(Vector3 targetPos)

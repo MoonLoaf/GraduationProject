@@ -9,12 +9,12 @@ namespace Tower.Hero.ConcreteHeroes
         [SerializeField] private float _abilityDuration;
         [SerializeField] private float _abilityCooldown;
         private float lastAbilityTime;
-        private WaitForSeconds wait;
+        private WaitForSeconds _abilityWait;
 
         protected override void Awake()
         {
             base.Awake();
-            wait = new WaitForSeconds(_abilityCooldown);
+            _abilityWait = new WaitForSeconds(_abilityCooldown);
         }
 
         protected override void ActivateAbility()
@@ -31,7 +31,7 @@ namespace Tower.Hero.ConcreteHeroes
 
         private IEnumerator RemoveBuffs()
         {
-            yield return wait;
+            yield return _abilityWait;
             
             foreach (var tower in _towersInRange)
             {

@@ -5,6 +5,18 @@ namespace UI.Buttons
 {
     public class HeroPreviewCreatorButton : TowerPreviewCreatorButton
     {
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            UIEventManager.HeroSoldEvent += OnHeroSold;
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            UIEventManager.HeroSoldEvent -= OnHeroSold;
+        }
+
         public override void OnClickInteraction()
         {
             if (UIEventManager.Instance.IsPreviewActive) {return;}
@@ -15,6 +27,11 @@ namespace UI.Buttons
             _button.interactable = false;
             
             UIEventManager.Instance.StartTowerPreview();
+        }
+
+        private void OnHeroSold()
+        {
+            _button.interactable = true;
         }
     }
 }

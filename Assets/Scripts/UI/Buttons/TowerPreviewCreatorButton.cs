@@ -14,12 +14,12 @@ namespace UI.Buttons
         
         private bool _previewActive;
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             UIEventManager.Instance.TowerPlacedEvent += HandleTowerPlaced;
         }
 
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
             UIEventManager.Instance.TowerPlacedEvent -= HandleTowerPlaced;
         }

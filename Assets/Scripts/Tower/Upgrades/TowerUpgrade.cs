@@ -12,6 +12,7 @@ namespace Tower.Upgrades
         public int UpgradeCost;
         public Sprite UpgradeSprite;
         public UpgradeType Type;
+        public bool ApplyCamoSeeing;
         public float RangeUpgrade;
         public float AttackSpeedUpgrade;
         public int ProjectileDamageUpgrade;

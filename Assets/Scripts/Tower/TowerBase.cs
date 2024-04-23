@@ -137,12 +137,17 @@ namespace Tower
 
         private void OnEnemyEnterRange(EnemyBase enemy)
         {
+            if (enemy.Type.IsCamo && !CurrentType.CamoSeeing){return;}
+                
             _enemiesInRange.Add(enemy);
         }
 
         private void OnEnemyLeaveRange(EnemyBase enemy)
         {
-            _enemiesInRange.Remove(enemy);
+            if (_enemiesInRange.Contains(enemy))
+            {
+                _enemiesInRange.Remove(enemy);
+            }
         }
         
         private void OnTowerEnterRange(TowerBase tower)

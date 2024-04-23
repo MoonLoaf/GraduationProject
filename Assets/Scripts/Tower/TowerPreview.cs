@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using Core;
+using Helpers;
 using UI;
 using Unity.Mathematics;
 using UnityEngine;
@@ -23,6 +25,7 @@ namespace Tower
         private Camera _camera;
         private Vector3 _touchPosition;
         private CircleCollider2D _collider;
+        private ContactFilter2D _filter;
         
         protected override void Awake()
         {
@@ -31,6 +34,7 @@ namespace Tower
             _collider = GetComponent<CircleCollider2D>();
             _camera = Camera.main;
             _cancelButton.onClick.AddListener(OnPreviewCanceled);
+            _filter.layerMask = Layers.Towers;
         }
 
 
@@ -83,8 +87,15 @@ namespace Tower
         private void TryPlaceTower()
         {
             if (!CheckValidPlacement()) return;
+            if (!CheckForAdjacentTurrets()) return;
             GameManager.Instance.DecrementMoney(_type.Cost);
             SpawnTower(_touchPosition);
+        }
+
+        private bool CheckForAdjacentTurrets()
+        {
+            List<Collider2D> results = new List<Collider2D>();
+            return Physics2D.OverlapCollider(_collider, _filter, results) <= 0;
         }
 
         private void MoveTowerPreview()

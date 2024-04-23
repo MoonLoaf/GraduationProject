@@ -21,5 +21,6 @@ namespace Tower.Upgrades
         DotTickRate = 5 << 5,
         DotAmountTicks = 5 << 6,
         LayersToPuncture = 6 << 6,
+        MakeCamoSeeing = 6 << 7,
     }
 }

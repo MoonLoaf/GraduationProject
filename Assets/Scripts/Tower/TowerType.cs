@@ -9,9 +9,8 @@ namespace Tower
     {
         [Header("Visual")] 
         [SerializeField] private Sprite _sprite;
-
         [SerializeField] private string _towerName;
-        
+        [SerializeField] private bool _isHero;
 
         [SerializeField] private ProjectileType _projectileType;
         [SerializeField] private TowerUpgradeCollection _upgrades;
@@ -20,6 +19,8 @@ namespace Tower
         [SerializeField] private int _cost;
         [SerializeField] private float _attackSpeed;
         [SerializeField] private float _range;
+        [SerializeField] private bool  _camoSeeing;
+        
         
         private TowerUpgradeCollection _upgradesInstance;
     
@@ -41,10 +42,18 @@ namespace Tower
             set => _cost = value;
         }
 
+        public bool CamoSeeing
+        {
+            get => _camoSeeing;
+            set => _camoSeeing = value;
+        }
+
         public string TowerName => _towerName;
 
         public Sprite TypeSprite => _sprite;
         public ProjectileType TypeProjectileType => _projectileType;
+
+        public bool IsHero => _isHero;
         public TowerUpgradeCollection UpgradePaths
         {
             get

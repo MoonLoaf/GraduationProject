@@ -28,14 +28,15 @@ namespace Tower.Upgrades
                 [UpgradeType.DotDamage] = ApplyDotDamageUpgrade,
                 [UpgradeType.DotTickRate] = ApplyDotTickRateUpgrade,
                 [UpgradeType.DotAmountTicks] = ApplyDotAmountTicksUpgrade,
-                [UpgradeType.LayersToPuncture] = ApplyLayersToPunctureUpgrade
+                [UpgradeType.LayersToPuncture] = ApplyLayersToPunctureUpgrade,
+                [UpgradeType.MakeCamoSeeing] = ApplyCamoSeeingUpgrade,
             };
             if (_upgradeTypes == null)
             {
                 InitializeUpgradeTypesCache();
             }
         }
-        
+
         private static void InitializeUpgradeTypesCache()
         {
             _upgradeTypes = (UpgradeType[])Enum.GetValues(typeof(UpgradeType));
@@ -117,6 +118,11 @@ namespace Tower.Upgrades
         private void ApplyLayersToPunctureUpgrade(TowerUpgrade upgrade)
         {
             _tower.GetProjectile().LayersToPuncture += upgrade.LayersToPuncture;
+        }
+        
+        private void ApplyCamoSeeingUpgrade(TowerUpgrade upgrade)
+        {
+            _tower.CurrentType.CamoSeeing = upgrade.ApplyCamoSeeing;
         }
     }
 }

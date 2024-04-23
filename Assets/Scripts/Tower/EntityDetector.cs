@@ -10,10 +10,8 @@ namespace Tower
     public class EntityDetector : MonoBehaviour
     {
         [SerializeField] private CircleCollider2D _rangeCollider;
-        
         public event EnemyInRangeHandler OnNewEnemyInRange;
         public event EnemyInRangeHandler OnEnemyOutOfRange;
-
         public event TowerInRangeHandler OnNewTowerInRange;
         public event TowerInRangeHandler OnTowerOutOfRange;
 

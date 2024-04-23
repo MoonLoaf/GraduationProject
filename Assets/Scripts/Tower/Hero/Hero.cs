@@ -12,7 +12,6 @@ namespace Tower.Hero
         [SerializeField] private int _moneyPerFishingtrip;
         private float _lastFishingTime;
         
-        private float cooldownTimer = 0.0f; 
         protected override void Start()
         {
             base.Start();

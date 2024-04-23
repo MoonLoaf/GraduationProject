@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Tower.Hero.ConcreteHeroes
@@ -9,12 +10,13 @@ namespace Tower.Hero.ConcreteHeroes
         [SerializeField] private float _abilityDuration;
         [SerializeField] private float _abilityCooldown;
         private float lastAbilityTime;
-        private WaitForSeconds _abilityWait;
+        private WaitForSeconds _abilityDurationWait;
+        private Dictionary<TowerBase, float> _originalAttackSpeeds = new();
 
         protected override void Awake()
         {
             base.Awake();
-            _abilityWait = new WaitForSeconds(_abilityCooldown);
+            _abilityDurationWait = new WaitForSeconds(_abilityDuration);
         }
 
         protected override void ActivateAbility()
@@ -23,7 +25,8 @@ namespace Tower.Hero.ConcreteHeroes
             
             foreach (var tower in _towersInRange)
             {
-                //TODO: Add an upgrade
+                _originalAttackSpeeds[tower] = tower.CurrentType.AttackSpeed;
+                tower.CurrentType.AttackSpeed *= 0.8f;
             }
 
             StartCoroutine(RemoveBuffs());
@@ -31,12 +34,14 @@ namespace Tower.Hero.ConcreteHeroes
 
         private IEnumerator RemoveBuffs()
         {
-            yield return _abilityWait;
+            yield return _abilityDurationWait;
             
             foreach (var tower in _towersInRange)
             {
-                //TODO: Remove upgrade
+                if(!_originalAttackSpeeds.TryGetValue(tower, out var speed)) { continue; }
+                tower.CurrentType.AttackSpeed = speed;
             }
+            _originalAttackSpeeds.Clear();
         }
     }
 }

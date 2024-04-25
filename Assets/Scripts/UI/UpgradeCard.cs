@@ -8,6 +8,9 @@ namespace UI
 {
     public class UpgradeCard : ClickableButton
     {
+        public delegate void OnUpgradePurchasedHandler();
+        public OnUpgradePurchasedHandler OnUpgradePurchased;
+        
         [SerializeField] private Sprite _filledStarImage;
         [SerializeField] private Sprite _emptyStarImage;
         [SerializeField] private Image[] _stars;
@@ -15,7 +18,7 @@ namespace UI
         [SerializeField] private TMP_Text _upgradeNameText;
         [SerializeField] private TMP_Text _upgradeDescription;
         [SerializeField] private TMP_Text _upgradeCostText;
-        public UpgradePath Path { private get; set; }
+        public UpgradePath Path;
     
         [SerializeField] private Image _upgradeImage;
         public TowerUpgradeManager TowerToUpgrade { private get; set; }
@@ -28,11 +31,12 @@ namespace UI
 
         public override void OnClickInteraction()
         {
-            if(!GameManager.Instance.CanAfford(_upgrade.UpgradeCost) || Path.ProgressIndex == 3){return;}
+            if(Path.IsLocked || Path.ProgressIndex == 3 || !GameManager.Instance.CanAfford(_upgrade.UpgradeCost)){return;}
         
             TowerToUpgrade.UpgradeTower(_upgrade);
             GameManager.Instance.DecrementMoney(_upgrade.UpgradeCost);
             Path.ProgressIndex++;
+            OnUpgradePurchased?.Invoke();
             SetCardInfo();
         }
 
@@ -46,13 +50,19 @@ namespace UI
             for (int i = 0; i <= 2; i++)
             {
                 _stars[i].sprite = i < Path.ProgressIndex ? _filledStarImage : _emptyStarImage;
-                Debug.Log(i);
             }
+        }
+
+        public void SetPathLocked()
+        {
+            Path.IsLocked = true;
+            _lock.enabled = true;
         }
 
         public void SetCardInfo()
         {
             SetStars();
+            _lock.enabled = Path.IsLocked;
             _upgrade = GetCurrentUpgrade();
             _upgradeNameText.text = _upgrade.UpgradeName;
             _upgradeDescription.text = _upgrade.UpgradeDescription;

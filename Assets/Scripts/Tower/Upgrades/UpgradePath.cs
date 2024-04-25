@@ -7,12 +7,25 @@ namespace Tower.Upgrades
     public class UpgradePath
     {
         public TowerUpgrade[] Upgrades;
-        public int _progressIndex = 0;
-        public bool IsLocked = false;
+        private int _progressIndex = 0;
+        private bool _isLocked = false;
+        private bool _isActive;
         public int ProgressIndex
         {
             get => _progressIndex;
-            set => _progressIndex = Mathf.Clamp(value, 0, 3);
+            set
+            {
+                _progressIndex = Mathf.Clamp(value, 0, 3);
+                _isActive = true;
+            } 
+        }
+
+        public bool IsActive => _isActive;
+        
+        public bool IsLocked
+        {
+            get => _isLocked;
+            set => _isLocked = value;
         }
     }
 }

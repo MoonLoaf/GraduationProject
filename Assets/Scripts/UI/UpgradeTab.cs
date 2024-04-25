@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using Core;
 using TMPro;
 using Tower;
@@ -55,6 +56,10 @@ namespace UI
         {
             _initialXValue = _mainImage.rectTransform.anchoredPosition.x;
             OnTowerPressed += SetCards;
+            foreach (var card in _cards)
+            {
+                card.OnUpgradePurchased += CheckLocks;
+            }
         }
 
         private void OnTowerSell()
@@ -87,9 +92,41 @@ namespace UI
                 _cards[i].Path = towerUpgradeManager.UpgradePaths.Paths[i];
                 _cards[i].SetCardInfo();
             }
+            CheckLocks();
             if(_moving || _visible){return;}
 
             StartCoroutine(Fade(true));
+        }
+
+        private void CheckLocks()
+        {
+            int activeCount = 0;
+            UpgradeCard inactiveCard = null;
+
+            foreach (var card in _cards)
+            {
+                //If a path is already locked
+                if (card.Path.IsLocked)
+                {
+                    card.SetPathLocked();
+                    return;
+                }
+
+                //Check if a path should be locked
+                if (card.Path.IsActive)
+                {
+                    activeCount++;
+                }
+                else
+                {
+                    inactiveCard = card;
+                }
+            }
+
+            if (activeCount == 2 && inactiveCard != null)
+            {
+                inactiveCard.SetPathLocked();
+            }
         }
 
         private void ButtonFadeFunc()

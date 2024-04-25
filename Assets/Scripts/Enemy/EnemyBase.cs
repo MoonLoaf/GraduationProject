@@ -24,27 +24,47 @@ namespace Enemy
         private CircleCollider2D _collider;
 
         //Testing
-        private SplineContainer _spline;
-        private float _splineLength;
+        private static SplineContainer _spline;
+
+        private static float _splineLength;
         private float _moveSpeed;
         public float DistanceAlongSpline { get; private set; }
         private bool _metalIntact = false;
  
         private readonly Dictionary<DamageType, Action<ProjectileType>> _damageHandlers = new();
+        private static DamageType[] _damageTypes;
 
         public EnemyBase()
         {
             _damageHandlers[DamageType.Explosive] = HandleExplosiveDamage;
             _damageHandlers[DamageType.Corrosive] = HandleCorrosiveDamage;
             _damageHandlers[DamageType.Puncture] = HandlePunctureDamage;
+            
+            if (_damageTypes == null)
+            {
+                InitializeDamageTypesCache();
+            }
+        }
+
+        private void InitializeDamageTypesCache()
+        {
+            _damageTypes = (DamageType[])Enum.GetValues(typeof(DamageType));
         }
 
         private void Awake()
         {
             _renderer = gameObject.GetComponent<SpriteRenderer>();
             _collider = gameObject.GetComponent<CircleCollider2D>();
-            _spline = LevelSpline.Instance.GetLevelSplineContainer();
-            _splineLength = _spline.CalculateLength();
+
+            if (_spline == null)
+            {
+                _spline = LevelSpline.Instance.GetLevelSplineContainer();
+            }
+
+            if (_splineLength == 0)
+            {
+                _splineLength = LevelSpline.Instance.SplineLength;
+            }
         }
 
         public void Initialize()
@@ -104,7 +124,7 @@ namespace Enemy
                 return;
             }
             
-            foreach (DamageType damageType in Enum.GetValues(typeof(DamageType)))
+            foreach (DamageType damageType in _damageTypes)
             {
                 if(!projectileType.DamageType.HasFlag(damageType)) continue;
                 if(!_damageHandlers.TryGetValue(projectileType.DamageType, out Action<ProjectileType> damageHandler)) continue;

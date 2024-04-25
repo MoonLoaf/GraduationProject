@@ -35,7 +35,6 @@ namespace Utility
         private void OnObjectGet(T obj)
         {
             ActiveObjects.Add(obj);
-            Debug.Log("Added" + obj.name);
         }
 
         private void OnObjectRelease(T obj)

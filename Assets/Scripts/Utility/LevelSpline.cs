@@ -1,6 +1,6 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.Splines;
 
 namespace Utility
@@ -10,10 +10,18 @@ namespace Utility
         [SerializeField] private SplineContainer _levelSplineContainer;
         [SerializeField] private float _trackWidth;
         [SerializeField] private float _mapHorizontalBorder;
+        private float _splineLength;
         
         private float3 _nearestPoint;
         public float TrackWidth => _trackWidth;
-    
+
+        public float SplineLength => _splineLength;
+
+        private void Start()
+        {
+            _splineLength = _levelSplineContainer.CalculateLength();
+        }
+
         public Spline GetLevelSpline()
         {
             return _levelSplineContainer.Spline;
@@ -67,8 +75,6 @@ namespace Utility
                 Gizmos.DrawWireSphere(worldSplinePoint, _trackWidth);
             }
             
-            // Convert the nearest point to world space
-            // Draw a blue sphere at the nearest point
             Gizmos.color = Color.blue;
             Gizmos.DrawSphere(_nearestPoint, 0.1f);
         }

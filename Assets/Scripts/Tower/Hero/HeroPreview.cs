@@ -14,6 +14,7 @@ namespace Tower.Hero
             hero.Initialize(_type);
             
             UIEventManager.Instance.NotifyTowerPlaced();
+            UIEventManager.HeroPlacedEvent?.Invoke();
             Destroy(gameObject);
         }
     }

@@ -10,6 +10,10 @@ namespace Tower.Hero
         private HeroState _state;
         [SerializeField] private float _fishingCooldown = 3.0f;
         [SerializeField] private int _moneyPerFishingtrip;
+        [Header("Hero Ability")]
+        [SerializeField] protected float _abilityDuration;
+        [SerializeField] protected float _abilityCooldown;
+        public float AbilityCooldown => _abilityCooldown;
         private float _lastFishingTime;
         
         protected override void Start()

@@ -7,6 +7,7 @@ namespace UI
         public delegate void UIEventHandler();
         public event UIEventHandler TowerPlacedEvent;
         public static UIEventHandler HeroSoldEvent;
+        public static UIEventHandler HeroPlacedEvent;
         public bool IsPreviewActive { get; private set; } = false;
 
         public void NotifyTowerPlaced()

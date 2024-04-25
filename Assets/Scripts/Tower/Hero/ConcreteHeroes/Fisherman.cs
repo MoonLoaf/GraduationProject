@@ -6,9 +6,6 @@ namespace Tower.Hero.ConcreteHeroes
 {
     public class Fisherman : Hero
     {
-        [Header("Hero Ability")]
-        [SerializeField] private float _abilityDuration;
-        [SerializeField] private float _abilityCooldown;
         private float lastAbilityTime;
         private WaitForSeconds _abilityDurationWait;
         private Dictionary<TowerBase, float> _originalAttackSpeeds = new();

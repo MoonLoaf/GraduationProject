@@ -1,4 +1,3 @@
-using System;
 using UI;
 using UnityEngine;
 
@@ -8,6 +7,9 @@ namespace Tower
     {
         [SerializeField] private Renderer _renderer;
         [SerializeField] private GameObject _rangeQuad;
+
+        private const string ShaderBorderThickness = "_Border_Thickness";
+        private readonly int _borderThickness = Shader.PropertyToID(ShaderBorderThickness);
 
         private void OnEnable()
         {
@@ -23,7 +25,7 @@ namespace Tower
         {
             float adjustedRange = range * 2.5f;
             _rangeQuad.transform.localScale = new Vector3(adjustedRange, adjustedRange, 1);
-            _renderer.material.SetFloat("_Border_Thickness", 0.01f/adjustedRange);
+            _renderer.material.SetFloat(_borderThickness, 0.01f/adjustedRange);
         }
 
         public void SetDisplayRange(bool active) => _renderer.enabled = active;

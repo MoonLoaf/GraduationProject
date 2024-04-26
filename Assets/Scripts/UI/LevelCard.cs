@@ -8,5 +8,11 @@ namespace UI
     {
         [SerializeField] private Image _imageRef;
         [SerializeField] private TMP_Text _nameText;
+
+        public void Initialize(Sprite sprite, string levelName)
+        {
+            _imageRef.sprite = sprite;
+            _nameText.text = levelName;
+        }
     }
 }

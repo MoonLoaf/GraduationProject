@@ -17,7 +17,9 @@ namespace Tower
         private ProjectileType _currentProjectile;
        
         [SerializeField] private GameObject _projectilePrefab;
-        [SerializeField] private TowerTargetPriority _targetPriority;
+        private TowerTargetPriority _targetPriority;
+        public TowerTargetPriority TargetPriority => _targetPriority;
+        
         [FormerlySerializedAs("entityDetector")] [SerializeField] private EntityDetector _entityDetector;
         
         public ProjectilePool ProjectilePool { get; private set; }
@@ -105,12 +107,13 @@ namespace Tower
         protected virtual void Attack(Vector3 targetPos)
         {
             if (targetPos == Vector3.zero) { return; }
-            
-            gameObject.transform.rotation = UpdateRotation(transform.position, targetPos);
 
-            Vector3 dir = (targetPos - transform.position).normalized;
+            Vector3 position = transform.position;
+            gameObject.transform.rotation = UpdateRotation(position, targetPos);
 
-            ProjectilePool.SpawnObject(_currentProjectile, transform.position, dir, this);
+            Vector3 dir = (targetPos - position).normalized;
+
+            ProjectilePool.SpawnObject(_currentProjectile, position, dir, this);
         }
 
         public ProjectileType GetProjectile()

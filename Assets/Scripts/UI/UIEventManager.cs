@@ -1,3 +1,4 @@
+using Tower.Hero;
 using Utility;
 
 namespace UI
@@ -5,9 +6,11 @@ namespace UI
     public class UIEventManager : GenericSingleton<UIEventManager>
     {
         public delegate void UIEventHandler();
+
+        public delegate void HeroEventHandler(Hero hero);
         public event UIEventHandler TowerPlacedEvent;
-        public static UIEventHandler HeroSoldEvent;
-        public static UIEventHandler HeroPlacedEvent;
+        public static HeroEventHandler HeroSoldEvent;
+        public static HeroEventHandler HeroPlacedEvent;
         public bool IsPreviewActive { get; private set; } = false;
 
         public void NotifyTowerPlaced()

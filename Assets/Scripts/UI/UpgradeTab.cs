@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
 using Core;
 using TMPro;
 using Tower;
+using Tower.Hero;
 using Tower.Upgrades;
 using UnityEngine;
 using UnityEngine.UI;
@@ -69,7 +69,7 @@ namespace UI
             
             if (_activeTower.CurrentType.IsHero)
             {
-                UIEventManager.HeroSoldEvent?.Invoke();
+                UIEventManager.HeroSoldEvent?.Invoke((Hero)_activeTower);
             }
             
             Destroy(_activeTower.gameObject);
@@ -92,6 +92,7 @@ namespace UI
                 _cards[i].Path = towerUpgradeManager.UpgradePaths.Paths[i];
                 _cards[i].SetCardInfo();
             }
+            _targetSelectionDropdown.value = (int)_activeTower.TargetPriority;
             CheckLocks();
             if(_moving || _visible){return;}
 

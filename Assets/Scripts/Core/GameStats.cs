@@ -34,7 +34,7 @@ namespace Core
         public float SellTowerMultiplier
         {
             get => _sellTowerMultiplier;
-            set => _sellTowerMultiplier = Mathf.Clamp(value, 0.1f, 1f);
+            private set => _sellTowerMultiplier = Mathf.Clamp(value, 0.1f, 1f);
         }
 
         public int NumEnemiesPopped

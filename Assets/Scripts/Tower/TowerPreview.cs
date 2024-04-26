@@ -95,7 +95,9 @@ namespace Tower
         private bool CheckForAdjacentTurrets()
         {
             List<Collider2D> results = new List<Collider2D>();
-            return Physics2D.OverlapCollider(_collider, _filter, results) <= 0;
+            bool validity = Physics2D.OverlapCollider(_collider, _filter, results) <= 0;
+            _renderer.color = validity ? Color.green : Color.red;
+            return validity;
         }
 
         private void MoveTowerPreview()

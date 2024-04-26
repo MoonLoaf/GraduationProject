@@ -15,7 +15,6 @@ namespace UI.Buttons
         
         public override void OnClickInteraction()
         {
-            base.OnClickInteraction();
             OnAbilityActivated?.Invoke();
             StartCoroutine(AbilityCooldown(_currentHero.AbilityCooldown));
             Logging.Log("Ability Activated");
@@ -34,14 +33,16 @@ namespace UI.Buttons
             UIEventManager.HeroPlacedEvent -= OnHeroPlaced;
         }
 
-        private void OnHeroPlaced()
+        private void OnHeroPlaced(Hero hero)
         {
+            _currentHero = hero;
             _button.interactable = true;
         }
 
-        private void OnHeroSold()
+        private void OnHeroSold(Hero hero)
         {
             _button.interactable = false;
+            _currentHero = null;
         }
 
         private IEnumerator AbilityCooldown(float cooldown)

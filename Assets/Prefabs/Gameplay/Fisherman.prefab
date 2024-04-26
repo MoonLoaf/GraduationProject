@@ -54,8 +54,10 @@ MonoBehaviour:
     type: 3}
   _targetPriority: 0
   _entityDetector: {fileID: 7935527655099720414}
-  _abilityDuration: 0
-  _abilityCooldown: 0
+  _fishingCooldown: 3
+  _moneyPerFishingtrip: 100
+  _abilityDuration: 10
+  _abilityCooldown: 25
 --- !u!114 &4119790297116431187
 MonoBehaviour:
   m_ObjectHideFlags: 0

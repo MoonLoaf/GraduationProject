@@ -29,7 +29,7 @@ namespace UI.Buttons
             UIEventManager.Instance.StartTowerPreview();
         }
 
-        private void OnHeroSold()
+        private void OnHeroSold(Hero hero)
         {
             _button.interactable = true;
         }

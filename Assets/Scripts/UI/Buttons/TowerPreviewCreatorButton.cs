@@ -4,6 +4,7 @@ using Tower;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace UI.Buttons
 {
@@ -11,11 +12,14 @@ namespace UI.Buttons
     {
         [SerializeField] protected TowerType _typeToSpawn;
         [SerializeField] protected GameObject _towerPreviewPrefab;
+        [SerializeField] private Image _imageRef;
+        
         
         private bool _previewActive;
 
         protected virtual void OnEnable()
         {
+            _imageRef.sprite = _typeToSpawn.TypeSprite;
             UIEventManager.Instance.TowerPlacedEvent += HandleTowerPlaced;
         }
 

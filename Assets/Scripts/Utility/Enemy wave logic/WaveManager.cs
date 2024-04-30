@@ -12,7 +12,6 @@ namespace Utility.EnemyWaveLogic
         [SerializeField] private GameObject _enemyPrefab;
         
         [SerializeField] private List<Wave> _waves = new();
-        public List<EnemyBase> ActiveEnemies { get; private set; }
 
         private int _waveIndex = 0;
         private Vector3 _spawnPoint;
@@ -22,7 +21,6 @@ namespace Utility.EnemyWaveLogic
         protected override void Awake()
         {
             _enemyPool = new EnemyPool();
-            ActiveEnemies = new List<EnemyBase>();
             _enemyPool.Initialize(_enemyPrefab, 50, 200);
         }
 
@@ -77,19 +75,12 @@ namespace Utility.EnemyWaveLogic
                     timePassed += spawnEvent.SpawnTickRate;
                 }
 
-                var enemy = _enemyPool.SpawnObject(type, _spawnPoint);
-                AddActiveEnemy(enemy);
+                _enemyPool.SpawnObject(type, _spawnPoint);
             }
         }
 
-        public void AddActiveEnemy(EnemyBase enemy)
+        public void DespawnEnemy(EnemyBase enemy)
         {
-            ActiveEnemies.Add(enemy);
-        }
-
-        public void RemoveEnemy(EnemyBase enemy)
-        {
-            ActiveEnemies.Remove(enemy);
             _enemyPool.DespawnObject(enemy);
         }
     }

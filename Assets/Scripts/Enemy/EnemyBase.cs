@@ -105,7 +105,7 @@ namespace Enemy
             GameManager.Instance.OnEnemyCompleteTrack(_type.Damage);
             DistanceAlongSpline = 0;
             IsActive = false;
-            WaveManager.Instance.RemoveEnemy(this);
+            WaveManager.Instance.DespawnEnemy(this);
         }
 
         public void SetEnemyType(EnemyType newType)
@@ -197,7 +197,7 @@ namespace Enemy
             //TODO: Effects?
             IsActive = false;
             GameManager.Instance.IncrementMoney(_type.EnemyPoppedReward);
-            WaveManager.Instance.RemoveEnemy(this);
+            WaveManager.Instance.DespawnEnemy(this);
         }
 
         public int GetTotalHealth()

@@ -301,23 +301,9 @@ MonoBehaviour:
   - EndOfWaveReward: 100
     SpawnEvents:
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
-      Count: 10
+      Count: 3
       Delay: 0
       SpawnTickRate: 1
-    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
-      Count: 10
-      Delay: 2
-      SpawnTickRate: 0.5
-  - EndOfWaveReward: 100
-    SpawnEvents:
-    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
-      Count: 10
-      Delay: 0
-      SpawnTickRate: 1
-    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
-      Count: 10
-      Delay: 2
-      SpawnTickRate: 0.5
 --- !u!4 &1269616215
 Transform:
   m_ObjectHideFlags: 0
@@ -1341,6 +1327,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1787842114288031234, guid: 5436a4daad8ecea4b85a6a8d0980a4ad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2187831164203016877, guid: 5436a4daad8ecea4b85a6a8d0980a4ad,
         type: 3}

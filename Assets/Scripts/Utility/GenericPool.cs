@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -6,6 +7,9 @@ namespace Utility
 {
     public class GenericPool<T> : Object where T : Component
     {
+        public delegate void PoolEventHandler();
+
+        public event PoolEventHandler OnActivePoolEmpty;
         protected ObjectPool<T> _pool;
         public List<T> ActiveObjects { get; protected set; }
         private GameObject _prefab;
@@ -41,6 +45,9 @@ namespace Utility
         {
             ActiveObjects.Remove(obj);
             obj.gameObject.SetActive(false);
+            
+            if(ActiveObjects.Count != 0){return;}
+            OnActivePoolEmpty?.Invoke();
         }
 
         private void OnObjectDestroy(T obj)

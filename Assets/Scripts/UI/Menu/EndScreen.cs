@@ -6,8 +6,8 @@ namespace UI.Menu
 {
     public class EndScreen : MonoBehaviour
     {
-        [SerializeField] private GameObject _parentGo;
-        
+        [SerializeField] private GameObject _endScreen;
+
         private void OnEnable()
         {
             GameManager.Instance.OnGameOver += GameOver;
@@ -18,9 +18,9 @@ namespace UI.Menu
             GameManager.Instance.OnGameOver -= GameOver;
         }
 
-        private void GameOver(GameStats gameStats)
+        private void GameOver(GameStats gameStats, bool win)
         {
-            _parentGo.SetActive(true);
+            _endScreen.SetActive(true);
         }
     }
 }

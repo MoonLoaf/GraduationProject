@@ -6,7 +6,7 @@ namespace Core
     public delegate void GameStatChangeHandlerInt(int newValue);
     public delegate void GameEventHandler();
 
-    public delegate void GameEventUIHandler(GameStats gameStats);
+    public delegate void GameOverHandler(GameStats gameStats, bool win);
     public class GameManager : GenericSingleton<GameManager>
     {
         [SerializeField] private GameStats _startingGameStatistics;
@@ -21,7 +21,7 @@ namespace Core
         public event GameEventHandler OnWaveStart;
         public event GameEventHandler OnWaveEnd;
 
-        public event GameEventUIHandler OnGameOver;
+        public event GameOverHandler OnGameOver;
 
         protected override void Awake()
         {
@@ -71,9 +71,9 @@ namespace Core
             DecrementLives(damage);
         }
         
-        public void GameOver()
+        public void GameOver(bool win)
         {
-            OnGameOver?.Invoke(_curGameStatistics);
+            OnGameOver?.Invoke(_curGameStatistics, win);
         }
 
         private void DecrementLives(int livesToLose)
@@ -82,7 +82,7 @@ namespace Core
             OnLivesChanged?.Invoke(_curGameStatistics.Lives);
             if (_curGameStatistics.Lives <= 0)
             {
-                GameOver();
+                GameOver(false);
             }
         }
 

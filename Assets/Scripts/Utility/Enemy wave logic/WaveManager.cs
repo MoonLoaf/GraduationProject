@@ -28,6 +28,16 @@ namespace Utility.EnemyWaveLogic
         {
             _spawnPoint = LevelSpline.Instance.GetStartPositionWorldSpace();
             GameManager.Instance.OnWaveStart += StartWaveFunc;
+            _enemyPool.OnActivePoolEmpty += CheckGameOver;
+        }
+
+        private void CheckGameOver()
+        {
+            //Only gets called when pool is empty
+            if (_waveIndex >= _waves.Count)
+            {
+                GameManager.Instance.GameOver(true);
+            }
         }
 
         private void StartWaveFunc()

@@ -54,7 +54,7 @@ namespace Tower
             _initialType = type;
             _currentType = Instantiate(type);
             _renderer.sprite = _initialType.TypeSprite;
-            _currentProjectile = _initialType.TypeProjectileType;
+            _currentProjectile = Instantiate(_initialType.TypeProjectileType);
             _shaderController.SetDisplayRange(false);
             _shaderController.SetRange(_initialType.Range);
             _entityDetector.SetRange(_initialType.Range);

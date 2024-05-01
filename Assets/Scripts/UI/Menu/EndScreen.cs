@@ -1,26 +1,22 @@
-using System;
 using Core;
+using TMPro;
 using UnityEngine;
 
 namespace UI.Menu
 {
     public class EndScreen : MonoBehaviour
     {
-        [SerializeField] private GameObject _endScreen;
+        [SerializeField] private TMP_Text _winText;
+        [SerializeField] private TMP_Text _roundsText;
+        [SerializeField] private TMP_Text _enemiesText;
+        [SerializeField] private TMP_Text _healthText;
 
-        private void OnEnable()
+        public void SetTexts(GameStats stats, bool win)
         {
-            GameManager.Instance.OnGameOver += GameOver;
-        }
-
-        private void OnDisable()
-        {
-            GameManager.Instance.OnGameOver -= GameOver;
-        }
-
-        private void GameOver(GameStats gameStats, bool win)
-        {
-            _endScreen.SetActive(true);
+            _winText.text = win ? "You Win!" : "You Lose!";
+            _roundsText.text = "Rounds Completed: " + stats.CurrentWave;
+            _enemiesText.text = "Enemies Destroyed: " + stats.NumEnemiesPopped;
+            _healthText.text = "Health: " + stats.Lives;
         }
     }
 }

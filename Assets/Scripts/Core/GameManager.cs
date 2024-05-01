@@ -1,5 +1,6 @@
 using UnityEngine;
 using Utility;
+using Utility.EnemyWaveLogic;
 
 namespace Core
 {
@@ -13,7 +14,6 @@ namespace Core
         [SerializeField] private GameStats _curGameStatistics;
 
         public float TowerSellMultiplier => _curGameStatistics.SellTowerMultiplier;
-
         public event GameStatChangeHandlerInt OnWaveChanged;
         public event GameStatChangeHandlerInt OnMoneyChanged;
         public event GameStatChangeHandlerInt OnLivesChanged;
@@ -43,6 +43,8 @@ namespace Core
 
         public void BeginNewWave()
         {
+            if (_curGameStatistics.CurrentWave >= WaveManager.Instance.MaxWaveAmount) return;
+            
             _curGameStatistics.CurrentWave++;
             OnWaveStart?.Invoke();
             OnWaveChanged?.Invoke(_curGameStatistics.CurrentWave);

@@ -18,10 +18,11 @@ MonoBehaviour:
       UpgradeDescription: Upgrade 1
       UpgradeCost: 100
       UpgradeSprite: {fileID: 21300000, guid: f27234dd7a818634595a3186e144c291, type: 3}
-      Type: 3
+      Type: 7
+      ApplyCamoSeeing: 0
       RangeUpgrade: 2
       AttackSpeedUpgrade: 0.2
-      ProjectileDamageUpgrade: 0
+      ProjectileDamageUpgrade: 1
       ProjectileSpeedUpgrade: 0
       ExplosionRadiusUpgrade: 0
       DotDamageUpgrade: 0
@@ -33,6 +34,7 @@ MonoBehaviour:
       UpgradeCost: 200
       UpgradeSprite: {fileID: 21300002, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
       Type: 3
+      ApplyCamoSeeing: 0
       RangeUpgrade: 2
       AttackSpeedUpgrade: 0.2
       ProjectileDamageUpgrade: 0
@@ -47,6 +49,7 @@ MonoBehaviour:
       UpgradeCost: 300
       UpgradeSprite: {fileID: 21300000, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
       Type: 3
+      ApplyCamoSeeing: 0
       RangeUpgrade: 2
       AttackSpeedUpgrade: 0.2
       ProjectileDamageUpgrade: 0
@@ -56,14 +59,13 @@ MonoBehaviour:
       DotTickRate: 0
       DotAmountOfTicks: 0
       LayersToPuncture: 0
-    _progressIndex: 0
-    IsLocked: 0
   - Upgrades:
     - UpgradeName: Path 2
       UpgradeDescription: Upgrade 1
       UpgradeCost: 150
       UpgradeSprite: {fileID: 21300004, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
       Type: 3
+      ApplyCamoSeeing: 0
       RangeUpgrade: 1
       AttackSpeedUpgrade: 2
       ProjectileDamageUpgrade: 0
@@ -78,6 +80,7 @@ MonoBehaviour:
       UpgradeCost: 250
       UpgradeSprite: {fileID: 21300010, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
       Type: 0
+      ApplyCamoSeeing: 0
       RangeUpgrade: 0
       AttackSpeedUpgrade: 0
       ProjectileDamageUpgrade: 0
@@ -92,6 +95,7 @@ MonoBehaviour:
       UpgradeCost: 300
       UpgradeSprite: {fileID: 21300012, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
       Type: 0
+      ApplyCamoSeeing: 0
       RangeUpgrade: 0
       AttackSpeedUpgrade: 0
       ProjectileDamageUpgrade: 0
@@ -101,14 +105,13 @@ MonoBehaviour:
       DotTickRate: 0
       DotAmountOfTicks: 0
       LayersToPuncture: 0
-    _progressIndex: 0
-    IsLocked: 0
   - Upgrades:
     - UpgradeName: Path 3
       UpgradeDescription: Upgrade 1
       UpgradeCost: 2
       UpgradeSprite: {fileID: 21300016, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
       Type: 0
+      ApplyCamoSeeing: 0
       RangeUpgrade: 0
       AttackSpeedUpgrade: 0
       ProjectileDamageUpgrade: 0
@@ -123,6 +126,7 @@ MonoBehaviour:
       UpgradeCost: 50
       UpgradeSprite: {fileID: 21300028, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
       Type: 0
+      ApplyCamoSeeing: 0
       RangeUpgrade: 0
       AttackSpeedUpgrade: 0
       ProjectileDamageUpgrade: 0
@@ -137,6 +141,7 @@ MonoBehaviour:
       UpgradeCost: 60
       UpgradeSprite: {fileID: 21300006, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
       Type: 0
+      ApplyCamoSeeing: 0
       RangeUpgrade: 0
       AttackSpeedUpgrade: 0
       ProjectileDamageUpgrade: 0
@@ -146,5 +151,3 @@ MonoBehaviour:
       DotTickRate: 0
       DotAmountOfTicks: 0
       LayersToPuncture: 0
-    _progressIndex: 0
-    IsLocked: 0

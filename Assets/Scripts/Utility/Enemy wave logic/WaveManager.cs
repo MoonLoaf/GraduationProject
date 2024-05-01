@@ -13,6 +13,7 @@ namespace Utility.EnemyWaveLogic
         
         [SerializeField] private List<Wave> _waves = new();
 
+        public int MaxWaveAmount { get; private set; }
         private int _waveIndex = 0;
         private Vector3 _spawnPoint;
 
@@ -29,6 +30,7 @@ namespace Utility.EnemyWaveLogic
             _spawnPoint = LevelSpline.Instance.GetStartPositionWorldSpace();
             GameManager.Instance.OnWaveStart += StartWaveFunc;
             _enemyPool.OnActivePoolEmpty += CheckGameOver;
+            MaxWaveAmount = _waves.Count;
         }
 
         private void CheckGameOver()

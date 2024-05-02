@@ -30,9 +30,9 @@ namespace UI.Menu
                 cardObj.transform.position = newPos;
                 
                 LevelCard levelCard = cardObj.GetComponent<LevelCard>();
-                levelCard.Initialize(scene.SceneSprite, scene.LevelName);
+                levelCard.Initialize(scene.SceneSprite, scene.LevelDisplayName);
             }
-            OnLevelToLoadChanged?.Invoke(_levelScenes[_levelIndex].Scene.name);
+            OnLevelToLoadChanged?.Invoke(_levelScenes[_levelIndex].SceneName);
         }
 
         private void OnEnable()
@@ -52,7 +52,7 @@ namespace UI.Menu
             if (newIndex != _levelIndex && !_isMoving)
             {
                 _levelIndex = newIndex;
-                OnLevelToLoadChanged?.Invoke(_levelScenes[_levelIndex].Scene.name);
+                OnLevelToLoadChanged?.Invoke(_levelScenes[_levelIndex].SceneName);
         
                 Vector3 targetPosition = _parent.transform.position + new Vector3(-_offset * change, 0, 0);
         

@@ -1,9 +1,6 @@
-using System;
 using Core;
 using Tower;
-using UnityEditor.Animations;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI.Buttons

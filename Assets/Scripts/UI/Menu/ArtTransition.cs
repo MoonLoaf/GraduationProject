@@ -18,8 +18,9 @@ namespace UI.Menu
         {
             Vector3 startPos = _imageRef.transform.position;
             Vector3 targetPos = startPos + Vector3.up * 100;
-            
             float elapsedTime = 0f;
+            
+            yield return new WaitForSeconds(1.5f);
 
             while (elapsedTime < _transitionTime)
             {

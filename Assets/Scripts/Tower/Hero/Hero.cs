@@ -2,6 +2,7 @@ using System;
 using Core;
 using UI.Buttons;
 using UnityEngine;
+using Utility.EnemyWaveLogic;
 
 namespace Tower.Hero
 {
@@ -50,6 +51,7 @@ namespace Tower.Hero
         private void GoFish()
         {
             if (Time.time - _lastFishingTime <= _fishingCooldown) return;
+            if (!WaveManager.Instance.IsWaveActive) return;
 
             _lastFishingTime = Time.time;
             GameManager.Instance.IncrementMoney(_moneyPerFishingtrip);

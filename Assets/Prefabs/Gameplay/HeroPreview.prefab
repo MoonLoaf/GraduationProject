@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6990c76c81fdec459b09d0d4f1e5113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerPrefab: {fileID: 2948189681690672838, guid: dcfc9fd3081178841b9a3748566ed52a,
+  _towerPrefab: {fileID: 7869630436680484343, guid: 5b81c70099692814c8f3eb7f58bdb5f5,
     type: 3}
   _cancelButton: {fileID: 5528554510423431985}
 --- !u!114 &8519747587911820965

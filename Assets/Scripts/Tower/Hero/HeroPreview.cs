@@ -9,7 +9,7 @@ namespace Tower.Hero
         protected override void SpawnTower(Vector3 spawnPos)
         {
             GameObject heroObject = Instantiate(_towerPrefab, spawnPos, quaternion.identity);
-            Hero hero = heroObject.GetComponent<Hero>();
+            Hero hero = heroObject.GetComponentInChildren<Hero>();
             
             hero.Initialize(_type);
             

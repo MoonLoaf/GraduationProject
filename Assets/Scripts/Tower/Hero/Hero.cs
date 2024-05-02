@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
 using Core;
+using TMPro;
+using UI;
 using UI.Buttons;
 using UnityEngine;
 using Utility.EnemyWaveLogic;
@@ -16,6 +19,9 @@ namespace Tower.Hero
         [SerializeField] protected float _abilityCooldown;
         public float AbilityCooldown => _abilityCooldown;
         private float _lastFishingTime;
+
+        [SerializeField] private TMP_Dropdown _stateDropdown;
+        
         
         protected override void Start()
         {
@@ -26,12 +32,32 @@ namespace Tower.Hero
         private void OnEnable()
         {
             AbilityActivationButton.OnAbilityActivated += ActivateAbility;
-        }
+            UpgradeTab.OnTowerDeselect += HandleTowerDeselect;
+            HeroState[] enumValues = (HeroState[])Enum.GetValues(typeof(HeroState));
 
+            _stateDropdown.options.Clear();
+            string[] options = new string[enumValues.Length];
+            for (int i = 0; i < enumValues.Length; i++)
+            {
+                options[i] = enumValues[i].ToString();
+            }
+
+            _stateDropdown.AddOptions(new List<string>(options));
+            _stateDropdown.onValueChanged.AddListener(SetState);
+            _stateDropdown.value = (int)_state;
+            _stateDropdown.gameObject.SetActive(false);
+        }
         private void OnDisable()
         {
             AbilityActivationButton.OnAbilityActivated -= ActivateAbility;
+            UpgradeTab.OnTowerDeselect -= HandleTowerDeselect;
         }
+
+        private void HandleTowerDeselect(bool interaction)
+        {
+            _stateDropdown.gameObject.SetActive(interaction);
+        }
+
 
         protected override void Update()
         {
@@ -64,9 +90,18 @@ namespace Tower.Hero
             //TODO: Hero attack cool stuff
         }
 
-        public void SetState(HeroState newState)
+        protected override void OnMouseDown()
         {
-            _state = newState;
+            base.OnMouseDown();
+            if(_stateDropdown.IsActive()){return;}
+            _stateDropdown.gameObject.SetActive(true);
+        }
+
+        private void SetState(int index)
+        {
+            _state = (HeroState)index;
+            Debug.Log(_state);
+            _stateDropdown.value = index;
         }
 
         protected virtual void ActivateAbility()

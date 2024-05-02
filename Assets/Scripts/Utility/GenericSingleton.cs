@@ -5,7 +5,7 @@ namespace Utility
     public class GenericSingleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         private static T _instance;
-
+        
         public static T Instance
         {
             get

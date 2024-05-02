@@ -2,7 +2,7 @@ using System.Collections;
 using Tower.Hero;
 using UnityEngine;
 using UnityEngine.UI;
-using Utility;
+using Utility.EnemyWaveLogic;
 
 namespace UI.Buttons
 {
@@ -15,9 +15,9 @@ namespace UI.Buttons
         
         public override void OnClickInteraction()
         {
+            if(!WaveManager.Instance.IsWaveActive){return;}
             OnAbilityActivated?.Invoke();
             StartCoroutine(AbilityCooldown(_currentHero.AbilityCooldown));
-            Logging.Log("Ability Activated");
         }
         
         protected void OnEnable()

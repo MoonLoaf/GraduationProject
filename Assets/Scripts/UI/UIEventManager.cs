@@ -3,7 +3,7 @@ using Utility;
 
 namespace UI
 {
-    public class UIEventManager : GenericSingleton<UIEventManager>
+    public class UIEventManager : GenericSingletonDOL<UIEventManager>
     {
         public delegate void UIEventHandler();
 

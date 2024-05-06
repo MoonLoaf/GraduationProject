@@ -27,6 +27,7 @@ namespace Tower.Hero
         {
             base.Start();
             _state = HeroState.Fishing;
+            _stateDropdown.value = (int)_state;
         }
 
         private void OnEnable()
@@ -44,7 +45,6 @@ namespace Tower.Hero
 
             _stateDropdown.AddOptions(new List<string>(options));
             _stateDropdown.onValueChanged.AddListener(SetState);
-            _stateDropdown.value = (int)_state;
             _stateDropdown.gameObject.SetActive(false);
         }
         private void OnDisable()

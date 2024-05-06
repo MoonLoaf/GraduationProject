@@ -1,37 +1,49 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility;
 
 namespace UI.Menu
 {
     public class ArtTransition : MonoBehaviour
     {
         [SerializeField] private float _transitionTime;
-        [SerializeField] private Image _imageRef;
-        
-        void Start()
+        private Vector3 _startPos;
+        private Image _imageRef;
+
+        private void Awake()
+        {
+            _imageRef = GetComponent<Image>(); 
+        }
+
+        private void Start()
+        {
+            SceneLoader.OnSceneLoaded += OnSceneLoaded;
+            _startPos = _imageRef.rectTransform.anchoredPosition;
+        }
+
+        private void OnSceneLoaded()
         {
             StartCoroutine(Transition());
+            SceneLoader.OnSceneLoaded -= OnSceneLoaded;
         }
 
         private IEnumerator Transition()
         {
-            Vector3 startPos = _imageRef.transform.position;
-            Vector3 targetPos = startPos + Vector3.up * 100;
+            Vector3 targetPos = _startPos + Vector3.up * 350;
             float elapsedTime = 0f;
             
-            yield return new WaitForSeconds(1.5f);
-
             while (elapsedTime < _transitionTime)
             {
                 float t = elapsedTime / _transitionTime;
-                _imageRef.transform.position = Vector3.Lerp(startPos, targetPos, t);
+                _imageRef.rectTransform.anchoredPosition = Vector3.Lerp(_startPos, targetPos, t);
                 
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
 
-            _imageRef.transform.position = targetPos;
+            _imageRef.rectTransform.anchoredPosition = targetPos;
+            _transitionTime = 0;
         }
     }
 }

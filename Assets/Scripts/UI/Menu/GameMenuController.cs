@@ -15,13 +15,6 @@ namespace UI.Menu
             UIEventManager.OnGameContinue += ContinueGame;
         }
 
-        private void OnDisable()
-        {
-            GameManager.Instance.OnGameOver -= GameOver;
-            UIEventManager.OnSettingsPressed -= DisplaySettings;
-            UIEventManager.OnGameContinue -= ContinueGame;
-        }
-
         private void GameOver(GameStats gameStats, bool win)
         {
             _endScreen.SetTexts(gameStats, win);

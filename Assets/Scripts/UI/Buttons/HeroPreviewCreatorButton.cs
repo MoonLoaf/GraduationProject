@@ -11,12 +11,6 @@ namespace UI.Buttons
             UIEventManager.HeroSoldEvent += OnHeroSold;
         }
 
-        protected override void OnDisable()
-        {
-            base.OnDisable();
-            UIEventManager.HeroSoldEvent -= OnHeroSold;
-        }
-
         public override void OnClickInteraction()
         {
             if (UIEventManager.Instance.IsPreviewActive) {return;}

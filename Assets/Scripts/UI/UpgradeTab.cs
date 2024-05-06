@@ -62,6 +62,15 @@ namespace UI
             }
         }
 
+        private void OnDisable()
+        {
+            OnTowerPressed -= SetCards;
+            foreach (var card in _cards)
+            {
+                card.OnUpgradePurchased -= CheckLocks;
+            }
+        }
+
         private void OnTowerSell()
         {
             int money = Mathf.CeilToInt(_activeTower.CurrentType.Cost * GameManager.Instance.TowerSellMultiplier);
@@ -72,7 +81,7 @@ namespace UI
                 UIEventManager.HeroSoldEvent?.Invoke((Hero)_activeTower);
             }
             
-            Destroy(_activeTower.gameObject);
+            Destroy(_activeTower.transform.parent.gameObject);
             _activeTower = null;
             ButtonFadeFunc();
         }

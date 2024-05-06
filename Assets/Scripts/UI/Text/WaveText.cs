@@ -19,11 +19,6 @@ namespace UI.Text
             GameManager.Instance.OnWaveChanged += UpdateWaveText;
         }
 
-        private void OnDisable()
-        {
-            GameManager.Instance.OnWaveChanged -= UpdateWaveText;
-        }
-
         private void UpdateWaveText(int newValue)
         {
             _text.text = newValue.ToString();

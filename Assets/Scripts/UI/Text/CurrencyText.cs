@@ -17,11 +17,7 @@ namespace UI.Text
         {
             GameManager.Instance.OnMoneyChanged += UpdateCurrencyText;
         }
-
-        private void OnDisable()
-        {
-            GameManager.Instance.OnMoneyChanged -= UpdateCurrencyText;
-        }
+        
         private void UpdateCurrencyText(int newValue)
         {
             _text.text = newValue.ToString();

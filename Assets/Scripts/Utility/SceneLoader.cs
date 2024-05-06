@@ -6,6 +6,8 @@ namespace Utility
 {
     public class SceneLoader : GenericSingleton<SceneLoader>
     {
+        public delegate void SceneLoadedEvent();
+        public static event SceneLoadedEvent OnSceneLoaded;
         private IEnumerator LoadSceneAsyncCoroutine(string sceneName, bool additive = false)
         {
             AsyncOperation asyncOperation;
@@ -24,6 +26,7 @@ namespace Utility
                 // float progress = asyncOperation.progress;
                 yield return null;
             }
+            OnSceneLoaded?.Invoke();
         }
 
         public void LoadSceneAsync(string sceneName, bool additive = false)

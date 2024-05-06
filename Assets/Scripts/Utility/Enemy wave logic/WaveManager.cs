@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Utility.EnemyWaveLogic
 {
-    public class WaveManager : GenericSingleton<WaveManager>
+    public class WaveManager : GenericSingletonDOL<WaveManager>
     {
         private EnemyPool _enemyPool;
         [SerializeField] private GameObject _enemyPrefab;
@@ -21,6 +21,7 @@ namespace Utility.EnemyWaveLogic
 
         protected override void Awake()
         {
+            base.Awake();
             _enemyPool = new EnemyPool();
             _enemyPool.Initialize(_enemyPrefab, 50, 200);
         }

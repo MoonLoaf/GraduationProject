@@ -57,7 +57,6 @@ namespace Tower
             _currentProjectile = Instantiate(_initialType.TypeProjectileType);
             _shaderController.SetDisplayRange(false);
             _shaderController.SetRange(_initialType.Range);
-            _entityDetector.SetRange(_initialType.Range);
             ProjectilePool.Initialize(_projectilePrefab, 10, 25);
             _towerUpgradeManager.Initialize(_currentType.UpgradePaths, this);
         }

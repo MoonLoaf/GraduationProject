@@ -6,9 +6,8 @@ namespace Core
 {
     public delegate void GameStatChangeHandlerInt(int newValue);
     public delegate void GameEventHandler();
-
     public delegate void GameOverHandler(GameStats gameStats, bool win);
-    public class GameManager : GenericSingleton<GameManager>
+    public class GameManager : GenericSingletonDOL<GameManager>
     {
         [SerializeField] private GameStats _startingGameStatistics;
         [SerializeField] private GameStats _curGameStatistics;
@@ -25,6 +24,7 @@ namespace Core
 
         protected override void Awake()
         {
+            base.Awake();
             _curGameStatistics = ScriptableObject.CreateInstance<GameStats>();
             _curGameStatistics.SetGameStatistics(_startingGameStatistics);
         }

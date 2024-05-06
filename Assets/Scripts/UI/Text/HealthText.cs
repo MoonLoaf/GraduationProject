@@ -18,11 +18,6 @@ namespace UI
             GameManager.Instance.OnLivesChanged += UpdateHealthText;
         }
 
-        private void OnDisable()
-        {
-            GameManager.Instance.OnLivesChanged -= UpdateHealthText;
-        }
-        
         private void UpdateHealthText(int newValue)
         {
             _text.text = newValue.ToString();

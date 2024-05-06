@@ -132,7 +132,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.4
 --- !u!1 &2948189681690672838
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +185,6 @@ MonoBehaviour:
   _initialType: {fileID: 0}
   _projectilePrefab: {fileID: 4638921490021706727, guid: 838272ec9373fb24f8ec8ecf6451e526,
     type: 3}
-  _targetPriority: 0
   _entityDetector: {fileID: 8930777944102245920}
 --- !u!114 &8608753771666350057
 MonoBehaviour:

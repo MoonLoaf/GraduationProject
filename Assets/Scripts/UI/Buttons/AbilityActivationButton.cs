@@ -23,14 +23,14 @@ namespace UI.Buttons
         protected void OnEnable()
         {
             _button.interactable = false;
-            UIEventManager.HeroSoldEvent += OnHeroSold;
-            UIEventManager.HeroPlacedEvent += OnHeroPlaced;
+            UIEventManager.Instance.HeroSoldEvent += OnHeroSold;
+            UIEventManager.Instance.HeroPlacedEvent += OnHeroPlaced;
         }
 
         protected void OnDisable()
         {
-            UIEventManager.HeroSoldEvent -= OnHeroSold;
-            UIEventManager.HeroPlacedEvent -= OnHeroPlaced;
+            UIEventManager.Instance.HeroSoldEvent -= OnHeroSold;
+            UIEventManager.Instance.HeroPlacedEvent -= OnHeroPlaced;
         }
 
         private void OnHeroPlaced(Hero hero)

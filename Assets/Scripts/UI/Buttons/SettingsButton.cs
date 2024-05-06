@@ -4,7 +4,7 @@ namespace UI.Buttons
     {
         public override void OnClickInteraction()
         {
-            UIEventManager.OnSettingsPressed?.Invoke();
+            UIEventManager.Instance.OnSettingsPressed?.Invoke();
         }
     }
 }

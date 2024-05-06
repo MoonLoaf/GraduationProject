@@ -11,8 +11,8 @@ namespace UI.Menu
         private void OnEnable()
         {
             GameManager.Instance.OnGameOver += GameOver;
-            UIEventManager.OnSettingsPressed += DisplaySettings;
-            UIEventManager.OnGameContinue += ContinueGame;
+            UIEventManager.Instance.OnSettingsPressed += DisplaySettings;
+            UIEventManager.Instance.OnGameContinue += ContinueGame;
         }
 
         private void GameOver(GameStats gameStats, bool win)

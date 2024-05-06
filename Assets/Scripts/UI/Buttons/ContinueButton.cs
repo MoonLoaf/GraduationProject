@@ -4,7 +4,7 @@ namespace UI.Buttons
     {
         public override void OnClickInteraction()
         {
-            UIEventManager.OnGameContinue?.Invoke();
+            UIEventManager.Instance.OnGameContinue?.Invoke();
         }
     }
 }

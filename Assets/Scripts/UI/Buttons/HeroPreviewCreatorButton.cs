@@ -8,7 +8,7 @@ namespace UI.Buttons
         protected override void OnEnable()
         {
             base.OnEnable();
-            UIEventManager.HeroSoldEvent += OnHeroSold;
+            UIEventManager.Instance.HeroSoldEvent += OnHeroSold;
         }
 
         public override void OnClickInteraction()

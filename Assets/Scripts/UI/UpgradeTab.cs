@@ -78,7 +78,7 @@ namespace UI
             
             if (_activeTower.CurrentType.IsHero)
             {
-                UIEventManager.HeroSoldEvent?.Invoke((Hero)_activeTower);
+                UIEventManager.Instance.HeroSoldEvent?.Invoke((Hero)_activeTower);
             }
             
             Destroy(_activeTower.transform.parent.gameObject);

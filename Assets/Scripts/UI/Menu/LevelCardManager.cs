@@ -42,7 +42,7 @@ namespace UI.Menu
 
         private void OnDisable()
         {
-            OnLevelIndexChanged += SetLevelIndex;
+            OnLevelIndexChanged -= SetLevelIndex;
         }
 
         private void SetLevelIndex(int change)

@@ -33,17 +33,21 @@ namespace UI.Menu
             Vector3 targetPos = _startPos + Vector3.up * 350;
             float elapsedTime = 0f;
             
+            Debug.Log(_startPos);
+            Debug.Log(targetPos);
+            
             while (elapsedTime < _transitionTime)
             {
                 float t = elapsedTime / _transitionTime;
                 _imageRef.rectTransform.anchoredPosition = Vector3.Lerp(_startPos, targetPos, t);
                 
                 elapsedTime += Time.deltaTime;
+                Debug.Log(elapsedTime);
+                Debug.Log(t);
                 yield return null;
             }
 
             _imageRef.rectTransform.anchoredPosition = targetPos;
-            _transitionTime = 0;
         }
     }
 }

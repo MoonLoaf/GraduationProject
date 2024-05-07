@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa5c2b77d02a4434fa86a83eb80ff110, type: 3}
-  m_Name: Hero(Testing)
+  m_Name: Fisherman
   m_EditorClassIdentifier: 
   _sprite: {fileID: 21300000, guid: 23d9bcba198f8d94890fb00d241637b0, type: 3}
   _towerName: Fisherman

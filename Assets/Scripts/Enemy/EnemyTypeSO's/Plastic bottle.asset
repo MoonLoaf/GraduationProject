@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51da85ca38e118e4886babf68f177d77, type: 3}
-  m_Name: Test(Normal)
+  m_Name: Plastic bottle
   m_EditorClassIdentifier: 
   _sprite: {fileID: 21300000, guid: 706771529e3089e459e34fd492166585, type: 3}
   _layerColors:

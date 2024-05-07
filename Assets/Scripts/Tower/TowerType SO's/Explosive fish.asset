@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa5c2b77d02a4434fa86a83eb80ff110, type: 3}
-  m_Name: Normal(Testing)
+  m_Name: Explosive fish
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300000, guid: 1f84240ab7b8af04cae7c31a2d45d45e, type: 3}
-  _towerName: Normal Fishy
+  _sprite: {fileID: 0}
+  _towerName: 
   _isHero: 0
-  _projectileType: {fileID: 11400000, guid: 0df341006ec7a71418c6f8a786271ede, type: 2}
-  _upgrades: {fileID: 11400000, guid: 72aa36dbab2f8b442867ecffe15193c7, type: 2}
-  _cost: 200
-  _attackSpeed: 0.4
-  _range: 2
+  _projectileType: {fileID: 0}
+  _upgrades: {fileID: 0}
+  _cost: 0
+  _attackSpeed: 0
+  _range: 0
   _camoSeeing: 0

@@ -20,6 +20,8 @@ namespace Tower
         [SerializeField] private float _attackSpeed;
         [SerializeField] private float _range;
         [SerializeField] private bool  _camoSeeing;
+        [SerializeField] private bool _aoeTower;
+        
         
         
         private TowerUpgradeCollection _upgradesInstance;
@@ -54,6 +56,8 @@ namespace Tower
         public ProjectileType TypeProjectileType => _projectileType;
 
         public bool IsHero => _isHero;
+
+        public bool AOETower => _aoeTower;
         public TowerUpgradeCollection UpgradePaths
         {
             get

@@ -16,7 +16,9 @@ namespace Tower
     public class TowerPreview : ClickableObject
     {
         [SerializeField] protected GameObject _towerPrefab;
+        [SerializeField] protected GameObject _AOEtowerPrefab;
         [SerializeField] private Button _cancelButton;
+        private bool _spawnAOE;
         
         protected TowerType _type;
 
@@ -46,6 +48,7 @@ namespace Tower
             
             _shaderController.SetRange(_type.Range);
             _shaderController.SetDisplayRange(true);
+            _spawnAOE = _type.AOETower;
         }
 
         public void SetType(TowerType type)
@@ -109,10 +112,18 @@ namespace Tower
 
         protected virtual void SpawnTower(Vector3 spawnPos)
         {
-            GameObject towerObject = Instantiate(_towerPrefab, spawnPos, quaternion.identity);
-            TowerBase tower = towerObject.GetComponent<TowerBase>();
-            
-            tower.Initialize(_type);
+            if (_spawnAOE)
+            {
+                GameObject towerObject = Instantiate(_AOEtowerPrefab, spawnPos, quaternion.identity);
+                TowerBase tower = towerObject.GetComponent<TowerBase>();
+                tower.Initialize(_type);
+            }
+            else
+            {
+                GameObject towerObject = Instantiate(_towerPrefab, spawnPos, quaternion.identity);
+                TowerBase tower = towerObject.GetComponent<TowerBase>();
+                tower.Initialize(_type);
+            }
             
             UIEventManager.Instance.NotifyTowerPlaced();
             Destroy(gameObject);

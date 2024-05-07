@@ -14,7 +14,7 @@ namespace Tower
         [SerializeField] protected TowerType _initialType;
         protected TowerType _currentType;
         public TowerType CurrentType => _currentType;
-        private ProjectileType _currentProjectile;
+        protected ProjectileType _currentProjectile;
        
         [SerializeField] private GameObject _projectilePrefab;
         private TowerTargetPriority _targetPriority;
@@ -81,7 +81,6 @@ namespace Tower
             if (!ShouldAttack()) return;
             
             Attack(GetNewTarget());
-            _lastAttackTime = Time.time;
         }
 
         private Vector3 GetNewTarget()
@@ -113,6 +112,7 @@ namespace Tower
             Vector3 dir = (targetPos - position).normalized;
 
             ProjectilePool.SpawnObject(_currentProjectile, position, dir, this);
+            _lastAttackTime = Time.time;
         }
 
         public ProjectileType GetProjectile()

@@ -7,6 +7,7 @@ namespace Core
     public delegate void GameStatChangeHandlerInt(int newValue);
     public delegate void GameEventHandler();
     public delegate void GameOverHandler(GameStats gameStats, bool win);
+    [DefaultExecutionOrder(-1)]
     public class GameManager : GenericSingletonDOL<GameManager>
     {
         [SerializeField] private GameStats _startingGameStatistics;

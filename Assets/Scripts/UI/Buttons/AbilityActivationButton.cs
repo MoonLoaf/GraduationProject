@@ -16,6 +16,7 @@ namespace UI.Buttons
         public override void OnClickInteraction()
         {
             if(!WaveManager.Instance.IsWaveActive){return;}
+            base.OnClickInteraction();
             OnAbilityActivated?.Invoke();
             StartCoroutine(AbilityCooldown(_currentHero.AbilityCooldown));
         }

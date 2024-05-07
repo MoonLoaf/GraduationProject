@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
-using Utility;
 
 namespace Audio
 {
@@ -16,7 +15,7 @@ namespace Audio
         private Sound _sound;
         private static Dictionary<Sound, float> _soundTimerDictionary;
 
-        protected override void Awake()
+        protected void Awake()
         {
             _pool = new ObjectPool<AudioPlayer>(
                 OnObjectCreate, OnObjectGet, OnObjectRelease, OnObjectDestroy, false, 10, 100);
@@ -52,9 +51,13 @@ namespace Audio
 
         public void Play(string clipName)
         {
-            Sound sound = Array.Find(Sounds, sound => sound.name == clipName.ToUpper());
-            if (CanPlaySound(sound))
-                sound.Source.Play();
+            _sound = Array.Find(Sounds, sound => sound.name == clipName.ToUpper());
+            if (CanPlaySound(_sound))
+            {
+                var soundTemp = _pool.Get();
+                soundTemp.Play();
+                StartCoroutine(ReturnSound(soundTemp.Sound.Clip.length, soundTemp));
+            }
         }
 
         private AudioPlayer OnObjectCreate()

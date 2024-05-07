@@ -18,7 +18,7 @@ namespace Tower.Projectile
             _explosionRadiusProp = serializedObject.FindProperty("_explosionRadius");
             _dotDamageProp = serializedObject.FindProperty("_dotDamage");
             _dotTickRateProp = serializedObject.FindProperty("_dotTickRate");
-            _dotTickAmountProp = serializedObject.FindProperty("_dotTickAmount");
+            _dotTickAmountProp = serializedObject.FindProperty("_dotAmountOfTicks");
             _layersToPunctureProp = serializedObject.FindProperty("_layersToPuncture");
         }
 

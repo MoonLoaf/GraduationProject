@@ -17,6 +17,7 @@ MonoBehaviour:
   _isHero: 1
   _projectileType: {fileID: 11400000, guid: 0df341006ec7a71418c6f8a786271ede, type: 2}
   _upgrades: {fileID: 11400000, guid: bec3c4c78e4239e479101f3ecc03b2b7, type: 2}
-  _cost: 500
+  _cost: 1000
   _attackSpeed: 0.2
   _range: 4
+  _camoSeeing: 0

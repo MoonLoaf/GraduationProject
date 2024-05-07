@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d91b161f51b2ad439de576f6f8603fb, type: 3}
-  m_Name: Normal(Testing)
+  m_Name: Explosive
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300000, guid: f27234dd7a818634595a3186e144c291, type: 3}
-  _damage: 1
-  _moveSpeed: 8
-  _lifetime: 3
-  _damageType: 0
-  _explosionRadius: 0.66
+  _sprite: {fileID: 0}
+  _damage: 0
+  _moveSpeed: 0
+  _lifetime: 0
+  _damageType: 1
+  _explosionRadius: 0
   _dotDamage: 0
   _dotTickRate: 0
-  _dotTickAmount: 0
+  _dotAmountOfTicks: 0
   _layersToPuncture: 0

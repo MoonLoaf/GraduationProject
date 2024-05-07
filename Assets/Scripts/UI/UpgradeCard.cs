@@ -31,6 +31,7 @@ namespace UI
 
         public override void OnClickInteraction()
         {
+            base.OnClickInteraction();
             if(Path.IsLocked || Path.ProgressIndex == 3 || !GameManager.Instance.CanAfford(_upgrade.UpgradeCost)){return;}
         
             TowerToUpgrade.UpgradeTower(_upgrade);

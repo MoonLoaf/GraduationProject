@@ -13,6 +13,7 @@ namespace UI.Buttons
 
         public override void OnClickInteraction()
         {
+            base.OnClickInteraction();
             if (UIEventManager.Instance.IsPreviewActive) {return;}
 
             GameObject heroPreviewObject = Instantiate(_towerPreviewPrefab, Vector3.zero, Quaternion.identity);

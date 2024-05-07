@@ -1,51 +1,21 @@
 using UnityEngine;
 
-namespace Utility
-{
-    public class GenericSingleton<T> : MonoBehaviour where T : MonoBehaviour
+public abstract class GenericSingleton<T> : MonoBehaviour where T : MonoBehaviour {
+    private static T _instance;
+    public static T Instance 
     {
-        private static T _instance;
-        
-        public static T Instance
+        get 
         {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = FindObjectOfType<T>();
-
-                    if (_instance == null)
-                    {
-                        GameObject singletonObject = new GameObject();
-                        _instance = singletonObject.AddComponent<T>();
-                        singletonObject.name = typeof(T) + " (Singleton)";
-                        DontDestroyOnLoad(singletonObject);
-                    }
-                }
-
-                return _instance;
-            }
+            _instance ??= FindInScene();
+            DontDestroyOnLoad(_instance);
+            return _instance ??= GenerateSingleton();
         }
-
-        protected virtual void Awake()
-        {
-            if (_instance == null)
-            {
-                _instance = this as T;
-                DontDestroyOnLoad(gameObject);
-            }
-            else if (_instance != this)
-            {
-                Destroy(gameObject);
-            }
-        }
-
-        protected virtual void OnDestroy()
-        {
-            if (_instance == this)
-            {
-                _instance = null;
-            }
-        }
+    }
+    private static T FindInScene() => FindObjectOfType<T>();
+    private static T GenerateSingleton()
+    {
+        GameObject singletonObject = new GameObject(typeof(T).Name + " Singleton");
+        DontDestroyOnLoad(singletonObject);
+        return singletonObject.AddComponent<T>();
     }
 }

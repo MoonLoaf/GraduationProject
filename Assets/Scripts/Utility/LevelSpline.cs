@@ -5,7 +5,7 @@ using UnityEngine.Splines;
 
 namespace Utility
 {
-    public class LevelSpline : GenericSingletonDOL<LevelSpline>
+    public class LevelSpline : GenericSingleton<LevelSpline>
     { 
         [SerializeField] private SplineContainer _levelSplineContainer;
         [SerializeField] private float _trackWidth;

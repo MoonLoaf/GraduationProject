@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Audio;
 using Core;
 using Helpers;
 using UI;
@@ -128,6 +129,7 @@ namespace Tower
         private void OnPreviewCanceled()
         {
             UIEventManager.Instance.NotifyTowerPlaced();
+            AudioManager.Instance.Play("ButtonClick");
             Destroy(gameObject);
         }
     }

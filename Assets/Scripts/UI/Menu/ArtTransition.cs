@@ -42,8 +42,6 @@ namespace UI.Menu
                 _imageRef.rectTransform.anchoredPosition = Vector3.Lerp(_startPos, targetPos, t);
                 
                 elapsedTime += Time.deltaTime;
-                Debug.Log(elapsedTime);
-                Debug.Log(t);
                 yield return null;
             }
 

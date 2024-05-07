@@ -24,6 +24,7 @@ namespace UI.Buttons
 
         public override void OnClickInteraction()
         {
+            base.OnClickInteraction();
             if (UIEventManager.Instance.IsPreviewActive || !GameManager.Instance.CanAfford(_typeToSpawn.Cost)) {return;}
 
             _button.interactable = false;

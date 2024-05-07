@@ -7,6 +7,7 @@ namespace UI.Menu
         private string _levelToLoadName;
         public override void OnClickInteraction()
         {
+            base.OnClickInteraction();
             SceneLoader.Instance.LoadSceneAsync(_levelToLoadName);            
         }
 

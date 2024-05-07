@@ -29,7 +29,7 @@ namespace Audio
                 _source.volume = value.Volume;
                 _source.pitch = value.Pitch;
                 _source.loop = value.Loop;
-                _source.outputAudioMixerGroup = _mixer.FindMatchingGroups(value.Type.ToString())[0];
+                //_source.outputAudioMixerGroup = _mixer.FindMatchingGroups(value.Type.ToString())[0];
 
                 _sound = value;
             }

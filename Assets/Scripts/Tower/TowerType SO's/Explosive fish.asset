@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Explosive fish
   m_EditorClassIdentifier: 
   _sprite: {fileID: 0}
-  _towerName: 
+  _towerName: Eplosive Fish
   _isHero: 0
-  _projectileType: {fileID: 0}
-  _upgrades: {fileID: 0}
-  _cost: 0
-  _attackSpeed: 0
-  _range: 0
+  _projectileType: {fileID: 11400000, guid: 33d1c312ae17f6a48adf47984f05e962, type: 2}
+  _upgrades: {fileID: 11400000, guid: b4ce1188102312e4da6d0e861a2aa11f, type: 2}
+  _cost: 500
+  _attackSpeed: 0.7
+  _range: 1.8
   _camoSeeing: 0

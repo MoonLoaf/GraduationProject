@@ -6,6 +6,7 @@ namespace UI.Buttons
     {
         public override void OnClickInteraction()
         {
+            base.OnClickInteraction();
             string scene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(scene);
         }

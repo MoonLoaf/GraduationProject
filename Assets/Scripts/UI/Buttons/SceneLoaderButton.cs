@@ -1,4 +1,3 @@
-using UI.Menu;
 using UnityEngine;
 using Utility;
 
@@ -10,6 +9,7 @@ namespace UI.Buttons
         
         public override void OnClickInteraction()
         {
+            base.OnClickInteraction();
             SceneLoader.Instance.LoadSceneAsync(_levelToLoadName);            
         }
     }

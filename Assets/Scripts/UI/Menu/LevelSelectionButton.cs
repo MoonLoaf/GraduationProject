@@ -8,6 +8,7 @@ namespace UI.Menu
 
         public override void OnClickInteraction()
         {
+            base.OnClickInteraction();
             LevelCardManager.OnLevelIndexChanged?.Invoke(_indexChangeOnClick);
         }
     }

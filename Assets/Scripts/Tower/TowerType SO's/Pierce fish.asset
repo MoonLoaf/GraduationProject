@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Pierce fish
   m_EditorClassIdentifier: 
   _sprite: {fileID: 0}
-  _towerName: 
+  _towerName: Archer Fish
   _isHero: 0
-  _projectileType: {fileID: 0}
-  _upgrades: {fileID: 0}
-  _cost: 0
-  _attackSpeed: 0
-  _range: 0
+  _projectileType: {fileID: 11400000, guid: 68578fd54f25c574f8234c70f1c5623f, type: 2}
+  _upgrades: {fileID: 11400000, guid: 159d0ce359373a445a91e3c975c137b6, type: 2}
+  _cost: 400
+  _attackSpeed: 0.8
+  _range: 2.2
   _camoSeeing: 0

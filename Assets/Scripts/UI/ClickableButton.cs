@@ -1,3 +1,4 @@
+using Audio;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +16,7 @@ namespace UI
 
         public virtual void OnClickInteraction()
         {
-            throw new System.NotImplementedException();
+            AudioManager.Instance.Play("ButtonClick", Vector3.back);
         }
     }
 }

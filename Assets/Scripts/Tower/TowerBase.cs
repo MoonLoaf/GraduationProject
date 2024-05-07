@@ -127,6 +127,7 @@ namespace Tower
 
         protected override void OnMouseDown()
         {
+            if(UIEventManager.Instance.IsPreviewActive){return;}
             UpgradeTab.OnTowerDeselect?.Invoke(false);
             UpgradeTab.OnTowerPressed?.Invoke(this, _towerUpgradeManager);  
             _shaderController.SetDisplayRange(true);

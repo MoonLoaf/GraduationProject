@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Super fish
   m_EditorClassIdentifier: 
   _sprite: {fileID: 0}
-  _towerName: 
+  _towerName: Gold Fish
   _isHero: 0
-  _projectileType: {fileID: 0}
-  _upgrades: {fileID: 0}
-  _cost: 0
-  _attackSpeed: 0
-  _range: 0
-  _camoSeeing: 0
+  _projectileType: {fileID: 11400000, guid: 04c617768a10ee948bec24fcf81e5c87, type: 2}
+  _upgrades: {fileID: 11400000, guid: 4763bbca9af12ca45a4168c484aaf8c4, type: 2}
+  _cost: 900
+  _attackSpeed: 0.2
+  _range: 3
+  _camoSeeing: 1

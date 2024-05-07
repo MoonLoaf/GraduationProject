@@ -11,6 +11,7 @@ namespace UI.Buttons
 
         public override void OnClickInteraction()
         {
+            base.OnClickInteraction();
             GameManager.Instance.BeginNewWave();
             _button.interactable = false;
         }

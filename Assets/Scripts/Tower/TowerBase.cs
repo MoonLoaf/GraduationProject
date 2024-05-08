@@ -6,7 +6,6 @@ using Tower.Projectile;
 using Tower.Upgrades;
 using UI;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Tower
 {
@@ -21,7 +20,7 @@ namespace Tower
         private TowerTargetPriority _targetPriority;
         public TowerTargetPriority TargetPriority => _targetPriority;
         
-        [FormerlySerializedAs("entityDetector")] [SerializeField] private EntityDetector _entityDetector;
+        [SerializeField] private EntityDetector _entityDetector;
         
         public ProjectilePool ProjectilePool { get; private set; }
         protected List<EnemyBase> _enemiesInRange;

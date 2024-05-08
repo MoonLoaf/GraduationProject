@@ -26,6 +26,8 @@ namespace UI.Buttons
             _button.interactable = false;
             UIEventManager.Instance.HeroSoldEvent += OnHeroSold;
             UIEventManager.Instance.HeroPlacedEvent += OnHeroPlaced;
+            UIEventManager.Instance.OnSettingsPressed += () => { _button.interactable = false; };
+            UIEventManager.Instance.OnGameContinue += () => { _button.interactable = true; };
         }
 
         private void OnHeroPlaced(Hero hero)

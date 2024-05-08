@@ -20,6 +20,8 @@ namespace UI.Buttons
             _imageRef.sprite = _typeToSpawn.TypeSprite;
             _costText.text = _typeToSpawn.Cost.ToString();
             UIEventManager.Instance.TowerPlacedEvent += HandleTowerPlaced;
+            UIEventManager.Instance.OnSettingsPressed += () => { _button.interactable = false; };
+            UIEventManager.Instance.OnGameContinue += () => { _button.interactable = true; };
         }
 
         public override void OnClickInteraction()

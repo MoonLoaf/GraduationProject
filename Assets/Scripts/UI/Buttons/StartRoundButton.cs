@@ -9,6 +9,12 @@ namespace UI.Buttons
             GameManager.Instance.OnWaveEnd += WaveEnd;
         }
 
+        private void OnEnable()
+        {
+            UIEventManager.Instance.OnSettingsPressed += () => { _button.interactable = false; };
+            UIEventManager.Instance.OnGameContinue += () => { _button.interactable = true; };
+        }
+
         public override void OnClickInteraction()
         {
             base.OnClickInteraction();

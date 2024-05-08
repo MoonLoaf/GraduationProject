@@ -7,9 +7,9 @@ namespace Tower.Projectile
     public class ProjectileType : ScriptableObject
     {
         [SerializeField] private Sprite _sprite;
-        [SerializeField] private int _damage;
-        [SerializeField] private float _moveSpeed;
-        [SerializeField] private float _lifetime;
+        [SerializeField] private int _damage = 1;
+        [SerializeField] private float _moveSpeed = 2;
+        [SerializeField] private float _lifetime = 1;
         
         [Header("Enemy Flags and Modifiers")]
         [SerializeField] private DamageType _damageType;

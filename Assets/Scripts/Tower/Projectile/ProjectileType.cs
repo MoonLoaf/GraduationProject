@@ -1,3 +1,4 @@
+using Audio;
 using UnityEngine;
 
 namespace Tower.Projectile
@@ -19,6 +20,8 @@ namespace Tower.Projectile
         [SerializeField] private float _dotTickRate;
         [SerializeField] private int _dotAmountOfTicks;
         [SerializeField] private int _layersToPuncture;
+        [SerializeField] private Sound _onFiredSound;
+        
     
         public int Damage
         {
@@ -34,6 +37,8 @@ namespace Tower.Projectile
 
         public Sprite TypeSprite => _sprite;
         public float Lifetime => _lifetime;
+
+        public Sound OnFiredSound => _onFiredSound;
         public DamageType DamageType
         {
             get => _damageType;

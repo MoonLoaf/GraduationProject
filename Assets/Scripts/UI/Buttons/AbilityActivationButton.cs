@@ -6,18 +6,18 @@ using Utility.EnemyWaveLogic;
 
 namespace UI.Buttons
 {
-    public delegate void AbilityActivationHandler();
     public class AbilityActivationButton : ClickableButton
     {
-        public static AbilityActivationHandler OnAbilityActivated;
         [SerializeField] private Image _fillImage;
         private Hero _currentHero;
         
         public override void OnClickInteraction()
         {
+            if(_currentHero == null || !_currentHero.AbilityReady) {return;}
             if(!WaveManager.Instance.IsWaveActive){return;}
             base.OnClickInteraction();
-            OnAbilityActivated?.Invoke();
+            
+            _currentHero.ActivateAbility();
             StartCoroutine(AbilityCooldown(_currentHero.AbilityCooldown));
         }
         
@@ -26,12 +26,6 @@ namespace UI.Buttons
             _button.interactable = false;
             UIEventManager.Instance.HeroSoldEvent += OnHeroSold;
             UIEventManager.Instance.HeroPlacedEvent += OnHeroPlaced;
-        }
-
-        protected void OnDisable()
-        {
-            UIEventManager.Instance.HeroSoldEvent -= OnHeroSold;
-            UIEventManager.Instance.HeroPlacedEvent -= OnHeroPlaced;
         }
 
         private void OnHeroPlaced(Hero hero)

@@ -6,27 +6,31 @@ namespace Tower.Hero.ConcreteHeroes
 {
     public class Fisherman : Hero
     {
-        private float lastAbilityTime;
         private WaitForSeconds _abilityDurationWait;
+        private WaitForSeconds _abilityCooldownWait;
         private Dictionary<TowerBase, float> _originalAttackSpeeds = new();
 
         protected override void Awake()
         {
             base.Awake();
             _abilityDurationWait = new WaitForSeconds(_abilityDuration);
+            _abilityCooldownWait = new WaitForSeconds(_abilityCooldown);
         }
 
-        protected override void ActivateAbility()
+        public override void ActivateAbility()
         {
-            if (Time.time - _lastAttackTime < _abilityCooldown) return;
+            AbilityReady = false;
+            Debug.Log("ability");
             
             foreach (var tower in _towersInRange)
             {
                 _originalAttackSpeeds[tower] = tower.CurrentType.AttackSpeed;
                 tower.CurrentType.AttackSpeed *= 0.8f;
             }
+            Debug.Log(_originalAttackSpeeds.Count);
 
             StartCoroutine(RemoveBuffs());
+            StartCoroutine(AbilityCooldownCoroutine());
         }
 
         private IEnumerator RemoveBuffs()
@@ -39,6 +43,12 @@ namespace Tower.Hero.ConcreteHeroes
                 tower.CurrentType.AttackSpeed = speed;
             }
             _originalAttackSpeeds.Clear();
+        }
+
+        private IEnumerator AbilityCooldownCoroutine()
+        {
+            yield return _abilityCooldownWait;
+            AbilityReady = true;
         }
     }
 }

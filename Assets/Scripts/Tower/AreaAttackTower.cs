@@ -1,4 +1,4 @@
-using Unity.Collections.LowLevel.Unsafe;
+using Audio;
 using UnityEngine;
 
 namespace Tower
@@ -34,7 +34,7 @@ namespace Tower
 
                 ProjectilePool.SpawnObject(_currentProjectile, _position, dir, this);
             }
-
+            AudioManager.Instance.Play(_currentProjectile.OnFiredSound.name);
             _lastAttackTime = Time.time;
         }
     }

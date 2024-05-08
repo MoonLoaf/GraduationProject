@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1464592454610982113}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Sliding Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 8442181029248844197}
   - component: {fileID: 3177987823538002644}
   - component: {fileID: 5354846511505979905}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 6266680636702426186}
   - component: {fileID: 6967179157220191410}
   - component: {fileID: 5424376293139007881}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Template
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,6 +366,7 @@ GameObject:
   - component: {fileID: 3577662080022796049}
   - component: {fileID: 5647518879319466439}
   - component: {fileID: 4235386681859230121}
+  - component: {fileID: 2980886218089001646}
   m_Layer: 8
   m_Name: Fisherman
   m_TagString: Untagged
@@ -523,6 +524,33 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!50 &2980886218089001646
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023528300012850274}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1880224439674486341
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,7 +562,7 @@ GameObject:
   - component: {fileID: 3398361840495228052}
   - component: {fileID: 1582577759563762427}
   - component: {fileID: 15471993146634868}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Item Checkmark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -609,7 +637,7 @@ GameObject:
   - component: {fileID: 1504870132237608968}
   - component: {fileID: 6558533204777737318}
   - component: {fileID: 8682550665615025339}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -685,7 +713,7 @@ GameObject:
   - component: {fileID: 4957479387828754014}
   - component: {fileID: 6533028037861867715}
   - component: {fileID: 3497368998984625850}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -774,7 +802,7 @@ GameObject:
   - component: {fileID: 4564779320450492305}
   - component: {fileID: 2527342826577076261}
   - component: {fileID: 9095633267806581437}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Item Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -847,7 +875,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4090479917608280204}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -871,7 +899,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.0000038146973}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &4123139258928770049
@@ -885,7 +913,7 @@ GameObject:
   - component: {fileID: 3519088299767885589}
   - component: {fileID: 1408585908668883391}
   - component: {fileID: 4828200424460510342}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Item Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1021,7 +1049,7 @@ GameObject:
   - component: {fileID: 8457580899708714800}
   - component: {fileID: 2052281670206429711}
   - component: {fileID: 3786356307669664542}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Dropdown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1158,7 +1186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 604397273947237598}
   - component: {fileID: 3470093388716096956}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1247,7 +1275,7 @@ GameObject:
   - component: {fileID: 3690316771896572207}
   - component: {fileID: 8641091409000284190}
   - component: {fileID: 2848726308827575907}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1346,7 +1374,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2646662028924622500}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fisherman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1381,7 +1409,7 @@ GameObject:
   - component: {fileID: 4271750279629424507}
   - component: {fileID: 6750115868956874369}
   - component: {fileID: 8657687824518422100}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1517,7 +1545,7 @@ GameObject:
   - component: {fileID: 2004006156239577686}
   - component: {fileID: 2309366760379661015}
   - component: {fileID: 2767684402036479301}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Scrollbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1626,7 +1654,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1504870132237608968}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.81333315
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

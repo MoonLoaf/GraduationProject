@@ -32,6 +32,7 @@ namespace Tower.Projectile
             EditorGUILayout.PropertyField(serializedObject.FindProperty("_damage"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("_moveSpeed"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("_lifetime"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("_onFiredSound"));
 
             EditorGUILayout.PropertyField(_damageTypeProp);
             DamageType damageType = (DamageType)_damageTypeProp.intValue;

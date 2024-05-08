@@ -1,3 +1,4 @@
+using Audio;
 using UnityEngine;
 
 namespace Enemy
@@ -8,6 +9,8 @@ namespace Enemy
         [Header("Visual")] 
         [SerializeField] private Sprite _sprite;
         [SerializeField] private Color[] _layerColors;
+        [SerializeField] private Sound _onHitSound;
+        [SerializeField] private Sound _onDestroyedSound;
         
     
         [Header("Enemy Stats")]
@@ -31,7 +34,8 @@ namespace Enemy
         public float MovementSpeed => _movementSpeed;
         public int Damage => _damage;
         public Sprite TypeSprite => _sprite;
-    
+        public Sound OnHitSound => _onHitSound;
+        public Sound OnDestroyedSound => _onDestroyedSound;
         public bool IsMetal => isMetal;
         public bool IsCamo => isCamo;
     }

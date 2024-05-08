@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Audio;
 using Enemy;
 using Helpers;
 using Tower.Projectile;
@@ -112,6 +113,7 @@ namespace Tower
             Vector3 dir = (targetPos - position).normalized;
 
             ProjectilePool.SpawnObject(_currentProjectile, position, dir, this);
+            AudioManager.Instance.Play(_currentProjectile.OnFiredSound.name);
             _lastAttackTime = Time.time;
         }
 

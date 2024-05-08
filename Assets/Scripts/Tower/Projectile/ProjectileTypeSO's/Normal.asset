@@ -20,5 +20,6 @@ MonoBehaviour:
   _explosionRadius: 0.66
   _dotDamage: 0
   _dotTickRate: 0
-  _dotTickAmount: 0
+  _dotAmountOfTicks: 0
   _layersToPuncture: 0
+  _onFiredSound: {fileID: 11400000, guid: c7e866d536e96884d8e5de8764808c76, type: 2}

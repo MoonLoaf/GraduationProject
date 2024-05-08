@@ -33,9 +33,6 @@ namespace UI.Menu
             Vector3 targetPos = _startPos + Vector3.up * 350;
             float elapsedTime = 0f;
             
-            Debug.Log(_startPos);
-            Debug.Log(targetPos);
-            
             while (elapsedTime < _transitionTime)
             {
                 float t = elapsedTime / _transitionTime;

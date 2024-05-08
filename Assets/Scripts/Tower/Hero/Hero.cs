@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using Core;
 using TMPro;
 using UI;
-using UI.Buttons;
 using UnityEngine;
 using Utility.EnemyWaveLogic;
 
 namespace Tower.Hero
 {
-    public class Hero : TowerBase
+    public abstract class Hero : TowerBase
     {
         private HeroState _state;
         [SerializeField] private float _fishingCooldown = 3.0f;
@@ -21,6 +20,7 @@ namespace Tower.Hero
         private float _lastFishingTime;
 
         [SerializeField] private TMP_Dropdown _stateDropdown;
+        public bool AbilityReady { get; protected set; } = true;
         
         
         protected override void Start()
@@ -32,7 +32,6 @@ namespace Tower.Hero
 
         private void OnEnable()
         {
-            AbilityActivationButton.OnAbilityActivated += ActivateAbility;
             UpgradeTab.OnTowerDeselect += HandleTowerDeselect;
             HeroState[] enumValues = (HeroState[])Enum.GetValues(typeof(HeroState));
 
@@ -49,7 +48,6 @@ namespace Tower.Hero
         }
         private void OnDisable()
         {
-            AbilityActivationButton.OnAbilityActivated -= ActivateAbility;
             UpgradeTab.OnTowerDeselect -= HandleTowerDeselect;
         }
 
@@ -104,9 +102,6 @@ namespace Tower.Hero
             _stateDropdown.value = index;
         }
 
-        protected virtual void ActivateAbility()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void ActivateAbility();
     }
 }

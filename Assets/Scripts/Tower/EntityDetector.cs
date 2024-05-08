@@ -22,6 +22,7 @@ namespace Tower
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            Debug.Log("Trigger");
             if (other.IsOnLayer(Layers.Enemies))
             {
                 OnNewEnemyInRange?.Invoke(other.GetComponent<EnemyBase>());

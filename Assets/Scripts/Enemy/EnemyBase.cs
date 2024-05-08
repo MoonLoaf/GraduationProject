@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Audio;
 using Core;
 using Tower.Projectile;
 using UnityEngine;
@@ -131,6 +132,7 @@ namespace Enemy
 
                 damageHandler?.Invoke(projectileType);
             }
+            DecreaseHP(projectileType.Damage);
         }
 
         private void HandlePunctureDamage(ProjectileType projectileType)
@@ -138,7 +140,6 @@ namespace Enemy
             if (_metalIntact) { return;}
             
             LayersRemaining -= projectileType.LayersToPuncture;
-            _currentLayerHealth -= projectileType.Damage;
         }
 
         private void HandleCorrosiveDamage(ProjectileType projectileType)
@@ -154,8 +155,6 @@ namespace Enemy
             if((projectileType.DamageType & DamageType.Explosive) == 0) { return; }
 
             _metalIntact = false;
-            
-            DecreaseHP(projectileType.Damage);
         }
         
         private IEnumerator DoCorrosiveDamageOverTime(ProjectileType projectileType)
@@ -177,10 +176,13 @@ namespace Enemy
         {
             _currentLayerHealth -= amount;
 
-            if (_currentLayerHealth > 0) return;
-            
-            if (LayersRemaining > 1)
+            if (_currentLayerHealth > 0)
             {
+                AudioManager.Instance.Play(_type.OnHitSound.name);
+            }
+            else if (LayersRemaining > 1)
+            {
+                AudioManager.Instance.Play(_type.OnHitSound.name);
                 LayersRemaining--;
                 GameManager.Instance.IncrementMoney(_type.RewardPerLayerPopped);
                 UpdateLayerColor();
@@ -196,6 +198,7 @@ namespace Enemy
         {
             //TODO: Effects?
             IsActive = false;
+            AudioManager.Instance.Play(_type.OnDestroyedSound.name);
             GameManager.Instance.IncrementMoney(_type.EnemyPoppedReward);
             WaveManager.Instance.DespawnEnemy(this);
         }

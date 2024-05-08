@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Utility.EnemyWaveLogic
 {
-    public class WaveManager : GenericSingleton<WaveManager>
+    public class WaveManager : GenericSingletonDOL<WaveManager>
     {
         private EnemyPool _enemyPool;
         [SerializeField] private GameObject _enemyPrefab;
@@ -19,8 +19,9 @@ namespace Utility.EnemyWaveLogic
 
         public bool IsWaveActive { get; private set; }
 
-        private void Awake()
+        protected override void Awake()
         {
+             base.Awake();
             _enemyPool = new EnemyPool();
             _enemyPool.Initialize(_enemyPrefab, 50, 200);
         }
@@ -29,13 +30,16 @@ namespace Utility.EnemyWaveLogic
         {
             _spawnPoint = LevelSpline.Instance.GetStartPositionWorldSpace();
             GameManager.Instance.OnWaveStart += StartWaveFunc;
-            _enemyPool.OnActivePoolEmpty += CheckGameOver;
+            _enemyPool.OnActivePoolEmpty += OnWaveEnd;
             MaxWaveAmount = _waves.Count;
         }
 
-        private void CheckGameOver()
+        private void OnWaveEnd()
         {
             //Only gets called when pool is empty
+            GameManager.Instance.WaveEnd(_waves[_waveIndex].EndOfWaveReward);
+            _waveIndex++;
+            IsWaveActive = false;
             if (_waveIndex >= _waves.Count)
             {
                 GameManager.Instance.GameOver(true);
@@ -64,10 +68,6 @@ namespace Utility.EnemyWaveLogic
                     yield return new WaitForSeconds(wave.SpawnEvents[eventIndex + 1].Delay);
                 }
             }
-            
-            GameManager.Instance.WaveEnd(wave.EndOfWaveReward);
-            IsWaveActive = false;
-            _waveIndex++;
         }
 
         private IEnumerator TriggerSpawnEvent(Wave.SpawnEvent spawnEvent)

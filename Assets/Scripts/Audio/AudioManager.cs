@@ -64,6 +64,7 @@ namespace Audio
         {
             var tempObject = Instantiate(AudioPlayerPrefab, _spawnPos, Quaternion.identity).GetComponent<AudioPlayer>();
             tempObject.Sound = _sound;
+            DontDestroyOnLoad(tempObject);
             return tempObject;
         }
 

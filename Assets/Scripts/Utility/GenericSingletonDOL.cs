@@ -10,8 +10,15 @@ namespace Utility
     {
         private static T _instance;
         
-        public static T Instance => _instance;
+        public static T Instance 
+        {
+            get
+            {
+                return _instance ??= FindInScene();
+            }
+        }
 
+        private static T FindInScene() => FindObjectOfType<T>();
         protected virtual void Awake()
         {
             if (_instance == null)

@@ -1,3 +1,4 @@
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 namespace Tower
@@ -12,6 +13,7 @@ namespace Tower
         {
             base.Start();
             _angleStep = 360 / _numProjectiles;
+            _position = transform.position;
 
         }
 
@@ -24,10 +26,11 @@ namespace Tower
 
         private void Attack()
         {
+            Debug.Log("attack");
             for (int i = 0; i < _numProjectiles; i++)
             {
-                Quaternion rotation = Quaternion.Euler(0f, _angleStep * i, 0f);
-                Vector3 dir = rotation * transform.forward;
+                Quaternion rotation = Quaternion.Euler(0f, 0f, _angleStep * i);
+                Vector3 dir = rotation * transform.right;
 
                 ProjectilePool.SpawnObject(_currentProjectile, _position, dir, this);
             }

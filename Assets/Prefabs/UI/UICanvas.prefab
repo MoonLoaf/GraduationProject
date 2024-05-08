@@ -5877,6 +5877,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower Button (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8454709949607945220, guid: d88b45729d13f444c93021ea1e82ce84,
+        type: 3}
+      propertyPath: _typeToSpawn
+      value: 
+      objectReference: {fileID: 11400000, guid: 9677e8282d1e9504482227f1cbc5f889,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

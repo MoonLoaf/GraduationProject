@@ -31,6 +31,11 @@ namespace Audio
             }
         }
 
+        private void OnEnable()
+        {
+            Play("MainTheme");
+        }
+
         public void Play(string clipName, Vector3 position)
         {
             _spawnPos = position;

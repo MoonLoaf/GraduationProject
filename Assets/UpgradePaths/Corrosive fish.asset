@@ -143,7 +143,7 @@ MonoBehaviour:
       DotTickRate: 0
       DotAmountOfTicks: 1
       LayersToPuncture: 0
-    - UpgradeName: Perpetual Corrosion
+    - UpgradeName: Acid Stretch
       UpgradeDescription: ++Amount of ticks
       UpgradeCost: 550
       UpgradeSprite: {fileID: -538083502, guid: 9d760f477b0de46428acf75e79cef611,

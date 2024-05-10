@@ -30,7 +30,7 @@ MonoBehaviour:
       DotTickRate: 0
       DotAmountOfTicks: 0
       LayersToPuncture: 0
-    - UpgradeName: Whirlwind Whirl
+    - UpgradeName: Aqua Blitz
       UpgradeDescription: ++Attack Speed
       UpgradeCost: 250
       UpgradeSprite: {fileID: -65565953, guid: 9d760f477b0de46428acf75e79cef611, type: 3}

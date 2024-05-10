@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Paths:
   - Upgrades:
-    - UpgradeName: Precision Penetration
+    - UpgradeName: Sharp Shot
       UpgradeDescription: +Layers Pierced
       UpgradeCost: 350
       UpgradeSprite: {fileID: -287795169, guid: 9d760f477b0de46428acf75e79cef611,
@@ -93,7 +93,7 @@ MonoBehaviour:
       DotTickRate: 0
       DotAmountOfTicks: 0
       LayersToPuncture: 0
-    - UpgradeName: Streamline Sight
+    - UpgradeName: Oceanic Sight
       UpgradeDescription: +++Range \n \n +Projectile Speed
       UpgradeCost: 400
       UpgradeSprite: {fileID: 1065081188, guid: 9d760f477b0de46428acf75e79cef611,
@@ -126,7 +126,7 @@ MonoBehaviour:
       DotTickRate: 0
       DotAmountOfTicks: 0
       LayersToPuncture: 0
-    - UpgradeName: 'Streamline Surge '
+    - UpgradeName: 'Tidal Surge '
       UpgradeDescription: +Attack Speed
       UpgradeCost: 400
       UpgradeSprite: {fileID: -1604343276, guid: 9d760f477b0de46428acf75e79cef611,

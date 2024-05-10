@@ -126,14 +126,22 @@ namespace Enemy
 
         private void HandlePunctureDamage(ProjectileType projectileType)
         {
-            if (_metalIntact) { return;}
+            if (_metalIntact)
+            {
+                AudioManager.Instance.Play("OnMetalHit");
+                return;
+            }
             
             LayersRemaining -= projectileType.LayersToPuncture;
         }
 
         private void HandleCorrosiveDamage(ProjectileType projectileType)
         {
-            if (_metalIntact) { return;}
+            if (_metalIntact)
+            {
+                AudioManager.Instance.Play("OnMetalHit");
+                return;
+            }
             
             StartCoroutine(DoCorrosiveDamageOverTime(projectileType));
         }

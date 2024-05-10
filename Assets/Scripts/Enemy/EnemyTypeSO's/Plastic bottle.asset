@@ -17,8 +17,8 @@ MonoBehaviour:
   - {r: 1, g: 0.07661381, b: 0, a: 1}
   - {r: 0, g: 0.3634741, b: 0.8392157, a: 1}
   - {r: 0.18929425, g: 0.8396226, b: 0, a: 1}
-  _onHitSound: {fileID: 11400000, guid: 8f933dca5d9683d40a0e51c8e8f81d3b, type: 2}
-  _onDestroyedSound: {fileID: 11400000, guid: 50edf96c890c7b6499df3cec343fe0db, type: 2}
+  _onHitSound: {fileID: 11400000, guid: ee876393a4876b8468c697ed59d6cd9a, type: 2}
+  _onDestroyedSound: {fileID: 11400000, guid: b686c217730fa6941b66c718a7fe6506, type: 2}
   _layers: 3
   _hpPerLayer: 1
   _rewardPerLayerPopped: 5

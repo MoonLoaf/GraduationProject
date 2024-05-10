@@ -149,7 +149,6 @@ namespace Enemy
         private void HandleExplosiveDamage(ProjectileType projectileType)
         {
             _metalIntact = false;
-            DecreaseHP(projectileType.Damage);
         }
         
         private IEnumerator DoCorrosiveDamageOverTime(ProjectileType projectileType)

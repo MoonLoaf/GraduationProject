@@ -14,6 +14,7 @@ namespace Audio
         private Vector3 _spawnPos;
         private Sound _sound;
         private static Dictionary<Sound, float> _soundTimerDictionary;
+        private static bool _musicStarted;
 
         protected void Awake()
         {
@@ -33,7 +34,9 @@ namespace Audio
 
         private void OnEnable()
         {
-            Play("MainTheme");
+            if (_musicStarted){return;}
+            Play("MainTheme", 1);
+            _musicStarted = true;
         }
 
         public void Play(string clipName, Vector3 position)
@@ -61,6 +64,21 @@ namespace Audio
             {
                 var soundTemp = _pool.Get();
                 soundTemp.Play();
+                StartCoroutine(ReturnSound(soundTemp.Sound.Clip.length, soundTemp));
+            }
+        }
+        
+        public void Play(string clipName, int priority)
+        {
+            _sound = Array.Find(Sounds, sound => sound.name == clipName.ToUpper());
+            if (CanPlaySound(_sound))
+            {
+                var soundTemp = _pool.Get();
+                soundTemp.Source.priority = priority;
+                soundTemp.Play();
+                
+                if(soundTemp.Sound.Loop){return;}
+                
                 StartCoroutine(ReturnSound(soundTemp.Sound.Clip.length, soundTemp));
             }
         }

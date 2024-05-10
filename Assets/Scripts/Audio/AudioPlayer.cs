@@ -9,6 +9,7 @@ namespace Audio
         private AudioMixer _mixer;
         private Sound _sound;
         private AudioSource _source;
+        public AudioSource Source => _source;
 
         public Sound Sound
         {

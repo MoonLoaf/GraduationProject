@@ -65,7 +65,6 @@ namespace Tower
         {
             CurrentType.Range = newRange;
             _shaderController.SetRange(CurrentType.Range);
-            _entityDetector.SetRange(CurrentType.Range);
         }
 
         private Quaternion UpdateRotation(Vector3 position, Vector3 targetLocation)

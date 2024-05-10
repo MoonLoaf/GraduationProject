@@ -68,8 +68,9 @@ namespace Enemy
             }
         }
 
-        public void Initialize()
+        public void Initialize(EnemyType type)
         {
+            _type = type;
             _renderer.sprite = _type.TypeSprite;
             _currentLayerHealth = _type.HpPerLayer;
             LayersRemaining = _type.Layers;
@@ -109,21 +110,9 @@ namespace Enemy
             WaveManager.Instance.DespawnEnemy(this);
         }
 
-        public void SetEnemyType(EnemyType newType)
-        {
-            if(_type){return;}
-            _type = newType;
-        }
-
         public void TakeDamage(ProjectileType projectileType)
         {
             if(!IsActive){return;}
-
-            if (projectileType.DamageType == DamageType.Normal)
-            {
-                DecreaseHP(projectileType.Damage);
-                return;
-            }
             
             foreach (DamageType damageType in _damageTypes)
             {
@@ -151,10 +140,8 @@ namespace Enemy
 
         private void HandleExplosiveDamage(ProjectileType projectileType)
         {
-            //do nothing if damagetype is not explosive
-            if((projectileType.DamageType & DamageType.Explosive) == 0) { return; }
-
             _metalIntact = false;
+            DecreaseHP(projectileType.Damage);
         }
         
         private IEnumerator DoCorrosiveDamageOverTime(ProjectileType projectileType)
@@ -174,6 +161,8 @@ namespace Enemy
 
         private void DecreaseHP(int amount)
         {
+            if(_metalIntact){return;}
+            
             _currentLayerHealth -= amount;
 
             if (_currentLayerHealth > 0)

@@ -10,9 +10,8 @@ namespace Enemy
             EnemyBase enemy = _pool.Get();
             
             enemy.transform.position = spawnPos;
-            enemy.SetEnemyType(type);
-            enemy.Initialize();
             enemy.gameObject.SetActive(true);
+            enemy.Initialize(type);
 
             return enemy;
         }

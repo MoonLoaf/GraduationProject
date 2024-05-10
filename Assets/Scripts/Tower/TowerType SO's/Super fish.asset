@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa5c2b77d02a4434fa86a83eb80ff110, type: 3}
   m_Name: Super fish
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: 4f2b97fdaaacd984badd0ff322e35d77, type: 3}
   _towerName: Gold Fish
   _isHero: 0
   _projectileType: {fileID: 11400000, guid: 04c617768a10ee948bec24fcf81e5c87, type: 2}
@@ -21,3 +21,4 @@ MonoBehaviour:
   _attackSpeed: 0.2
   _range: 3
   _camoSeeing: 1
+  _aoeTower: 0

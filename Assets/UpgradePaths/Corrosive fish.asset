@@ -12,4 +12,150 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea8702baef5f54c8a699036da1a1f1, type: 3}
   m_Name: Corrosive fish
   m_EditorClassIdentifier: 
-  Paths: []
+  Paths:
+  - Upgrades:
+    - UpgradeName: Acid Splash
+      UpgradeDescription: +Dot Damage
+      UpgradeCost: 250
+      UpgradeSprite: {fileID: -44057251, guid: 9d760f477b0de46428acf75e79cef611, type: 3}
+      Type: 256
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0
+      AttackSpeedUpgrade: 0
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 0
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 1
+      DotTickRate: 0
+      DotAmountOfTicks: 0
+      LayersToPuncture: 0
+    - UpgradeName: Venom Surge
+      UpgradeDescription: ++Dot Damage
+      UpgradeCost: 350
+      UpgradeSprite: {fileID: -1554797041, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 256
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0
+      AttackSpeedUpgrade: 0
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 0
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 1
+      DotTickRate: 0
+      DotAmountOfTicks: 0
+      LayersToPuncture: 0
+    - UpgradeName: Toxic Tempest
+      UpgradeDescription: +++Dot Damage
+      UpgradeCost: 500
+      UpgradeSprite: {fileID: -1554797041, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 256
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0
+      AttackSpeedUpgrade: 0
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 0
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 2
+      DotTickRate: 0
+      DotAmountOfTicks: 0
+      LayersToPuncture: 0
+  - Upgrades:
+    - UpgradeName: Rapid Corrosion
+      UpgradeDescription: +Corrosion Tick Rate
+      UpgradeCost: 300
+      UpgradeSprite: {fileID: 1611527822, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 512
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0
+      AttackSpeedUpgrade: 0
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 0
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0.08
+      DotAmountOfTicks: 0
+      LayersToPuncture: 0
+    - UpgradeName: Seeping Poison
+      UpgradeDescription: ++Corrosion Tick Rate
+      UpgradeCost: 400
+      UpgradeSprite: {fileID: -315047084, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 512
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0
+      AttackSpeedUpgrade: 0
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 0
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0.1
+      DotAmountOfTicks: 0
+      LayersToPuncture: 0
+    - UpgradeName: Torrential Toxin
+      UpgradeDescription: ++Corrosion Tick Rate
+      UpgradeCost: 500
+      UpgradeSprite: {fileID: 1377692438, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 512
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0
+      AttackSpeedUpgrade: 0
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 0
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0.13
+      DotAmountOfTicks: 0
+      LayersToPuncture: 0
+  - Upgrades:
+    - UpgradeName: Prolonged Decay
+      UpgradeDescription: +Amount of ticks
+      UpgradeCost: 300
+      UpgradeSprite: {fileID: -538083502, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 1024
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0
+      AttackSpeedUpgrade: 0
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 0
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0
+      DotAmountOfTicks: 1
+      LayersToPuncture: 0
+    - UpgradeName: Enduring Venom
+      UpgradeDescription: +Amount of ticks
+      UpgradeCost: 400
+      UpgradeSprite: {fileID: -538083502, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 1024
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0
+      AttackSpeedUpgrade: 0
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 0
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0
+      DotAmountOfTicks: 1
+      LayersToPuncture: 0
+    - UpgradeName: Perpetual Corrosion
+      UpgradeDescription: ++Amount of ticks
+      UpgradeCost: 550
+      UpgradeSprite: {fileID: -538083502, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 1024
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0
+      AttackSpeedUpgrade: 0
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 0
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0
+      DotAmountOfTicks: 2
+      LayersToPuncture: 0

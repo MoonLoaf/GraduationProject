@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c6e880d3ee8f394fa26720069b7b813, type: 3}
-  m_Name: ALUCANONHIT
+  m_Name: AluCanOnHit
   m_EditorClassIdentifier: 
   Clip: {fileID: 8300000, guid: 881e3f52c86c94f26a60718d35627cd8, type: 3}
   _type: 0

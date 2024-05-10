@@ -12,4 +12,148 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea8702baef5f54c8a699036da1a1f1, type: 3}
   m_Name: Super fish
   m_EditorClassIdentifier: 
-  Paths: []
+  Paths:
+  - Upgrades:
+    - UpgradeName: Golden Fury
+      UpgradeDescription: +Damage
+      UpgradeCost: 100
+      UpgradeSprite: {fileID: 237567502, guid: 9d760f477b0de46428acf75e79cef611, type: 3}
+      Type: 4
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0
+      AttackSpeedUpgrade: 0
+      ProjectileDamageUpgrade: 1
+      ProjectileSpeedUpgrade: 0
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0
+      DotAmountOfTicks: 0
+      LayersToPuncture: 0
+    - UpgradeName: Regal Crush
+      UpgradeDescription: ++Damage
+      UpgradeCost: 250
+      UpgradeSprite: {fileID: -1429390896, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 4
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0
+      AttackSpeedUpgrade: 0
+      ProjectileDamageUpgrade: 2
+      ProjectileSpeedUpgrade: 0
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0
+      DotAmountOfTicks: 0
+      LayersToPuncture: 0
+    - UpgradeName: Imperial Strike
+      UpgradeDescription: +++Damage \n \n +Projectile Speed
+      UpgradeCost: 350
+      UpgradeSprite: {fileID: -1677047411, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 12
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0
+      AttackSpeedUpgrade: 0
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 1
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0
+      DotAmountOfTicks: 0
+      LayersToPuncture: 0
+  - Upgrades:
+    - UpgradeName: Splash Scope
+      UpgradeDescription: +Range \n \n +Projectile Speed
+      UpgradeCost: 100
+      UpgradeSprite: {fileID: 2147264988, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 9
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0.2
+      AttackSpeedUpgrade: 0
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 1.5
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0
+      DotAmountOfTicks: 0
+      LayersToPuncture: 0
+    - UpgradeName: Golden Reach
+      UpgradeDescription: ++Range \n \n +Projectile Speed
+      UpgradeCost: 200
+      UpgradeSprite: {fileID: 1379057550, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 9
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0.3
+      AttackSpeedUpgrade: 0
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 1
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0
+      DotAmountOfTicks: 0
+      LayersToPuncture: 0
+    - UpgradeName: Dominant Range
+      UpgradeDescription: +++Range \n \n +Projectile Speed
+      UpgradeCost: 400
+      UpgradeSprite: {fileID: -469157178, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 9
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0.5
+      AttackSpeedUpgrade: 0
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 1
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0
+      DotAmountOfTicks: 0
+      LayersToPuncture: 0
+  - Upgrades:
+    - UpgradeName: Swift Stream
+      UpgradeDescription: +Attack Speed
+      UpgradeCost: 300
+      UpgradeSprite: {fileID: -1604343276, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 2
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0
+      AttackSpeedUpgrade: 0.05
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 0
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0
+      DotAmountOfTicks: 0
+      LayersToPuncture: 0
+    - UpgradeName: Rapid Ripple
+      UpgradeDescription: +Attack Speed
+      UpgradeCost: 300
+      UpgradeSprite: {fileID: -64684260, guid: 9d760f477b0de46428acf75e79cef611, type: 3}
+      Type: 2
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0
+      AttackSpeedUpgrade: 0.05
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 0
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0
+      DotAmountOfTicks: 0
+      LayersToPuncture: 0
+    - UpgradeName: Golden Surge
+      UpgradeDescription: ++Attack Speed
+      UpgradeCost: 350
+      UpgradeSprite: {fileID: 951934139, guid: 9d760f477b0de46428acf75e79cef611, type: 3}
+      Type: 2
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0
+      AttackSpeedUpgrade: 0.08
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 0
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0
+      DotAmountOfTicks: 0
+      LayersToPuncture: 0

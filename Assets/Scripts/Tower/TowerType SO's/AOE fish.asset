@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa5c2b77d02a4434fa86a83eb80ff110, type: 3}
   m_Name: AOE fish
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300050, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
+  _sprite: {fileID: 21300000, guid: d338327292a89f04fade24ac60af4147, type: 3}
   _towerName: Pufferfish
   _isHero: 0
   _projectileType: {fileID: 11400000, guid: 71728771e8564e74e8639ef145eb5999, type: 2}

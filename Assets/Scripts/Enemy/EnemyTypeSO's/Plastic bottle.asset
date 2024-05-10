@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51da85ca38e118e4886babf68f177d77, type: 3}
   m_Name: Plastic bottle
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300000, guid: 706771529e3089e459e34fd492166585, type: 3}
+  _sprite: {fileID: 21300000, guid: 810602a17a8443f4488357d20939792e, type: 3}
   _layerColors:
   - {r: 1, g: 0.07661381, b: 0, a: 1}
+  - {r: 0, g: 0.3634741, b: 0.8392157, a: 1}
   - {r: 0.18929425, g: 0.8396226, b: 0, a: 1}
   _onHitSound: {fileID: 11400000, guid: 8f933dca5d9683d40a0e51c8e8f81d3b, type: 2}
   _onDestroyedSound: {fileID: 11400000, guid: 50edf96c890c7b6499df3cec343fe0db, type: 2}
-  _layers: 2
+  _layers: 3
   _hpPerLayer: 1
   _rewardPerLayerPopped: 5
   _enemyPoppedReward: 15

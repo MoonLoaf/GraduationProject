@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa5c2b77d02a4434fa86a83eb80ff110, type: 3}
   m_Name: Explosive fish
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: ea5d24f8721ae804ab9769467bd4b640, type: 3}
   _towerName: Eplosive Fish
   _isHero: 0
   _projectileType: {fileID: 11400000, guid: 33d1c312ae17f6a48adf47984f05e962, type: 2}
@@ -21,3 +21,4 @@ MonoBehaviour:
   _attackSpeed: 0.7
   _range: 1.8
   _camoSeeing: 0
+  _aoeTower: 0

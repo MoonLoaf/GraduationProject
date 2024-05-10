@@ -14,27 +14,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Paths:
   - Upgrades:
-    - UpgradeName: Path 1
-      UpgradeDescription: Upgrade 1
-      UpgradeCost: 100
-      UpgradeSprite: {fileID: 21300000, guid: 23d9bcba198f8d94890fb00d241637b0, type: 3}
-      Type: 3
-      RangeUpgrade: 2
-      AttackSpeedUpgrade: 0.2
+    - UpgradeName: Long Line
+      UpgradeDescription: +Range \n \n +Projectile Speed
+      UpgradeCost: 300
+      UpgradeSprite: {fileID: 1947428043, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 9
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0.3
+      AttackSpeedUpgrade: 0
       ProjectileDamageUpgrade: 0
-      ProjectileSpeedUpgrade: 0
+      ProjectileSpeedUpgrade: 1
       ExplosionRadiusUpgrade: 0
       DotDamageUpgrade: 0
       DotTickRate: 0
       DotAmountOfTicks: 0
       LayersToPuncture: 0
-    - UpgradeName: Path 1
-      UpgradeDescription: Upgrade 2
+    - UpgradeName: Horizon Hook
+      UpgradeDescription: +Range \n \n +Projectile Speed
       UpgradeCost: 200
-      UpgradeSprite: {fileID: 21300002, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
-      Type: 3
-      RangeUpgrade: 2
-      AttackSpeedUpgrade: 0.2
+      UpgradeSprite: {fileID: 1083680330, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 9
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0.3
+      AttackSpeedUpgrade: 0
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 1
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0
+      DotAmountOfTicks: 0
+      LayersToPuncture: 0
+    - UpgradeName: Eagle Eye
+      UpgradeDescription: +Camo Seeing
+      UpgradeCost: 550
+      UpgradeSprite: {fileID: 2147264988, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 4096
+      ApplyCamoSeeing: 1
+      RangeUpgrade: 0
+      AttackSpeedUpgrade: 0
       ProjectileDamageUpgrade: 0
       ProjectileSpeedUpgrade: 0
       ExplosionRadiusUpgrade: 0
@@ -42,75 +62,64 @@ MonoBehaviour:
       DotTickRate: 0
       DotAmountOfTicks: 0
       LayersToPuncture: 0
-    - UpgradeName: Path 1
-      UpgradeDescription: Upgrade 3
-      UpgradeCost: 300
-      UpgradeSprite: {fileID: 21300000, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
-      Type: 3
-      RangeUpgrade: 2
-      AttackSpeedUpgrade: 0.2
-      ProjectileDamageUpgrade: 0
-      ProjectileSpeedUpgrade: 0
-      ExplosionRadiusUpgrade: 0
-      DotDamageUpgrade: 0
-      DotTickRate: 0
-      DotAmountOfTicks: 0
-      LayersToPuncture: 0
-    _progressIndex: 0
-    IsLocked: 0
   - Upgrades:
-    - UpgradeName: Path 2
-      UpgradeDescription: Upgrade 1
-      UpgradeCost: 150
-      UpgradeSprite: {fileID: 21300006, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
-      Type: 3
-      RangeUpgrade: 1
-      AttackSpeedUpgrade: 2
-      ProjectileDamageUpgrade: 0
-      ProjectileSpeedUpgrade: 0
-      ExplosionRadiusUpgrade: 0
-      DotDamageUpgrade: 0
-      DotTickRate: 0
-      DotAmountOfTicks: 0
-      LayersToPuncture: 0
-    - UpgradeName: Path 2
-      UpgradeDescription: Upgrade 2
-      UpgradeCost: 250
-      UpgradeSprite: {fileID: 21300010, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
-      Type: 0
-      RangeUpgrade: 0
-      AttackSpeedUpgrade: 0
-      ProjectileDamageUpgrade: 0
-      ProjectileSpeedUpgrade: 0
-      ExplosionRadiusUpgrade: 0
-      DotDamageUpgrade: 0
-      DotTickRate: 0
-      DotAmountOfTicks: 0
-      LayersToPuncture: 0
-    - UpgradeName: Path 2
-      UpgradeDescription: Upgrade 3
+    - UpgradeName: Sharper Hook
+      UpgradeDescription: +Damage
       UpgradeCost: 300
-      UpgradeSprite: {fileID: 21300012, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
-      Type: 0
+      UpgradeSprite: {fileID: -538083502, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 4
+      ApplyCamoSeeing: 0
       RangeUpgrade: 0
       AttackSpeedUpgrade: 0
-      ProjectileDamageUpgrade: 0
+      ProjectileDamageUpgrade: 1
       ProjectileSpeedUpgrade: 0
       ExplosionRadiusUpgrade: 0
       DotDamageUpgrade: 0
       DotTickRate: 0
       DotAmountOfTicks: 0
       LayersToPuncture: 0
-    _progressIndex: 0
-    IsLocked: 0
+    - UpgradeName: Harpoon Force
+      UpgradeDescription: +Damage
+      UpgradeCost: 400
+      UpgradeSprite: {fileID: 1075745557, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 4
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0
+      AttackSpeedUpgrade: 0
+      ProjectileDamageUpgrade: 1
+      ProjectileSpeedUpgrade: 0
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0
+      DotAmountOfTicks: 0
+      LayersToPuncture: 0
+    - UpgradeName: Trawler's Might
+      UpgradeDescription: ++Damage
+      UpgradeCost: 500
+      UpgradeSprite: {fileID: 298234028, guid: 9d760f477b0de46428acf75e79cef611, type: 3}
+      Type: 4
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0
+      AttackSpeedUpgrade: 0
+      ProjectileDamageUpgrade: 2
+      ProjectileSpeedUpgrade: 0
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0
+      DotAmountOfTicks: 0
+      LayersToPuncture: 0
   - Upgrades:
-    - UpgradeName: Path 3
-      UpgradeDescription: Upgrade 1
-      UpgradeCost: 2
-      UpgradeSprite: {fileID: 21300044, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
-      Type: 0
+    - UpgradeName: Swift Cast
+      UpgradeDescription: +Attack Speed
+      UpgradeCost: 300
+      UpgradeSprite: {fileID: 1611527822, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 2
+      ApplyCamoSeeing: 0
       RangeUpgrade: 0
-      AttackSpeedUpgrade: 0
+      AttackSpeedUpgrade: 0.08
       ProjectileDamageUpgrade: 0
       ProjectileSpeedUpgrade: 0
       ExplosionRadiusUpgrade: 0
@@ -118,13 +127,15 @@ MonoBehaviour:
       DotTickRate: 0
       DotAmountOfTicks: 0
       LayersToPuncture: 0
-    - UpgradeName: Path 3
-      UpgradeDescription: Upgrade 3
-      UpgradeCost: 50
-      UpgradeSprite: {fileID: 21300028, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
-      Type: 0
+    - UpgradeName: Tidal Surge
+      UpgradeDescription: +Attack Speed
+      UpgradeCost: 400
+      UpgradeSprite: {fileID: -1965196655, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 2
+      ApplyCamoSeeing: 0
       RangeUpgrade: 0
-      AttackSpeedUpgrade: 0
+      AttackSpeedUpgrade: 0.08
       ProjectileDamageUpgrade: 0
       ProjectileSpeedUpgrade: 0
       ExplosionRadiusUpgrade: 0
@@ -132,13 +143,15 @@ MonoBehaviour:
       DotTickRate: 0
       DotAmountOfTicks: 0
       LayersToPuncture: 0
-    - UpgradeName: Path 3
-      UpgradeDescription: Upgrade 3
-      UpgradeCost: 60
-      UpgradeSprite: {fileID: 21300006, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
-      Type: 0
+    - UpgradeName: Aqua Velocity
+      UpgradeDescription: ++Attack Speed
+      UpgradeCost: 500
+      UpgradeSprite: {fileID: 1323281696, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 2
+      ApplyCamoSeeing: 0
       RangeUpgrade: 0
-      AttackSpeedUpgrade: 0
+      AttackSpeedUpgrade: 0.1
       ProjectileDamageUpgrade: 0
       ProjectileSpeedUpgrade: 0
       ExplosionRadiusUpgrade: 0
@@ -146,5 +159,3 @@ MonoBehaviour:
       DotTickRate: 0
       DotAmountOfTicks: 0
       LayersToPuncture: 0
-    _progressIndex: 0
-    IsLocked: 0

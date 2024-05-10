@@ -12,13 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51da85ca38e118e4886babf68f177d77, type: 3}
   m_Name: Aluminium can
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 0}
-  _layerColors: []
-  _layers: 0
-  _hpPerLayer: 0
-  _rewardPerLayerPopped: 0
-  _enemyPoppedReward: 0
-  _damage: 0
-  _movementSpeed: 0
-  isMetal: 0
+  _sprite: {fileID: 21300000, guid: f7d0a0769ac56bc4291ebad29a5ad551, type: 3}
+  _layerColors:
+  - {r: 1, g: 0.07661381, b: 0, a: 1}
+  - {r: 0, g: 0.3634741, b: 0.8392157, a: 1}
+  - {r: 0.18929425, g: 0.8396226, b: 0, a: 1}
+  - {r: 1, g: 0.9999793, b: 0.06132078, a: 1}
+  - {r: 0.8392157, g: 0, b: 0.76039237, a: 1}
+  _onHitSound: {fileID: 0}
+  _onDestroyedSound: {fileID: 0}
+  _layers: 5
+  _hpPerLayer: 2
+  _rewardPerLayerPopped: 6
+  _enemyPoppedReward: 20
+  _damage: 5
+  _movementSpeed: 2
+  isMetal: 1
   isCamo: 0

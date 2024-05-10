@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa5c2b77d02a4434fa86a83eb80ff110, type: 3}
   m_Name: Corrosive fish
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: 29701c90347e6cb4cbfb31a1cc282d62, type: 3}
   _towerName: Dragon Fish
   _isHero: 0
   _projectileType: {fileID: 11400000, guid: fb7282d076784cc47b4bce7f9874394b, type: 2}
@@ -21,3 +21,4 @@ MonoBehaviour:
   _attackSpeed: 0.5
   _range: 1.6
   _camoSeeing: 0
+  _aoeTower: 0

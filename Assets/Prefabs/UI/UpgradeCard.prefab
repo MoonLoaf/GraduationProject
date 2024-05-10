@@ -202,9 +202,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '+1 range
 
-    +2 damage
 
-    +explosive'
+    +2 Projectile Speed'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6de1dee92f0df0a40808a603c359bb7e, type: 2}
   m_sharedMaterial: {fileID: 6238781438566449780, guid: 6de1dee92f0df0a40808a603c359bb7e,
@@ -232,15 +231,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 7
-  m_fontSizeBase: 7
+  m_fontSize: 8.6
+  m_fontSizeBase: 8.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 32
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -644,7 +643,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Upgrade
+  m_text: Splash Scope
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6de1dee92f0df0a40808a603c359bb7e, type: 2}
   m_sharedMaterial: {fileID: 6238781438566449780, guid: 6de1dee92f0df0a40808a603c359bb7e,
@@ -672,11 +671,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
+  m_fontSize: 7.8
   m_fontSizeBase: 10
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 4
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 2
@@ -688,7 +687,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}

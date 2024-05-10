@@ -66,9 +66,14 @@ namespace UI
             _lock.enabled = Path.IsLocked;
             _upgrade = GetCurrentUpgrade();
             _upgradeNameText.text = _upgrade.UpgradeName;
-            _upgradeDescription.text = _upgrade.UpgradeDescription;
+            _upgradeDescription.text = FormatText(_upgrade.UpgradeDescription);
             _upgradeImage.sprite = _upgrade.UpgradeSprite;
             _upgradeCostText.text = _upgrade.UpgradeCost.ToString();
+        }
+
+        private string FormatText(string text)
+        {
+            return text.Replace("\\n", "\n");
         }
     }
 }

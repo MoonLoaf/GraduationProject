@@ -12,4 +12,149 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea8702baef5f54c8a699036da1a1f1, type: 3}
   m_Name: Pierce fish
   m_EditorClassIdentifier: 
-  Paths: []
+  Paths:
+  - Upgrades:
+    - UpgradeName: Precision Penetration
+      UpgradeDescription: +Layers Pierced
+      UpgradeCost: 350
+      UpgradeSprite: {fileID: -287795169, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 2048
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0
+      AttackSpeedUpgrade: 0
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 0
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0
+      DotAmountOfTicks: 0
+      LayersToPuncture: 1
+    - UpgradeName: Depth Strike
+      UpgradeDescription: +Layers Pierced
+      UpgradeCost: 350
+      UpgradeSprite: {fileID: 147384837, guid: 9d760f477b0de46428acf75e79cef611, type: 3}
+      Type: 2048
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0
+      AttackSpeedUpgrade: 0
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 0
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0
+      DotAmountOfTicks: 0
+      LayersToPuncture: 1
+    - UpgradeName: Piercing Mastery
+      UpgradeDescription: +Layers Pierced
+      UpgradeCost: 350
+      UpgradeSprite: {fileID: -1596714762, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 2048
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0
+      AttackSpeedUpgrade: 0
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 0
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0
+      DotAmountOfTicks: 0
+      LayersToPuncture: 1
+  - Upgrades:
+    - UpgradeName: Splash Scope
+      UpgradeDescription: +Range \n \n +Projectile Speed
+      UpgradeCost: 100
+      UpgradeSprite: {fileID: 2147264988, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 9
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0.2
+      AttackSpeedUpgrade: 0
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 1.5
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0
+      DotAmountOfTicks: 0
+      LayersToPuncture: 0
+    - UpgradeName: Ripple Reach
+      UpgradeDescription: ++Range \n \n +Projectile Speed
+      UpgradeCost: 200
+      UpgradeSprite: {fileID: 708371937, guid: 9d760f477b0de46428acf75e79cef611, type: 3}
+      Type: 9
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0.3
+      AttackSpeedUpgrade: 0
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 1
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0
+      DotAmountOfTicks: 0
+      LayersToPuncture: 0
+    - UpgradeName: Streamline Sight
+      UpgradeDescription: +++Range \n \n +Projectile Speed
+      UpgradeCost: 400
+      UpgradeSprite: {fileID: 1065081188, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 9
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0.5
+      AttackSpeedUpgrade: 0
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 1
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0
+      DotAmountOfTicks: 0
+      LayersToPuncture: 0
+  - Upgrades:
+    - UpgradeName: Rapid Fins
+      UpgradeDescription: +Attack Speed
+      UpgradeCost: 300
+      UpgradeSprite: {fileID: -1474998639, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 2
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0
+      AttackSpeedUpgrade: 0.05
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 0
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0
+      DotAmountOfTicks: 0
+      LayersToPuncture: 0
+    - UpgradeName: 'Streamline Surge '
+      UpgradeDescription: +Attack Speed
+      UpgradeCost: 400
+      UpgradeSprite: {fileID: -1604343276, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 2
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0
+      AttackSpeedUpgrade: 0.05
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 0
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0
+      DotAmountOfTicks: 0
+      LayersToPuncture: 0
+    - UpgradeName: Riptide Rapid
+      UpgradeDescription: ++Attack Speed
+      UpgradeCost: 550
+      UpgradeSprite: {fileID: 1323281696, guid: 9d760f477b0de46428acf75e79cef611,
+        type: 3}
+      Type: 2
+      ApplyCamoSeeing: 0
+      RangeUpgrade: 0
+      AttackSpeedUpgrade: 0.08
+      ProjectileDamageUpgrade: 0
+      ProjectileSpeedUpgrade: 0
+      ExplosionRadiusUpgrade: 0
+      DotDamageUpgrade: 0
+      DotTickRate: 0
+      DotAmountOfTicks: 0
+      LayersToPuncture: 0

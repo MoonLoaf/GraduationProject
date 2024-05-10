@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa5c2b77d02a4434fa86a83eb80ff110, type: 3}
   m_Name: Pierce fish
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: 3dc1f6cf62cc0f84ab9886574d662d54, type: 3}
   _towerName: Archer Fish
   _isHero: 0
   _projectileType: {fileID: 11400000, guid: 68578fd54f25c574f8234c70f1c5623f, type: 2}
@@ -21,3 +21,4 @@ MonoBehaviour:
   _attackSpeed: 0.8
   _range: 2.2
   _camoSeeing: 0
+  _aoeTower: 0

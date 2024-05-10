@@ -5753,6 +5753,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower Button (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8454709949607945220, guid: d88b45729d13f444c93021ea1e82ce84,
+        type: 3}
+      propertyPath: _typeToSpawn
+      value: 
+      objectReference: {fileID: 11400000, guid: 0a1a07c71940fd14c9c1ffe2af5fa3d2,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6131,6 +6137,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower Button (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8454709949607945220, guid: d88b45729d13f444c93021ea1e82ce84,
+        type: 3}
+      propertyPath: _typeToSpawn
+      value: 
+      objectReference: {fileID: 11400000, guid: a2db504fb39bed94b9f499fe10099ea2,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6651,6 +6663,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower Button (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8454709949607945220, guid: d88b45729d13f444c93021ea1e82ce84,
+        type: 3}
+      propertyPath: _typeToSpawn
+      value: 
+      objectReference: {fileID: 11400000, guid: 013f93ae3ab698846bfe1e3eaef3c26f,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6775,6 +6793,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower Button (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8454709949607945220, guid: d88b45729d13f444c93021ea1e82ce84,
+        type: 3}
+      propertyPath: _typeToSpawn
+      value: 
+      objectReference: {fileID: 11400000, guid: 97faa266acb55b64492a7b5f3e55be09,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

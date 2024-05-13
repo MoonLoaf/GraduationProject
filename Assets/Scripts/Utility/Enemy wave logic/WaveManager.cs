@@ -18,6 +18,7 @@ namespace Utility.EnemyWaveLogic
         private Vector3 _spawnPoint;
 
         public bool IsWaveActive { get; private set; }
+        private bool _waveSpawning;
 
         protected override void Awake()
         {
@@ -37,6 +38,8 @@ namespace Utility.EnemyWaveLogic
         private void OnWaveEnd()
         {
             //Only gets called when pool is empty
+            if(_waveSpawning){return;}
+            
             GameManager.Instance.WaveEnd(_waves[_waveIndex].EndOfWaveReward);
             _waveIndex++;
             IsWaveActive = false;
@@ -55,6 +58,7 @@ namespace Utility.EnemyWaveLogic
         private IEnumerator StartWave()
         {
             IsWaveActive = true;
+            _waveSpawning = true;
             Wave wave = _waves[_waveIndex];
 
             for (int eventIndex = 0; eventIndex < wave.SpawnEvents.Count; eventIndex++)
@@ -68,6 +72,7 @@ namespace Utility.EnemyWaveLogic
                     yield return new WaitForSeconds(wave.SpawnEvents[eventIndex + 1].Delay);
                 }
             }
+            _waveSpawning = false;
         }
 
         private IEnumerator TriggerSpawnEvent(Wave.SpawnEvent spawnEvent)

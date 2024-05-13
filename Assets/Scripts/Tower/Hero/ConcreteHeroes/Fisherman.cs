@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 
 namespace Tower.Hero.ConcreteHeroes
@@ -17,6 +18,18 @@ namespace Tower.Hero.ConcreteHeroes
             _abilityCooldownWait = new WaitForSeconds(_abilityCooldown);
         }
 
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            UIEventManager.Instance.HeroSoldEvent += RemoveBuffsFunc;
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            UIEventManager.Instance.HeroSoldEvent -= RemoveBuffsFunc;
+        }
+
         public override void ActivateAbility()
         {
             AbilityReady = false;
@@ -31,6 +44,16 @@ namespace Tower.Hero.ConcreteHeroes
 
             StartCoroutine(RemoveBuffs());
             StartCoroutine(AbilityCooldownCoroutine());
+        }
+
+        private void RemoveBuffsFunc(Hero hero)
+        {
+            foreach (var tower in _towersInRange)
+            {
+                if(!_originalAttackSpeeds.TryGetValue(tower, out var speed)) { continue; }
+                tower.CurrentType.AttackSpeed = speed;
+            }
+            _originalAttackSpeeds.Clear();
         }
 
         private IEnumerator RemoveBuffs()

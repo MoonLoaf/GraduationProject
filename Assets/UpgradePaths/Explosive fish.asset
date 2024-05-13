@@ -73,7 +73,7 @@ MonoBehaviour:
       AttackSpeedUpgrade: 0
       ProjectileDamageUpgrade: 0
       ProjectileSpeedUpgrade: 0
-      ExplosionRadiusUpgrade: 0.07
+      ExplosionRadiusUpgrade: 0.02
       DotDamageUpgrade: 0
       DotTickRate: 0
       DotAmountOfTicks: 0
@@ -89,7 +89,7 @@ MonoBehaviour:
       AttackSpeedUpgrade: 0
       ProjectileDamageUpgrade: 0
       ProjectileSpeedUpgrade: 0
-      ExplosionRadiusUpgrade: 0.7
+      ExplosionRadiusUpgrade: 0.2
       DotDamageUpgrade: 0
       DotTickRate: 0
       DotAmountOfTicks: 0
@@ -105,7 +105,7 @@ MonoBehaviour:
       AttackSpeedUpgrade: 0
       ProjectileDamageUpgrade: 0
       ProjectileSpeedUpgrade: 0
-      ExplosionRadiusUpgrade: 1
+      ExplosionRadiusUpgrade: 0.05
       DotDamageUpgrade: 0
       DotTickRate: 0
       DotAmountOfTicks: 0

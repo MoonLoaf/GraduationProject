@@ -95,11 +95,11 @@ MonoBehaviour:
       DotAmountOfTicks: 0
       LayersToPuncture: 0
     - UpgradeName: Tidal Thrash
-      UpgradeDescription: +++Damage \n \n +Projectile Speed
+      UpgradeDescription: +++Damage
       UpgradeCost: 350
       UpgradeSprite: {fileID: -436095009, guid: 9d760f477b0de46428acf75e79cef611,
         type: 3}
-      Type: 12
+      Type: 4
       ApplyCamoSeeing: 0
       RangeUpgrade: 0
       AttackSpeedUpgrade: 0

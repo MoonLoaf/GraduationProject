@@ -30,7 +30,7 @@ namespace Tower.Hero
             _stateDropdown.value = (int)_state;
         }
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             UpgradeTab.OnTowerDeselect += HandleTowerDeselect;
             HeroState[] enumValues = (HeroState[])Enum.GetValues(typeof(HeroState));
@@ -46,7 +46,7 @@ namespace Tower.Hero
             _stateDropdown.onValueChanged.AddListener(SetState);
             _stateDropdown.gameObject.SetActive(false);
         }
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
             UpgradeTab.OnTowerDeselect -= HandleTowerDeselect;
         }
@@ -79,13 +79,6 @@ namespace Tower.Hero
 
             _lastFishingTime = Time.time;
             GameManager.Instance.IncrementMoney(_moneyPerFishingtrip);
-        }
-
-        protected override void Attack(Vector3 targetPos)
-        {
-            base.Attack(targetPos);
-            Debug.Log("Hero Attack");
-            //TODO: Hero attack cool stuff
         }
 
         protected override void OnMouseDown()

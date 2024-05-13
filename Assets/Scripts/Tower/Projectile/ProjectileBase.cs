@@ -38,6 +38,10 @@ namespace Tower.Projectile
             _direction = direction;
             _tower = tower;
             _spawnPos = transform.position;
+            
+            float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
+    
+            transform.rotation = Quaternion.Euler(0, 0, angle - 90);
             _shouldMove = true;
         }
 
@@ -84,15 +88,6 @@ namespace Tower.Projectile
             {
                 EnemyBase enemy = other.gameObject.GetComponent<EnemyBase>();
                 enemy.TakeDamage(_type);
-            }
-        }
-        
-        private void OnDrawGizmos()
-        {
-            if ((_type != null) && (_type.DamageType & DamageType.Explosive) != 0)
-            {
-                Gizmos.color = Color.red; 
-                Gizmos.DrawWireSphere(transform.position, _type.ExplosionRadius);
             }
         }
     }

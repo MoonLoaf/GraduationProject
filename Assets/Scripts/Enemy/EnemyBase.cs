@@ -14,6 +14,9 @@ namespace Enemy
     public class EnemyBase : MonoBehaviour
     {
         [SerializeField] private EnemyType _type;
+        [SerializeField] private Material _corrosiveMat;
+        private Material _defaultMat;
+        
         public EnemyType Type => _type;
 
         public int LayersRemaining { get; private set; }
@@ -56,6 +59,7 @@ namespace Enemy
         {
             _renderer = gameObject.GetComponent<SpriteRenderer>();
             _collider = gameObject.GetComponent<CircleCollider2D>();
+            _defaultMat = _renderer.material;
 
             if (_spline == null)
             {
@@ -75,6 +79,7 @@ namespace Enemy
             _currentLayerHealth = _type.HpPerLayer;
             LayersRemaining = _type.Layers;
             _moveSpeed = _type.MovementSpeed;
+            _renderer.material = _defaultMat;
             if (_type.IsMetal)
             {
                 _metalIntact = true;
@@ -153,6 +158,7 @@ namespace Enemy
         
         private IEnumerator DoCorrosiveDamageOverTime(ProjectileType projectileType)
         {
+            _renderer.material = _corrosiveMat;
             int ticksRemaining = projectileType.DotAmountOfTicks;
 
             var wait = new WaitForSeconds(projectileType.DotTickRate);
@@ -164,6 +170,8 @@ namespace Enemy
 
                 ticksRemaining--;
             }
+
+            _renderer.material = _defaultMat;
         }
 
         private void DecreaseHP(int amount)

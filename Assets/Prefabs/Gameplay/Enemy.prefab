@@ -48,6 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: {fileID: 0}
+  _corrosiveMat: {fileID: -876546973899608171, guid: 86291bc027535ce4fbe2a6418bea1cee,
+    type: 3}
 --- !u!212 &2643617964946020333
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -94,7 +96,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.64}
+  m_Size: {x: 0.90909094, y: 0.90909094}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0

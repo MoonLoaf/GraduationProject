@@ -51,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _towerPrefab: {fileID: 7869630436680484343, guid: 5b81c70099692814c8f3eb7f58bdb5f5,
     type: 3}
+  _AOEtowerPrefab: {fileID: 0}
   _cancelButton: {fileID: 5528554510423431985}
 --- !u!114 &8519747587911820965
 MonoBehaviour:

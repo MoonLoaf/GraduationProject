@@ -156,7 +156,6 @@ MonoBehaviour:
   _AOEtowerPrefab: {fileID: 2948189681690672838, guid: 83717e7757fc4a94fa664e97ac11ef00,
     type: 3}
   _cancelButton: {fileID: 3929338487640835836}
-  _spawnAOE: 0
 --- !u!114 &-1708308381002417913
 MonoBehaviour:
   m_ObjectHideFlags: 0

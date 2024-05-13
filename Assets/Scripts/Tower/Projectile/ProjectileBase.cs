@@ -1,5 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using Enemy;
 using Helpers;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Tower.Projectile
@@ -7,6 +10,7 @@ namespace Tower.Projectile
     public class ProjectileBase : MonoBehaviour
     {
         [SerializeField] private ProjectileType _type;
+        [SerializeField] private GameObject _explosionPrefab;
         private TowerBase _tower;
         public ProjectileType Type => _type;
 
@@ -42,12 +46,6 @@ namespace Tower.Projectile
             _shouldMove = false;
         }
 
-        public void SetType(ProjectileType type)
-        {
-            if(_type){return;}
-            _type = type;
-        }
-
         private void Update()
         {
             if(!_shouldMove){return;}
@@ -69,6 +67,8 @@ namespace Tower.Projectile
             if ((_type.DamageType & DamageType.Explosive) != 0)
             {
                 Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _type.ExplosionRadius);
+                GameObject explosion = Instantiate(_explosionPrefab, transform.position, quaternion.identity);
+                explosion.transform.localScale = new Vector3(_type.ExplosionRadius, _type.ExplosionRadius, 1);
     
                 foreach (Collider2D collider in colliders)
                 {
@@ -84,6 +84,15 @@ namespace Tower.Projectile
             {
                 EnemyBase enemy = other.gameObject.GetComponent<EnemyBase>();
                 enemy.TakeDamage(_type);
+            }
+        }
+        
+        private void OnDrawGizmos()
+        {
+            if ((_type != null) && (_type.DamageType & DamageType.Explosive) != 0)
+            {
+                Gizmos.color = Color.red; 
+                Gizmos.DrawWireSphere(transform.position, _type.ExplosionRadius);
             }
         }
     }

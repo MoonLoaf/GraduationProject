@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa5c2b77d02a4434fa86a83eb80ff110, type: 3}
   m_Name: Fisherman
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300000, guid: 23d9bcba198f8d94890fb00d241637b0, type: 3}
+  _sprite: {fileID: 21300000, guid: d3fb594af8af1d64d92501f271752e63, type: 3}
   _towerName: Fisherman
   _isHero: 1
   _projectileType: {fileID: 11400000, guid: 0df341006ec7a71418c6f8a786271ede, type: 2}
@@ -21,3 +21,4 @@ MonoBehaviour:
   _attackSpeed: 0.2
   _range: 4
   _camoSeeing: 0
+  _aoeTower: 0

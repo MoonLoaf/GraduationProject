@@ -84,6 +84,7 @@ namespace Tower.Hero
         protected override void OnMouseDown()
         {
             base.OnMouseDown();
+            if(UIEventManager.Instance.IsPreviewActive){return;}
             if(_stateDropdown.IsActive()){return;}
             _stateDropdown.gameObject.SetActive(true);
         }

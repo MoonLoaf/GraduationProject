@@ -199,6 +199,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 18920207}
   m_CullTransparentMesh: 1
+--- !u!1 &530823017
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 530823019}
+  - component: {fileID: 530823018}
+  m_Layer: 0
+  m_Name: UIEventManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &530823018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530823017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80f7bfe1d208d624f9f42ad36d10d1fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &530823019
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530823017}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &618748706
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,26 +343,222 @@ MonoBehaviour:
   _enemyPrefab: {fileID: 9135579836845321999, guid: 49abf969cc25b7342bbacc888442aef2,
     type: 3}
   _waves:
-  - EndOfWaveReward: 100
+  - EndOfWaveReward: 150
+    EndOfWaveText: Welcome to Firsherman's Fortification. A tower defence game about
+      keeping trash out of the Ocean!
+    SpawnEvents:
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 5
+      Delay: 0
+      SpawnTickRate: 1
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 5
+      Delay: 2
+      SpawnTickRate: 1
+  - EndOfWaveReward: 150
+    EndOfWaveText: You can buy new fishes in the shop to your left!
+    SpawnEvents:
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 5
+      Delay: 0
+      SpawnTickRate: 1
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 8
+      Delay: 0.8
+      SpawnTickRate: 1
+  - EndOfWaveReward: 200
+    EndOfWaveText: You can also upgrade existing fishes. Try tapping one!
+    SpawnEvents:
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 5
+      Delay: 0
+      SpawnTickRate: 1
+    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
+      Count: 5
+      Delay: 0.5
+      SpawnTickRate: 2
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 6
+      Delay: 0.5
+      SpawnTickRate: 1
+  - EndOfWaveReward: 200
+    EndOfWaveText: 
+    SpawnEvents:
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 5
+      Delay: 0
+      SpawnTickRate: 1
+    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
+      Count: 5
+      Delay: 0.5
+      SpawnTickRate: 2
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 6
+      Delay: 0.5
+      SpawnTickRate: 1
+    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
+      Count: 4
+      Delay: 1
+      SpawnTickRate: 2
+  - EndOfWaveReward: 200
+    EndOfWaveText: Enemies can have different traits, but there is always a unique
+      fish fit ofr the job! Metal trash might need some extra firepower to deal with...
     SpawnEvents:
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
       Count: 10
       Delay: 0
       SpawnTickRate: 1
+    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
+      Count: 4
+      Delay: 0.5
+      SpawnTickRate: 2
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
-      Count: 10
-      Delay: 2
-      SpawnTickRate: 0.5
-  - EndOfWaveReward: 100
+      Count: 8
+      Delay: 0.5
+      SpawnTickRate: 0.8
+    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
+      Count: 3
+      Delay: 0.5
+      SpawnTickRate: 1
+  - EndOfWaveReward: 300
+    EndOfWaveText: 
+    SpawnEvents:
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 5
+      Delay: 0
+      SpawnTickRate: 1
+    - Type: {fileID: 11400000, guid: de1df7c51c38fb54db4cf65c231fe64a, type: 2}
+      Count: 4
+      Delay: 0.5
+      SpawnTickRate: 1
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 4
+      Delay: 1
+      SpawnTickRate: 1
+    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
+      Count: 5
+      Delay: 0.5
+      SpawnTickRate: 2
+  - EndOfWaveReward: 300
+    EndOfWaveText: 
     SpawnEvents:
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
       Count: 10
       Delay: 0
+      SpawnTickRate: 0.8
+    - Type: {fileID: 11400000, guid: de1df7c51c38fb54db4cf65c231fe64a, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 0.8
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 5
+      Delay: 0.5
+      SpawnTickRate: 1
+    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
+      Count: 5
+      Delay: 0.5
+      SpawnTickRate: 2
+  - EndOfWaveReward: 300
+    EndOfWaveText: 
+    SpawnEvents:
+    - Type: {fileID: 11400000, guid: de1df7c51c38fb54db4cf65c231fe64a, type: 2}
+      Count: 5
+      Delay: 0
+      SpawnTickRate: 1
+    - Type: {fileID: 11400000, guid: de1df7c51c38fb54db4cf65c231fe64a, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 1.5
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 1
+    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 2
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 1
+  - EndOfWaveReward: 300
+    EndOfWaveText: 
+    SpawnEvents:
+    - Type: {fileID: 11400000, guid: de1df7c51c38fb54db4cf65c231fe64a, type: 2}
+      Count: 5
+      Delay: 0
+      SpawnTickRate: 1
+    - Type: {fileID: 11400000, guid: de1df7c51c38fb54db4cf65c231fe64a, type: 2}
+      Count: 5
+      Delay: 0.5
+      SpawnTickRate: 1.5
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 5
+      Delay: 0
+      SpawnTickRate: 1
+    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
+      Count: 5
+      Delay: 0.5
       SpawnTickRate: 1
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
       Count: 10
-      Delay: 2
+      Delay: 1
       SpawnTickRate: 0.5
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 1
+  - EndOfWaveReward: 300
+    EndOfWaveText: Beware of some sneaky enemies ahead, most fishes can't even spot
+      them. Not without certain upgrades at least...
+    SpawnEvents:
+    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
+      Count: 5
+      Delay: 0
+      SpawnTickRate: 1
+    - Type: {fileID: 11400000, guid: de1df7c51c38fb54db4cf65c231fe64a, type: 2}
+      Count: 4
+      Delay: 1
+      SpawnTickRate: 1.5
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 1
+    - Type: {fileID: 11400000, guid: de1df7c51c38fb54db4cf65c231fe64a, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 2
+    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 2
+  - EndOfWaveReward: 300
+    EndOfWaveText: 
+    SpawnEvents:
+    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
+      Count: 5
+      Delay: 0
+      SpawnTickRate: 1
+    - Type: {fileID: 11400000, guid: a737237c7882d05419b05861cec0d211, type: 2}
+      Count: 4
+      Delay: 1
+      SpawnTickRate: 1.5
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 0.8
+    - Type: {fileID: 11400000, guid: a737237c7882d05419b05861cec0d211, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 1
+    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 1
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 8
+      Delay: 0.5
+      SpawnTickRate: 0.8
 --- !u!4 &1269616215
 Transform:
   m_ObjectHideFlags: 0
@@ -469,50 +709,6 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1445265292
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1445265294}
-  - component: {fileID: 1445265293}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1445265293
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1445265292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80f7bfe1d208d624f9f42ad36d10d1fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1445265294
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1445265292}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1391,9 +1587,9 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 530823019}
   - {fileID: 1684478756}
   - {fileID: 1269616215}
-  - {fileID: 1445265294}
   - {fileID: 1338392588}
   - {fileID: 1414333676}
   - {fileID: 618748709}

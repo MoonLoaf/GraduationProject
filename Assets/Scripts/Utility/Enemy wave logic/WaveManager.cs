@@ -100,5 +100,10 @@ namespace Utility.EnemyWaveLogic
         {
             _enemyPool.DespawnObject(enemy);
         }
+
+        public string GetEndOfWaveText()
+        {
+            return _waves[_waveIndex].EndOfWaveText;
+        }
     }
 }

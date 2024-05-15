@@ -8,11 +8,13 @@ namespace Utility.EnemyWaveLogic
     public struct Wave
     {
         public int EndOfWaveReward;
+        public string EndOfWaveText;
         public List<SpawnEvent> SpawnEvents;
 
-        public Wave(List<SpawnEvent> events, int endOfWaveReward)
+        public Wave(List<SpawnEvent> events, int endOfWaveReward, string endOfWaveText)
         { 
             EndOfWaveReward = endOfWaveReward;
+            EndOfWaveText = endOfWaveText;
             SpawnEvents = events;
         }
         

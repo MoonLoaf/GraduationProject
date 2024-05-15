@@ -299,22 +299,18 @@ MonoBehaviour:
     type: 3}
   _waves:
   - EndOfWaveReward: 100
+    EndOfWaveText: I hope this works
     SpawnEvents:
-    - Type: {fileID: 11400000, guid: a737237c7882d05419b05861cec0d211, type: 2}
-      Count: 5
-      Delay: 2
-      SpawnTickRate: 1
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
       Count: 5
       Delay: 0
       SpawnTickRate: 1
-    - Type: {fileID: 11400000, guid: de1df7c51c38fb54db4cf65c231fe64a, type: 2}
+  - EndOfWaveReward: 100
+    EndOfWaveText: 
+    SpawnEvents:
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
       Count: 5
-      Delay: 2
-      SpawnTickRate: 1
-    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
-      Count: 5
-      Delay: 2
+      Delay: 0
       SpawnTickRate: 1
 --- !u!4 &1269616215
 Transform:

@@ -79,9 +79,12 @@ namespace UI
             if (_activeTower.CurrentType.IsHero)
             {
                 UIEventManager.Instance.HeroSoldEvent?.Invoke((Hero)_activeTower);
+                Destroy(_activeTower.transform.parent.gameObject);
             }
-            
-            Destroy(_activeTower.transform.parent.gameObject);
+            else
+            {
+                Destroy(_activeTower.gameObject);
+            }            
             _activeTower = null;
             ButtonFadeFunc();
         }

@@ -1,3 +1,4 @@
+using System;
 using Core;
 using TMPro;
 using Tower.Upgrades;
@@ -8,8 +9,7 @@ namespace UI
 {
     public class UpgradeCard : ClickableButton
     {
-        public delegate void OnUpgradePurchasedHandler();
-        public OnUpgradePurchasedHandler OnUpgradePurchased;
+        public Action OnUpgradePurchased;
         
         [SerializeField] private Sprite _filledStarImage;
         [SerializeField] private Sprite _emptyStarImage;

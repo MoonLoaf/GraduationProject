@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace UI
 {
     [RequireComponent(typeof(Button))]
-    public class ClickableButton : MonoBehaviour, IClickable
+    public abstract class ClickableButton : MonoBehaviour, IClickable
     {
         protected Button _button;
         protected virtual void Awake()
@@ -16,7 +16,7 @@ namespace UI
 
         public virtual void OnClickInteraction()
         {
-            AudioManager.Instance.Play("ButtonClick", Vector3.back);
+            AudioManager.Instance.Play("ButtonClick");
         }
     }
 }

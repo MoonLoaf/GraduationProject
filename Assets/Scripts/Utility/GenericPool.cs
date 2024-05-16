@@ -1,22 +1,22 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+using Object = UnityEngine.Object;
 
 namespace Utility
 {
     public class GenericPool<T> : Object where T : Component
     {
-        public delegate void PoolEventHandler();
-
-        public event PoolEventHandler OnActivePoolEmpty;
+        public event Action OnActivePoolEmpty;
         protected ObjectPool<T> _pool;
-        public List<T> ActiveObjects { get; protected set; }
+        private List<T> _activeObjects { get; set; }
         private GameObject _prefab;
         
         public void Initialize(GameObject prefab, int initialCapacity, int maxCapacity)
         {
             _prefab = prefab;
-            ActiveObjects = new List<T>();
+            _activeObjects = new List<T>();
             _pool = new ObjectPool<T>(
                 OnObjectCreate, OnObjectGet, OnObjectRelease, OnObjectDestroy,
                 false, initialCapacity, maxCapacity);
@@ -37,15 +37,15 @@ namespace Utility
 
         private void OnObjectGet(T obj)
         {
-            ActiveObjects.Add(obj);
+            _activeObjects.Add(obj);
         }
 
         private void OnObjectRelease(T obj)
         {
-            ActiveObjects.Remove(obj);
+            _activeObjects.Remove(obj);
             obj.gameObject.SetActive(false);
             
-            if(ActiveObjects.Count != 0){return;}
+            if(_activeObjects.Count != 0){return;}
             OnActivePoolEmpty?.Invoke();
         }
 

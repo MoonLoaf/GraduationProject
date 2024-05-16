@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Tower
 {
-    public class TowerBase : ClickableObject
+    public class TowerBase : MonoBehaviour
     {
         [SerializeField] protected TowerType _initialType;
         protected TowerType _currentType;
@@ -28,12 +28,13 @@ namespace Tower
         
         protected SpriteRenderer _renderer;
         private TowerUpgradeManager _towerUpgradeManager;
+        private RangeShaderController _shaderController;
 
         protected float _lastAttackTime;
 
-        protected override void Awake()
+        protected virtual void Awake()
         {
-            base.Awake();
+            _shaderController = GetComponentInChildren<RangeShaderController>();
             _renderer = gameObject.GetComponent<SpriteRenderer>();
             _towerUpgradeManager = GetComponent<TowerUpgradeManager>();
             ProjectilePool = new ProjectilePool();
@@ -125,7 +126,7 @@ namespace Tower
             return _enemiesInRange.Count > 0 && Time.time - _lastAttackTime > CurrentType.AttackSpeed;
         }
 
-        protected override void OnMouseDown()
+        protected virtual void OnMouseDown()
         {
             if(UIEventManager.Instance.IsPreviewActive){return;}
             UpgradeTab.OnTowerDeselect?.Invoke(false);

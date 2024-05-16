@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Enemy;
 using Helpers;
 using Unity.Mathematics;
@@ -12,23 +10,17 @@ namespace Tower.Projectile
         [SerializeField] private ProjectileType _type;
         [SerializeField] private GameObject _explosionPrefab;
         private TowerBase _tower;
-        public ProjectileType Type => _type;
 
         private Vector3 _targetPos;
         private Vector3 _direction;
-        private Vector3 _spawnPos;
         private bool _shouldMove = false;
         private float _currentLifetime = 0;
 
-
         private SpriteRenderer _renderer;
-        private CircleCollider2D _collider;
             
-        
         private void Awake()
         {
             _renderer = gameObject.GetComponent<SpriteRenderer>();
-            _collider = gameObject.GetComponent<CircleCollider2D>();
         }
 
         public void Initialize(ProjectileType type, Vector3 direction, TowerBase tower)
@@ -37,7 +29,6 @@ namespace Tower.Projectile
             _renderer.sprite = _type.TypeSprite;
             _direction = direction;
             _tower = tower;
-            _spawnPos = transform.position;
             
             float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
     

@@ -13,18 +13,12 @@ namespace Utility
         private float _splineLength;
         
         private float3 _nearestPoint;
-        public float TrackWidth => _trackWidth;
 
         public float SplineLength => _splineLength;
 
         private void Start()
         {
             _splineLength = _levelSplineContainer.CalculateLength();
-        }
-
-        public Spline GetLevelSpline()
-        {
-            return _levelSplineContainer.Spline;
         }
 
         public SplineContainer GetLevelSplineContainer()

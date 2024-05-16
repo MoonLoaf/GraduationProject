@@ -22,6 +22,7 @@ namespace UI
         {
             GameManager.Instance.OnWaveEnd += UpdateText;
             GameManager.Instance.OnWaveStart += () => { _endOfRoundUI.gameObject.SetActive(false); };
+            UIEventManager.Instance.OnSettingsPressed += () => { _endOfRoundUI.gameObject.SetActive(false); };
         }
         
         private void UpdateText()

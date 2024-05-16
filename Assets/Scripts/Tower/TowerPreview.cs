@@ -13,7 +13,7 @@ namespace Tower
     /// <summary>
     /// Class to represent the "hovered" tower while it's being placed
     /// </summary>
-    public class TowerPreview : ClickableObject
+    public class TowerPreview : MonoBehaviour
     {
         [SerializeField] protected GameObject _towerPrefab;
         [SerializeField] protected GameObject _AOEtowerPrefab;
@@ -29,10 +29,11 @@ namespace Tower
         private Vector3 _touchPosition;
         private CircleCollider2D _collider;
         private ContactFilter2D _filter;
-        
-        protected override void Awake()
+        private RangeShaderController _shaderController;
+
+        protected virtual void Awake()
         {
-            base.Awake();
+            _shaderController = GetComponentInChildren<RangeShaderController>();
             _renderer = gameObject.GetComponent<SpriteRenderer>();
             _collider = GetComponent<CircleCollider2D>();
             _camera = Camera.main;
@@ -62,7 +63,7 @@ namespace Tower
             _renderer.sprite = _type.TypeSprite;
         }
 
-        protected override void OnMouseDown()
+        protected void OnMouseDown()
         {
             Vector2 touchPosition = Input.touches[0].position;
             _touchPosition = _camera.ScreenToWorldPoint(touchPosition);
@@ -72,7 +73,7 @@ namespace Tower
             MoveTowerPreview();
         }
 
-        protected override void OnMouseDrag()
+        protected void OnMouseDrag()
         {
             Vector2 touchPosition = Input.touches[0].position;
             _touchPosition = _camera.ScreenToWorldPoint(touchPosition);
@@ -82,7 +83,7 @@ namespace Tower
             MoveTowerPreview();
         }
 
-        protected override void OnMouseUp()
+        protected void OnMouseUp()
         {
             if(!_moved){return;}
             TryPlaceTower();

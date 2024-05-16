@@ -356,7 +356,7 @@ MonoBehaviour:
       Delay: 2
       SpawnTickRate: 1
   - EndOfWaveReward: 150
-    EndOfWaveText: You can buy new fishes in the shop to your left!
+    EndOfWaveText: You can buy new fishes in the shop to your right!
     SpawnEvents:
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
       Count: 5

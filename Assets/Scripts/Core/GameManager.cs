@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Utility;
 using Utility.EnemyWaveLogic;
@@ -5,7 +6,6 @@ using Utility.EnemyWaveLogic;
 namespace Core
 {
     public delegate void GameStatChangeHandlerInt(int newValue);
-    public delegate void GameEventHandler();
     public delegate void GameOverHandler(GameStats gameStats, bool win);
     [DefaultExecutionOrder(-1)]
     public class GameManager : GenericSingletonDOL<GameManager>
@@ -18,8 +18,8 @@ namespace Core
         public event GameStatChangeHandlerInt OnMoneyChanged;
         public event GameStatChangeHandlerInt OnLivesChanged;
 
-        public event GameEventHandler OnWaveStart;
-        public event GameEventHandler OnWaveEnd;
+        public event Action OnWaveStart;
+        public event Action OnWaveEnd;
 
         public event GameOverHandler OnGameOver;
 

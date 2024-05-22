@@ -305,48 +305,48 @@ MonoBehaviour:
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
       Count: 5
       Delay: 0
-      SpawnTickRate: 1
+      SpawnTickRate: 0.6
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
       Count: 5
       Delay: 2
-      SpawnTickRate: 1
+      SpawnTickRate: 0.7
   - EndOfWaveReward: 150
     EndOfWaveText: You can buy new fishes in the shop to your right!
     SpawnEvents:
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
       Count: 5
       Delay: 0
-      SpawnTickRate: 1
+      SpawnTickRate: 0.6
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
       Count: 8
       Delay: 0.8
-      SpawnTickRate: 1
+      SpawnTickRate: 0.7
   - EndOfWaveReward: 200
     EndOfWaveText: You can also upgrade existing fishes. Try tapping one!
     SpawnEvents:
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
       Count: 5
       Delay: 0
-      SpawnTickRate: 1
+      SpawnTickRate: 0.6
     - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
       Count: 5
       Delay: 0.5
-      SpawnTickRate: 2
+      SpawnTickRate: 1
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
       Count: 6
       Delay: 0.5
-      SpawnTickRate: 1
+      SpawnTickRate: 0.7
   - EndOfWaveReward: 200
     EndOfWaveText: 
     SpawnEvents:
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
       Count: 5
       Delay: 0
-      SpawnTickRate: 1
+      SpawnTickRate: 0.6
     - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
       Count: 5
       Delay: 0.5
-      SpawnTickRate: 2
+      SpawnTickRate: 0.8
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
       Count: 6
       Delay: 0.5
@@ -354,7 +354,7 @@ MonoBehaviour:
     - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
       Count: 4
       Delay: 1
-      SpawnTickRate: 2
+      SpawnTickRate: 0.9
   - EndOfWaveReward: 200
     EndOfWaveText: Enemies can have different traits, but there is always a unique
       fish fit ofr the job! Metal trash might need some extra firepower to deal with...
@@ -362,38 +362,38 @@ MonoBehaviour:
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
       Count: 10
       Delay: 0
-      SpawnTickRate: 1
+      SpawnTickRate: 0.5
     - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
       Count: 4
       Delay: 0.5
-      SpawnTickRate: 2
+      SpawnTickRate: 0.7
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
       Count: 8
       Delay: 0.5
-      SpawnTickRate: 0.8
+      SpawnTickRate: 0.5
     - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
       Count: 3
       Delay: 0.5
-      SpawnTickRate: 1
+      SpawnTickRate: 0.7
   - EndOfWaveReward: 300
     EndOfWaveText: 
     SpawnEvents:
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
       Count: 5
       Delay: 0
-      SpawnTickRate: 1
+      SpawnTickRate: 0.6
     - Type: {fileID: 11400000, guid: de1df7c51c38fb54db4cf65c231fe64a, type: 2}
       Count: 4
       Delay: 0.5
-      SpawnTickRate: 1
+      SpawnTickRate: 0.8
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
       Count: 4
       Delay: 1
-      SpawnTickRate: 1
+      SpawnTickRate: 0.8
     - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
       Count: 5
       Delay: 0.5
-      SpawnTickRate: 2
+      SpawnTickRate: 1
   - EndOfWaveReward: 300
     EndOfWaveText: 
     SpawnEvents:
@@ -408,33 +408,10 @@ MonoBehaviour:
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
       Count: 5
       Delay: 0.5
-      SpawnTickRate: 1
+      SpawnTickRate: 0.7
     - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
       Count: 5
       Delay: 0.5
-      SpawnTickRate: 2
-  - EndOfWaveReward: 300
-    EndOfWaveText: 
-    SpawnEvents:
-    - Type: {fileID: 11400000, guid: de1df7c51c38fb54db4cf65c231fe64a, type: 2}
-      Count: 5
-      Delay: 0
-      SpawnTickRate: 1
-    - Type: {fileID: 11400000, guid: de1df7c51c38fb54db4cf65c231fe64a, type: 2}
-      Count: 5
-      Delay: 1
-      SpawnTickRate: 1.5
-    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
-      Count: 5
-      Delay: 1
-      SpawnTickRate: 1
-    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
-      Count: 5
-      Delay: 1
-      SpawnTickRate: 2
-    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
-      Count: 5
-      Delay: 1
       SpawnTickRate: 1
   - EndOfWaveReward: 300
     EndOfWaveText: 
@@ -442,19 +419,42 @@ MonoBehaviour:
     - Type: {fileID: 11400000, guid: de1df7c51c38fb54db4cf65c231fe64a, type: 2}
       Count: 5
       Delay: 0
+      SpawnTickRate: 0.6
+    - Type: {fileID: 11400000, guid: de1df7c51c38fb54db4cf65c231fe64a, type: 2}
+      Count: 5
+      Delay: 1
       SpawnTickRate: 1
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 0.7
+    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 1
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 0.5
+  - EndOfWaveReward: 300
+    EndOfWaveText: 
+    SpawnEvents:
+    - Type: {fileID: 11400000, guid: de1df7c51c38fb54db4cf65c231fe64a, type: 2}
+      Count: 5
+      Delay: 0
+      SpawnTickRate: 0.7
     - Type: {fileID: 11400000, guid: de1df7c51c38fb54db4cf65c231fe64a, type: 2}
       Count: 5
       Delay: 0.5
-      SpawnTickRate: 1.5
+      SpawnTickRate: 0.9
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
       Count: 5
       Delay: 0
-      SpawnTickRate: 1
+      SpawnTickRate: 0.7
     - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
       Count: 5
       Delay: 0.5
-      SpawnTickRate: 1
+      SpawnTickRate: 0.7
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
       Count: 10
       Delay: 1
@@ -462,7 +462,7 @@ MonoBehaviour:
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
       Count: 5
       Delay: 1
-      SpawnTickRate: 1
+      SpawnTickRate: 0.4
   - EndOfWaveReward: 300
     EndOfWaveText: Beware of some sneaky enemies ahead, most fishes can't even spot
       them. Not without certain upgrades at least...
@@ -474,19 +474,19 @@ MonoBehaviour:
     - Type: {fileID: 11400000, guid: de1df7c51c38fb54db4cf65c231fe64a, type: 2}
       Count: 4
       Delay: 1
-      SpawnTickRate: 1.5
+      SpawnTickRate: 0.9
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
       Count: 5
       Delay: 1
-      SpawnTickRate: 1
+      SpawnTickRate: 0.7
     - Type: {fileID: 11400000, guid: de1df7c51c38fb54db4cf65c231fe64a, type: 2}
       Count: 5
       Delay: 1
-      SpawnTickRate: 2
+      SpawnTickRate: 1
     - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
       Count: 5
       Delay: 1
-      SpawnTickRate: 2
+      SpawnTickRate: 1
   - EndOfWaveReward: 300
     EndOfWaveText: 
     SpawnEvents:
@@ -497,7 +497,7 @@ MonoBehaviour:
     - Type: {fileID: 11400000, guid: a737237c7882d05419b05861cec0d211, type: 2}
       Count: 4
       Delay: 1
-      SpawnTickRate: 1.5
+      SpawnTickRate: 1
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
       Count: 5
       Delay: 1
@@ -509,11 +509,174 @@ MonoBehaviour:
     - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
       Count: 5
       Delay: 1
-      SpawnTickRate: 1
+      SpawnTickRate: 0.7
     - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
       Count: 8
       Delay: 0.5
+      SpawnTickRate: 0.5
+  - EndOfWaveReward: 300
+    EndOfWaveText: 
+    SpawnEvents:
+    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
+      Count: 5
+      Delay: 0
+      SpawnTickRate: 0.4
+    - Type: {fileID: 11400000, guid: a737237c7882d05419b05861cec0d211, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 0.6
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 7
+      Delay: 1
+      SpawnTickRate: 0.5
+    - Type: {fileID: 11400000, guid: a737237c7882d05419b05861cec0d211, type: 2}
+      Count: 6
+      Delay: 1
+      SpawnTickRate: 0.4
+    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 0.7
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 8
+      Delay: 0.5
+      SpawnTickRate: 0.5
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 10
+      Delay: 0.5
+      SpawnTickRate: 0.3
+  - EndOfWaveReward: 300
+    EndOfWaveText: 
+    SpawnEvents:
+    - Type: {fileID: 11400000, guid: a737237c7882d05419b05861cec0d211, type: 2}
+      Count: 5
+      Delay: 0
+      SpawnTickRate: 0.7
+    - Type: {fileID: 11400000, guid: de1df7c51c38fb54db4cf65c231fe64a, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 0.5
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 0.3
+    - Type: {fileID: 11400000, guid: a737237c7882d05419b05861cec0d211, type: 2}
+      Count: 5
+      Delay: 1
       SpawnTickRate: 0.8
+    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
+      Count: 10
+      Delay: 1
+      SpawnTickRate: 0.5
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 8
+      Delay: 0.5
+      SpawnTickRate: 0.5
+  - EndOfWaveReward: 350
+    EndOfWaveText: 
+    SpawnEvents:
+    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
+      Count: 5
+      Delay: 0
+      SpawnTickRate: 0.5
+    - Type: {fileID: 11400000, guid: a737237c7882d05419b05861cec0d211, type: 2}
+      Count: 4
+      Delay: 1
+      SpawnTickRate: 0.6
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 0.3
+    - Type: {fileID: 11400000, guid: a737237c7882d05419b05861cec0d211, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 1
+    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 0.7
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 3
+      Delay: 0.5
+      SpawnTickRate: 0.5
+    - Type: {fileID: 11400000, guid: de1df7c51c38fb54db4cf65c231fe64a, type: 2}
+      Count: 5
+      Delay: 0.5
+      SpawnTickRate: 0.5
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 8
+      Delay: 0.5
+      SpawnTickRate: 0.5
+  - EndOfWaveReward: 350
+    EndOfWaveText: 
+    SpawnEvents:
+    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
+      Count: 5
+      Delay: 0
+      SpawnTickRate: 0.5
+    - Type: {fileID: 11400000, guid: a737237c7882d05419b05861cec0d211, type: 2}
+      Count: 4
+      Delay: 1
+      SpawnTickRate: 0.6
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 0.3
+    - Type: {fileID: 11400000, guid: a737237c7882d05419b05861cec0d211, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 1
+    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 0.7
+    - Type: {fileID: 11400000, guid: de1df7c51c38fb54db4cf65c231fe64a, type: 2}
+      Count: 3
+      Delay: 0.5
+      SpawnTickRate: 0.5
+    - Type: {fileID: 11400000, guid: de1df7c51c38fb54db4cf65c231fe64a, type: 2}
+      Count: 5
+      Delay: 0.5
+      SpawnTickRate: 0.5
+    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
+      Count: 8
+      Delay: 0.5
+      SpawnTickRate: 0.5
+  - EndOfWaveReward: 350
+    EndOfWaveText: 
+    SpawnEvents:
+    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
+      Count: 5
+      Delay: 0
+      SpawnTickRate: 0.5
+    - Type: {fileID: 11400000, guid: a737237c7882d05419b05861cec0d211, type: 2}
+      Count: 4
+      Delay: 1
+      SpawnTickRate: 0.6
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 7
+      Delay: 1
+      SpawnTickRate: 0.3
+    - Type: {fileID: 11400000, guid: a737237c7882d05419b05861cec0d211, type: 2}
+      Count: 5
+      Delay: 1
+      SpawnTickRate: 1
+    - Type: {fileID: 11400000, guid: e843ec7020cfc2749b46d95c5ed8ac19, type: 2}
+      Count: 8
+      Delay: 1
+      SpawnTickRate: 0.7
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 6
+      Delay: 0.5
+      SpawnTickRate: 0.5
+    - Type: {fileID: 11400000, guid: de1df7c51c38fb54db4cf65c231fe64a, type: 2}
+      Count: 6
+      Delay: 0.5
+      SpawnTickRate: 0.5
+    - Type: {fileID: 11400000, guid: 75246ce3e0ce3074d87db94df94671a6, type: 2}
+      Count: 12
+      Delay: 0.5
+      SpawnTickRate: 0.4
 --- !u!4 &1269616215
 Transform:
   m_ObjectHideFlags: 0

@@ -200,7 +200,6 @@ namespace Enemy
         
         private void TriggerDeath()
         {
-            //TODO: Effects?
             IsActive = false;
             AudioManager.Instance.Play(_type.OnDestroyedSound.name);
             GameManager.Instance.IncrementMoney(_type.EnemyPoppedReward);

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Corrosive fish
   m_EditorClassIdentifier: 
   _sprite: {fileID: 21300000, guid: 29701c90347e6cb4cbfb31a1cc282d62, type: 3}
-  _towerName: Dragon Fish
+  _towerName: Lion Fish
   _isHero: 0
   _projectileType: {fileID: 11400000, guid: fb7282d076784cc47b4bce7f9874394b, type: 2}
   _upgrades: {fileID: 11400000, guid: f166a8b9cde63ef4982598d950d29c3d, type: 2}

@@ -11,8 +11,8 @@ namespace UI.Buttons
     {
         [SerializeField] protected TowerType _typeToSpawn;
         [SerializeField] protected GameObject _towerPreviewPrefab;
-        [SerializeField] private Image _imageRef;
-        [SerializeField] private TMP_Text _costText;
+        [SerializeField] protected Image _imageRef;
+        [SerializeField] protected TMP_Text _costText;
         [Space] 
         [SerializeField] private Image _traitImage;
         [SerializeField] private Sprite _explosiveSprite;
@@ -51,7 +51,7 @@ namespace UI.Buttons
             _button.interactable = true;
         }
 
-        private void SetTraitImg()
+        protected void SetTraitImg()
         {
             if ((_typeToSpawn.TypeProjectileType.DamageType & DamageType.Explosive) != 0)
             {
